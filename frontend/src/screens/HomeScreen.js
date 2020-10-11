@@ -9,3 +9,21 @@ import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
 import { listProducts } from '../actions/productActions';
+import products from '../products';
+
+const HomeScreen = () => {
+  return (
+    <>
+      <h1>Latest Products</h1>
+      <Row>
+        {products.map((product) => (
+          <Col sm={12} md={6} lg={4} xl={3}>
+            <Product product={product} />
+          </Col>
+        ))}
+      </Row>
+    </>
+  );
+};
+
+export default HomeScreen;

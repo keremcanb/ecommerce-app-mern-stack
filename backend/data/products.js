@@ -9,7 +9,7 @@ const products = [
     price: 89.99,
     countInStock: 3,
     rating: 0,
-    numReviews: 0,
+    numReviews: 0
   },
   {
     name: 'iPhone 11 Pro 256GB Memory',
@@ -21,7 +21,7 @@ const products = [
     price: 599.99,
     countInStock: 10,
     rating: 0,
-    numReviews: 0,
+    numReviews: 0
   },
   {
     name: 'Cannon EOS 80D DSLR Camera',
@@ -33,7 +33,7 @@ const products = [
     price: 929.99,
     countInStock: 0,
     rating: 0,
-    numReviews: 0,
+    numReviews: 0
   },
   {
     name: 'Sony Playstation 4 Pro White Version',
@@ -45,7 +45,7 @@ const products = [
     price: 399.99,
     countInStock: 10,
     rating: 0,
-    numReviews: 0,
+    numReviews: 0
   },
   {
     name: 'Logitech G-Series Gaming Mouse',
@@ -57,7 +57,7 @@ const products = [
     price: 49.99,
     countInStock: 7,
     rating: 0,
-    numReviews: 0,
+    numReviews: 0
   },
   {
     name: 'Amazon Echo Dot 3rd Generation',
@@ -69,8 +69,8 @@ const products = [
     price: 29.99,
     countInStock: 0,
     rating: 0,
-    numReviews: 0,
-  },
-]
+    numReviews: 0
+  }
+];
 
-export default products
+export default products;

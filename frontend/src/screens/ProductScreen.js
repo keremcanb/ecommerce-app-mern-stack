@@ -8,7 +8,7 @@ import {
   ListGroup,
   Card,
   Button,
-  Form,
+  Form
 } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import Message from '../components/Message';
@@ -16,13 +16,13 @@ import Loader from '../components/Loader';
 import Meta from '../components/Meta';
 import {
   listProductDetails,
-  createProductReview,
+  createProductReview
 } from '../actions/productActions';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
-import products from '../products';
+import axios from 'axios';
 
 const ProductScreen = ({ match }) => {
-  const product = products.find((prod) => prod._id === match.params.id);
+  const [product, setProduct] = useState([]);
   const {
     name,
     image,
@@ -30,12 +30,21 @@ const ProductScreen = ({ match }) => {
     numReviews,
     price,
     description,
-    countInStock,
+    countInStock
   } = product;
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/product/${match.params.id}`);
+
+      setProduct(data);
+    };
+    fetchProduct();
+  }, [match]);
 
   return (
     <>
-      <Link className='btn btn-light my-3' to='/'>
+      <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
       <Row>
@@ -43,7 +52,7 @@ const ProductScreen = ({ match }) => {
           <Image src={image} alt={name} fluid />
         </Col>
         <Col md={3}>
-          <ListGroup variant='flush'>
+          <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>{name}</h2>
             </ListGroup.Item>
@@ -56,7 +65,7 @@ const ProductScreen = ({ match }) => {
         </Col>
         <Col md={3}>
           <Card>
-            <ListGroup variant='flush'>
+            <ListGroup variant="flush">
               <ListGroup.Item>
                 <Col>Price:</Col>
                 <Col>
@@ -71,8 +80,8 @@ const ProductScreen = ({ match }) => {
 
               <ListGroup.Item>
                 <Button
-                  className='btn-block'
-                  type='button'
+                  className="btn-block"
+                  type="button"
                   disabled={countInStock === 0}
                 >
                   Add to Cart

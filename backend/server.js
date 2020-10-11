@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';

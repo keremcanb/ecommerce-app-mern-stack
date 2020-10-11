@@ -19,3 +19,9 @@ import {
   createProductReview,
 } from '../actions/productActions';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
+
+const ProductScreen = () => {
+  return <div>Product</div>;
+};
+
+export default ProductScreen;

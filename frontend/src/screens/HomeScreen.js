@@ -9,20 +9,8 @@ import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
 import { listProducts } from '../actions/productActions';
-import axios from 'axios';
 
 const HomeScreen = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products');
-
-      setProducts(data);
-    };
-    fetchProducts();
-  }, []);
-
   return (
     <>
       <h1>Latest Products</h1>

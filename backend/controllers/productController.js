@@ -10,11 +10,11 @@ const getProducts = asyncHandler(async (req, res) => {
 
   const keyword = req.query.keyword
     ? {
-      name: {
-        $regex: req.query.keyword,
-        $options: 'i'
+        name: {
+          $regex: req.query.keyword,
+          $options: 'i'
+        }
       }
-    }
     : {};
 
   const count = await Product.countDocuments({ ...keyword });
@@ -136,10 +136,9 @@ const createProductReview = asyncHandler(async (req, res) => {
 
     product.numReviews = product.reviews.length;
 
-    product.rating = product.reviews.reduce(
-      (acc, item) => item.rating + acc,
-      0
-    product.reviews.length;
+    product.rating =
+      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      product.reviews.length;
 
     await product.save();
     res.status(201).json({ message: 'Review added' });

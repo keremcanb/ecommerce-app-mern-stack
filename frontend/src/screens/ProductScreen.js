@@ -1,28 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form
-} from 'react-bootstrap';
+import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import Message from '../components/Message';
-import Loader from '../components/Loader';
-import Meta from '../components/Meta';
-import {
-  listProductDetails,
-  createProductReview
-} from '../actions/productActions';
-import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 import axios from 'axios';
 
 const ProductScreen = ({ match }) => {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const {
     name,
     image,
@@ -35,10 +18,11 @@ const ProductScreen = ({ match }) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/product/${match.params.id}`);
+      const { data } = await axios.get(`/api/products/${match.params.id}`);
 
       setProduct(data);
     };
+
     fetchProduct();
   }, [match]);
 
@@ -54,7 +38,7 @@ const ProductScreen = ({ match }) => {
         <Col md={3}>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>{name}</h2>
+              <h3>{name}</h3>
             </ListGroup.Item>
             <ListGroup.Item>
               <Rating value={rating} text={`${numReviews} reviews`} />
@@ -67,24 +51,27 @@ const ProductScreen = ({ match }) => {
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <Col>Price:</Col>
-                <Col>
-                  <strong>${price}</strong>
-                </Col>
+                <Row>
+                  <Col>Price:</Col>
+                  <Col>
+                    <strong>${price}</strong>
+                  </Col>
+                </Row>
               </ListGroup.Item>
 
               <ListGroup.Item>
-                <Col>Status:</Col>
-                <Col>{countInStock > 0 ? 'In Stock' : 'Out of Stock'}</Col>
+                <Row>
+                  <Col>Status:</Col>
+                  <Col>{countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Col>
+                </Row>
               </ListGroup.Item>
-
               <ListGroup.Item>
                 <Button
                   className="btn-block"
                   type="button"
                   disabled={countInStock === 0}
                 >
-                  Add to Cart
+                  Add To Cart
                 </Button>
               </ListGroup.Item>
             </ListGroup>

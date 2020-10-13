@@ -31,10 +31,10 @@ const App = () => {
           <Route path='/placeorder' component={PlaceOrderScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
-          <Route path='/profile' component={ProfileScreen} />
+          <Route path='/profile' component={ProfileScreen} /> */}
 
-          <Route path='/cart/:id?' component={CartScreen} />
-          <Route path='/admin/userlist' component={UserListScreen} />
+          <Route path="/cart/:id?" component={CartScreen} />
+          {/* <Route path='/admin/userlist' component={UserListScreen} />
           <Route path='/admin/user/:id/edit' component={UserEditScreen} />
           <Route
             path='/admin/productlist'
@@ -47,10 +47,10 @@ const App = () => {
             exact
           />
           <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
-          <Route path='/admin/orderlist' component={OrderListScreen} />
-          <Route path='/search/:keyword' component={HomeScreen} exact />
-          <Route path='/page/:pageNumber' component={HomeScreen} exact />
-          <Route
+          <Route path='/admin/orderlist' component={OrderListScreen} /> */}
+          {/* <Route path='/search/:keyword' component={HomeScreen} exact /> */}
+          {/* <Route path='/page/:pageNumber' component={HomeScreen} exact /> */}
+          {/* <Route
             path='/search/:keyword/page/:pageNumber'
             component={HomeScreen}
             exact

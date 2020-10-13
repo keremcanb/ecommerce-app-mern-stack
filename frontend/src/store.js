@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+
 import {
   productListReducer,
   productDetailsReducer
@@ -10,7 +11,9 @@ import {
   // productReviewCreateReducer,
   // productTopRatedReducer
 } from './reducers/productReducers';
-// import { cartReducer } from './reducers/cartReducers';
+
+import { cartReducer } from './reducers/cartReducers';
+
 // import {
 //   userLoginReducer,
 //   userRegisterReducer,
@@ -20,6 +23,7 @@ import {
 //   userDeleteReducer,
 //   userUpdateReducer
 // } from './reducers/userReducers';
+
 // import {
 //   orderCreateReducer,
 //   orderDetailsReducer,
@@ -31,13 +35,13 @@ import {
 
 const reducer = combineReducers({
   productList: productListReducer,
-  productDetails: productDetailsReducer
+  productDetails: productDetailsReducer,
   // productDelete: productDeleteReducer,
   // productCreate: productCreateReducer,
   // productUpdate: productUpdateReducer,
   // productReviewCreate: productReviewCreateReducer,
   // productTopRated: productTopRatedReducer,
-  // cart: cartReducer,
+  cart: cartReducer
   // userLogin: userLoginReducer,
   // userRegister: userRegisterReducer,
   // userDetails: userDetailsReducer,
@@ -53,9 +57,9 @@ const reducer = combineReducers({
   // orderList: orderListReducer
 });
 
-// const cartItemsFromStorage = localStorage.getItem('cartItems')
-//   ? JSON.parse(localStorage.getItem('cartItems'))
-//   : [];
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : [];
 
 // const userInfoFromStorage = localStorage.getItem('userInfo')
 //   ? JSON.parse(localStorage.getItem('userInfo'))
@@ -65,13 +69,13 @@ const reducer = combineReducers({
 //   ? JSON.parse(localStorage.getItem('shippingAddress'))
 //   : {};
 
-// const initialState = {
-//   cart: {
-//     cartItems: cartItemsFromStorage,
-//     shippingAddress: shippingAddressFromStorage
-//   },
-//   userLogin: { userInfo: userInfoFromStorage }
-// };
+const initialState = {
+  cart: {
+    cartItems: cartItemsFromStorage
+    // shippingAddress: shippingAddressFromStorage
+  }
+  // userLogin: { userInfo: userInfoFromStorage }
+};
 
 const middleware = [thunk];
 

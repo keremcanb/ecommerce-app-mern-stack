@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,

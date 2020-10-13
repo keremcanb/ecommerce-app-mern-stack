@@ -77,7 +77,7 @@ const ProductScreen = ({ match }) => {
                     type="button"
                     disabled={countInStock === 0}
                   >
-                    Add To Cart
+                    Add to Cart
                   </Button>
                 </ListGroup.Item>
               </ListGroup>

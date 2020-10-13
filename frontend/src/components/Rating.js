@@ -1,9 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const Rating = ({ value, text, color }) => {
   return (
-    <div className='rating'>
+    <div className="rating">
       <span>
         <i
           style={{ color }}
@@ -14,7 +15,7 @@ const Rating = ({ value, text, color }) => {
               ? 'fas fa-star-half-alt'
               : 'far fa-star'
           }
-        ></i>
+        />
       </span>
       <span>
         <i
@@ -26,7 +27,7 @@ const Rating = ({ value, text, color }) => {
               ? 'fas fa-star-half-alt'
               : 'far fa-star'
           }
-        ></i>
+        />
       </span>
       <span>
         <i
@@ -38,7 +39,7 @@ const Rating = ({ value, text, color }) => {
               ? 'fas fa-star-half-alt'
               : 'far fa-star'
           }
-        ></i>
+        />
       </span>
       <span>
         <i
@@ -50,7 +51,7 @@ const Rating = ({ value, text, color }) => {
               ? 'fas fa-star-half-alt'
               : 'far fa-star'
           }
-        ></i>
+        />
       </span>
       <span>
         <i
@@ -62,7 +63,7 @@ const Rating = ({ value, text, color }) => {
               ? 'fas fa-star-half-alt'
               : 'far fa-star'
           }
-        ></i>
+        />
       </span>
       <span>{text && text} </span>
     </div>
@@ -72,11 +73,11 @@ const Rating = ({ value, text, color }) => {
 Rating.propTypes = {
   color: PropTypes.string,
   text: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired
 };
 
 Rating.defaultProps = {
-  color: '#f8e825',
+  color: '#f8e825'
 };
 
 export default Rating;

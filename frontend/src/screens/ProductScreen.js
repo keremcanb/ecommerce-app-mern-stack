@@ -21,7 +21,6 @@ const ProductScreen = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
-
   const { loading, error, product } = productDetails;
 
   const {
@@ -48,9 +47,11 @@ const ProductScreen = ({ match, history }) => {
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
+
       {!loading ? (
         !error ? (
           <Row>
+            {/* Product info section */}
             <Col md={6}>
               <Image src={image} alt={name} fluid />
             </Col>
@@ -71,6 +72,7 @@ const ProductScreen = ({ match, history }) => {
               </ListGroup>
             </Col>
 
+            {/* Add to cart section */}
             <Col md={3}>
               <Card>
                 <ListGroup variant="flush">

@@ -14,9 +14,8 @@ import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = ({ match, location: { search }, history }) => {
-  // Not clear
   const productId = match.params.id;
-
+  // Not clear
   const qty = search ? Number(search.split('=')[1]) : 1;
 
   const dispatch = useDispatch();
@@ -40,13 +39,11 @@ const CartScreen = ({ match, location: { search }, history }) => {
 
   return (
     <Row>
+      {/* Added products section */}
       <Col md={8}>
         <h1>Shopping Cart</h1>
-        {cartItems.length === 0 ? (
-          <Message>
-            Your cart is empty <Link to="/">Go Back</Link>
-          </Message>
-        ) : (
+
+        {cartItems.length !== 0 ? (
           <ListGroup variant="flush">
             {cartItems.map((item) => (
               <ListGroup.Item key={item.product}>
@@ -61,8 +58,8 @@ const CartScreen = ({ match, location: { search }, history }) => {
 
                   <Col md={2}>${item.price}</Col>
 
+                  {/* Not clear */}
                   <Col md={2}>
-                    {/* Not clear */}
                     <Form.Control
                       as="select"
                       value={item.qty}
@@ -93,8 +90,14 @@ const CartScreen = ({ match, location: { search }, history }) => {
               </ListGroup.Item>
             ))}
           </ListGroup>
+        ) : (
+          <Message>
+            Your cart is empty <Link to="/">Go Back</Link>
+          </Message>
         )}
       </Col>
+
+      {/* Cart subtotal section */}
       <Col md={4}>
         <Card>
           <ListGroup variant="flush">
@@ -109,6 +112,7 @@ const CartScreen = ({ match, location: { search }, history }) => {
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}
             </ListGroup.Item>
+
             <ListGroup.Item>
               <Button
                 type="button"

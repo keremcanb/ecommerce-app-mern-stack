@@ -57,6 +57,7 @@ const reducer = combineReducers({
   // orderList: orderListReducer
 });
 
+// Fetch cartItems from localstorage, if exists run through parse and save in const
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : [];
@@ -70,6 +71,7 @@ const cartItemsFromStorage = localStorage.getItem('cartItems')
 //   : {};
 
 const initialState = {
+  // Set cartItemsFromStorage
   cart: {
     cartItems: cartItemsFromStorage
     // shippingAddress: shippingAddressFromStorage

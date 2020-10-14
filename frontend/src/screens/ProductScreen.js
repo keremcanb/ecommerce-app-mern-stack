@@ -16,6 +16,7 @@ import Loader from '../components/Loader';
 import { listProductDetails } from '../actions/productActions';
 
 const ProductScreen = ({ match, history }) => {
+  // Comp. level state
   const [qty, setQty] = useState(1);
 
   const dispatch = useDispatch();
@@ -37,8 +38,8 @@ const ProductScreen = ({ match, history }) => {
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match]);
 
-  // Not clear
   const addToCartHandler = () => {
+    // Goes to shopping cartscreen with product id & selected qty number
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
 
@@ -104,9 +105,11 @@ const ProductScreen = ({ match, history }) => {
                             value={qty}
                             onChange={(e) => setQty(e.target.value)}
                           >
-                            {/* Not clear */}
+                            {/* Form an array like [0, 1, 2, 3, 4] and iterate it */}
                             {[...Array(countInStock).keys()].map((x) => (
+                              // Show qty 1 to 5, not 0 to 4
                               <option key={x + 1} value={x + 1}>
+                                {/* Visible Qty number */}
                                 {x + 1}
                               </option>
                             ))}

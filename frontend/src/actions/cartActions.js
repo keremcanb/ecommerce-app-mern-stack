@@ -6,7 +6,8 @@ import {
   CART_SAVE_PAYMENT_METHOD
 } from '../constants/cartConstants';
 
-// Not clear
+// Take id and qty from url
+// Save entire cart to localstorage, with getState take entire state tree
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   const {
     data: { _id, name, price, image, countInStock }
@@ -24,6 +25,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
     }
   });
 
+  // After dispatch save in localstorage, get js object, stringify it
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
 };
 

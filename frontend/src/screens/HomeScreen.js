@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
@@ -8,12 +7,15 @@ import Loader from '../components/Loader';
 import { listProducts } from '../actions/productActions';
 
 const HomeScreen = () => {
+  // Call an action (Used instead of connect and mapstatetoprops)
   const dispatch = useDispatch();
 
+  // Select parts of the global state
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
   useEffect(() => {
+    // Call listProducts action
     dispatch(listProducts());
   }, [dispatch]);
 

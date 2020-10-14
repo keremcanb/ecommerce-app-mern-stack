@@ -14,8 +14,10 @@ import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = ({ match, location: { search }, history }) => {
+  // Take added product id from url
   const productId = match.params.id;
-  // Not clear
+  // Get query (part in url after ?) with React Router location.search
+  // If exists, split (qty) and (=), then take (=), and convert to number format by wrapping
   const qty = search ? Number(search.split('=')[1]) : 1;
 
   const dispatch = useDispatch();
@@ -45,6 +47,7 @@ const CartScreen = ({ match, location: { search }, history }) => {
 
         {cartItems.length !== 0 ? (
           <ListGroup variant="flush">
+            {/* Map products in cart */}
             {cartItems.map((item) => (
               <ListGroup.Item key={item.product}>
                 <Row>

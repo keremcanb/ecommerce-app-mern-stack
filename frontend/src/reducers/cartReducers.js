@@ -11,21 +11,27 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    // Not clear
     case CART_ADD_ITEM:
       const item = payload;
+      // Check if item exists
+      // if product id (x.product) is equal to current item
       const existItem = state.cartItems.find((x) => x.product === item.product);
 
       if (existItem) {
         return {
           ...state,
+          // Map through current cart items
+          // If current item id is equal to exist item id, then return item
           cartItems: state.cartItems.map((x) =>
             x.product === existItem.product ? item : x
           )
         };
+        // If it doesn't exist we will push it to array
       } else
         return {
+          // Take all items in the state
           ...state,
+          // Set to an array of current items and add new item
           cartItems: [...state.cartItems, item]
         };
 

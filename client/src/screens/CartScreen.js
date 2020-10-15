@@ -61,11 +61,11 @@ const CartScreen = ({ match, location: { search }, history }) => {
 
                   <Col md={2}>${item.price}</Col>
 
-                  {/* Not clear */}
                   <Col md={2}>
                     <Form.Control
                       as="select"
                       value={item.qty}
+                      // Call addToCart again to set changed qty
                       onChange={(e) =>
                         dispatch(
                           addToCart(item.product, Number(e.target.value))
@@ -105,8 +105,8 @@ const CartScreen = ({ match, location: { search }, history }) => {
         <Card>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              {/* Not clear */}
               <h2>
+                {/* Accumulator and current cart item parameters. Reduces the array to a single value. Makes the calculations and the return value is stored in Subtotal acc. */}
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
               </h2>

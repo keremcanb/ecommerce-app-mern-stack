@@ -16,14 +16,11 @@ import Loader from '../components/Loader';
 import { listProductDetails } from '../actions/productActions';
 
 const ProductScreen = ({ match, history }) => {
-  // Comp. level state
+  // Set component level state
   const [qty, setQty] = useState(1);
-
-  const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-
   const {
     name,
     image,
@@ -33,6 +30,8 @@ const ProductScreen = ({ match, history }) => {
     description,
     countInStock
   } = product;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));

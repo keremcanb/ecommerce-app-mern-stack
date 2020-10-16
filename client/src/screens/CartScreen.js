@@ -20,10 +20,10 @@ const CartScreen = ({ match, location: { search }, history }) => {
   // If exists, split (qty) and (=), then take (=), and convert to number format by wrapping
   const qty = search ? Number(search.split('=')[1]) : 1;
 
-  const dispatch = useDispatch();
-
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (productId) {

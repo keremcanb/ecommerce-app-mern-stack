@@ -7,12 +7,12 @@ import Loader from '../components/Loader';
 import { listProducts } from '../actions/productActions';
 
 const HomeScreen = () => {
-  // Call an action (Used instead of connect and mapstatetoprops)
-  const dispatch = useDispatch();
-
-  // Select parts of the global state
+  //  Extract data from the Redux store state using a selector function (Used instead of mapstatetoprops)
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
+
+  // To call an action
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Call listProducts action

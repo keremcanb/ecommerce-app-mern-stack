@@ -1,14 +1,11 @@
-/* eslint-disable no-lonely-if */
 import React, { useState, useEffect } from 'react';
-import { Table, Form, Button, Row, Col } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
-import { listMyOrders } from '../actions/orderActions';
 
-const ProfileScreen = ({ history, location: { search } }) => {
+const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,24 +15,22 @@ const ProfileScreen = ({ history, location: { search } }) => {
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
-  console.log(user);
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
+    } else if (!user.name) {
+      dispatch(getUserDetails('profile'));
     } else {
-      // Different from tutorial
-      if (user.name) {
-        dispatch(getUserDetails('profile'));
-      } else {
-        setName(user.name);
-        setName(user.email);
-      }
+      setName(user.name);
+      setEmail(user.email);
     }
   }, [dispatch, history, userInfo, user]);
 
@@ -44,7 +39,7 @@ const ProfileScreen = ({ history, location: { search } }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match');
     } else {
-      // dispatch(register(name, email, password));
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
 
@@ -54,6 +49,7 @@ const ProfileScreen = ({ history, location: { search } }) => {
         <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
+        {success && <Message variant="success">Profile Updated</Message>}
         {loading && <Loader />}
 
         <Form onSubmit={submitHandler}>
@@ -61,17 +57,17 @@ const ProfileScreen = ({ history, location: { search } }) => {
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="name"
-              placeholder="Enter Name"
+              placeholder="Enter name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
 
           <Form.Group controlId="email">
-            <Form.Label>Email Address</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
-              placeholder="Enter Email"
+              placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -81,17 +77,17 @@ const ProfileScreen = ({ history, location: { search } }) => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Enter Password"
+              placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
 
-          <Form.Group controlId="password">
+          <Form.Group controlId="confirmPassword">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Confirm Password"
+              placeholder="Confirm password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
@@ -102,9 +98,8 @@ const ProfileScreen = ({ history, location: { search } }) => {
           </Button>
         </Form>
       </Col>
-
       <Col md={9}>
-        <h2>My orderActions</h2>
+        <h2>My Orders</h2>
       </Col>
     </Row>
   );

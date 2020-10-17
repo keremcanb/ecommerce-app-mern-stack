@@ -16,8 +16,8 @@ import { cartReducer } from './reducers/cartReducers';
 
 import {
   userLoginReducer,
-  userRegisterReducer
-  // userDetailsReducer,
+  userRegisterReducer,
+  userDetailsReducer
   // userUpdateProfileReducer,
   // userListReducer,
   // userDeleteReducer,
@@ -43,8 +43,8 @@ const reducer = combineReducers({
   // productTopRated: productTopRatedReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
-  userRegister: userRegisterReducer
-  // userDetails: userDetailsReducer,
+  userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer
   // userUpdateProfile: userUpdateProfileReducer,
   // userList: userListReducer,
   // userDelete: userDeleteReducer,

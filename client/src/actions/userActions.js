@@ -49,7 +49,7 @@ export const login = (email, password) => async (dispatch) => {
       type: USER_LOGIN_SUCCESS,
       payload: data
     });
-    // Set user to local storage, has to be string to save to localstorage
+    // Set user to local storage, has to be string to save to localStorage
     localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (err) {
     dispatch({

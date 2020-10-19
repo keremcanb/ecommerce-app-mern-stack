@@ -11,13 +11,13 @@ import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
-import PlaceOrderScreen from './screens/PlaceOrderScreen';
-import OrderScreen from './screens/OrderScreen';
-import UserListScreen from './screens/UserListScreen';
-import UserEditScreen from './screens/UserEditScreen';
-import ProductListScreen from './screens/ProductListScreen';
-import ProductEditScreen from './screens/ProductEditScreen';
-import OrderListScreen from './screens/OrderListScreen';
+// import PlaceOrderScreen from './screens/PlaceOrderScreen';
+// import OrderScreen from './screens/OrderScreen';
+// import UserListScreen from './screens/UserListScreen';
+// import UserEditScreen from './screens/UserEditScreen';
+// import ProductListScreen from './screens/ProductListScreen';
+// import ProductEditScreen from './screens/ProductEditScreen';
+// import OrderListScreen from './screens/OrderListScreen';
 
 const App = () => {
   return (

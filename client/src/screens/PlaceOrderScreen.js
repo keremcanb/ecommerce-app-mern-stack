@@ -8,6 +8,10 @@ import { createOrder } from '../actions/orderActions';
 
 const PlaceOrderScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
+  const { address, city, postalCode, country } = cart.shippingAddress;
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
 
   // Calculate prices
   const addDecimals = (num) => {
@@ -24,9 +28,6 @@ const PlaceOrderScreen = ({ history }) => {
     Number(cart.shippingPrice) +
     Number(cart.taxPrice)
   ).toFixed(2);
-
-  const orderCreate = useSelector((state) => state.orderCreate);
-  const { order, success, error } = orderCreate;
 
   useEffect(() => {
     if (success) {
@@ -53,6 +54,7 @@ const PlaceOrderScreen = ({ history }) => {
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
+
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
@@ -60,9 +62,7 @@ const PlaceOrderScreen = ({ history }) => {
               <h2>Shipping</h2>
               <p>
                 <strong>Address:</strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
-                {cart.shippingAddress.postalCode},{' '}
-                {cart.shippingAddress.country}
+                {address}, {city} {postalCode}, {country}
               </p>
             </ListGroup.Item>
 
@@ -105,6 +105,7 @@ const PlaceOrderScreen = ({ history }) => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
+
         <Col md={4}>
           <Card>
             <ListGroup variant="flush">

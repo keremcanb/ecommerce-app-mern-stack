@@ -9,9 +9,15 @@ import Loader from '../components/Loader';
 import {
   getOrderDetails,
   payOrder,
-  deliverOrder,
+  deliverOrder
 } from '../actions/orderActions';
 import {
   ORDER_PAY_RESET,
-  ORDER_DELIVER_RESET,
+  ORDER_DELIVER_RESET
 } from '../constants/orderConstants';
+
+const OrderScreen = () => {
+  return <div></div>;
+};
+
+export default OrderScreen;

@@ -24,6 +24,7 @@ import {
 } from '../constants/productConstants';
 import { logout } from './userActions';
 
+// List products
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
@@ -45,6 +46,7 @@ export const listProducts = () => async (dispatch) => {
   }
 };
 
+// List product details
 export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });

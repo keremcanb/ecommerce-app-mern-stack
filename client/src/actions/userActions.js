@@ -27,6 +27,7 @@ import {
 } from '../constants/userConstants';
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants';
 
+// Login
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -62,6 +63,7 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
+// Register
 export const register = (name, email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -102,6 +104,7 @@ export const register = (name, email, password) => async (dispatch) => {
   }
 };
 
+// Get profile
 export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -136,6 +139,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 };
 
+// Update profile
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -170,6 +174,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
   }
 };
 
+// Logout
 export const logout = () => async (dispatch) => {
   localStorage.removeItem('userInfo');
   dispatch({ type: USER_LOGOUT });

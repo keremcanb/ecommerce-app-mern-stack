@@ -46,7 +46,7 @@ const PlaceOrderScreen = ({ history }) => {
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
-        totalPrice: cart.taxPrice
+        totalPrice: cart.totalPrice
       })
     );
   };

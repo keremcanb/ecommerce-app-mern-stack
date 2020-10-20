@@ -12,7 +12,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
-// import OrderScreen from './screens/OrderScreen';
+import OrderScreen from './screens/OrderScreen';
 // import UserListScreen from './screens/UserListScreen';
 // import UserEditScreen from './screens/UserEditScreen';
 // import ProductListScreen from './screens/ProductListScreen';
@@ -25,7 +25,7 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container>
-          {/* <Route path='/order/:id' component={OrderScreen} /> */}
+          <Route path="/order/:id" component={OrderScreen} />
           <Route path="/shipping" component={ShippingScreen} />
           <Route path="/payment" component={PaymentScreen} />
           <Route path="/placeorder" component={PlaceOrderScreen} />

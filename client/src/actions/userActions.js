@@ -34,16 +34,14 @@ export const login = (email, password) => async (dispatch) => {
       type: USER_LOGIN_REQUEST
     });
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-    // Object with email/password as 2nd argument and config as 3rd
     const { data } = await axios.post(
       '/api/users/login',
       { email, password },
-      config
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
     );
 
     dispatch({
@@ -70,16 +68,14 @@ export const register = (name, email, password) => async (dispatch) => {
       type: USER_REGISTER_REQUEST
     });
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-
     const { data } = await axios.post(
       '/api/users',
       { name, email, password },
-      config
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
     );
 
     dispatch({
@@ -115,14 +111,12 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       userLogin: { userInfo }
     } = getState();
 
-    const config = {
+    const { data } = await axios.get(`/api/users/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`
       }
-    };
-
-    const { data } = await axios.get(`/api/users/${id}`, config);
+    });
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
@@ -150,14 +144,12 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       userLogin: { userInfo }
     } = getState();
 
-    const config = {
+    const { data } = await axios.put(`/api/users/profile`, user, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`
       }
-    };
-
-    const { data } = await axios.put(`/api/users/profile`, user, config);
+    });
 
     dispatch({
       type: USER_UPDATE_PROFILE_SUCCESS,

@@ -29,8 +29,8 @@ import {
   orderDetailsReducer,
   orderPayReducer,
   //   orderDeliverReducer,
-  orderListMyReducer
-  //   orderListReducer
+  orderListMyReducer,
+  orderListReducer
 } from './reducers/orderReducers';
 
 const reducer = combineReducers({
@@ -53,8 +53,8 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
   // orderDeliver: orderDeliverReducer,
-  orderListMy: orderListMyReducer
-  // orderList: orderListReducer
+  orderListMy: orderListMyReducer,
+  orderList: orderListReducer
 });
 
 // Fetch cartItems from localStorage, if exists run through parse and save in const

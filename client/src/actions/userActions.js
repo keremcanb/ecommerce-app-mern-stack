@@ -23,10 +23,18 @@ import {
   USER_DELETE_FAIL,
   USER_UPDATE_FAIL,
   USER_UPDATE_SUCCESS,
-  USER_UPDATE_REQUEST,
-  USER_UPDATE_RESET
+  USER_UPDATE_REQUEST
 } from '../constants/userConstants';
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants';
+
+// Logout
+export const logout = () => async (dispatch) => {
+  localStorage.removeItem('userInfo');
+  dispatch({ type: USER_LOGOUT });
+  dispatch({ type: USER_DETAILS_RESET });
+  dispatch({ type: ORDER_LIST_MY_RESET });
+  dispatch({ type: USER_LIST_RESET });
+};
 
 // Login
 export const login = (email, password) => async (dispatch) => {
@@ -49,6 +57,7 @@ export const login = (email, password) => async (dispatch) => {
       type: USER_LOGIN_SUCCESS,
       payload: data
     });
+
     // Set user to local storage, has to be string to save to localStorage
     localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (err) {
@@ -108,6 +117,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       type: USER_DETAILS_REQUEST
     });
 
+    // Get logged in user info (token) with Redux getState method
     const {
       userLogin: { userInfo }
     } = getState();
@@ -265,13 +275,4 @@ export const updateUser = (user) => async (dispatch, getState) => {
           : error.message
     });
   }
-};
-
-// Logout
-export const logout = () => async (dispatch) => {
-  localStorage.removeItem('userInfo');
-  dispatch({ type: USER_LOGOUT });
-  dispatch({ type: USER_DETAILS_RESET });
-  dispatch({ type: ORDER_LIST_MY_RESET });
-  dispatch({ type: USER_LIST_RESET });
 };

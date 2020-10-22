@@ -8,9 +8,11 @@ import FormContainer from '../components/FormContainer';
 import { login } from '../actions/userActions';
 
 const LoginScreen = ({ history, location: { search } }) => {
+  // Login form component level state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // Logged in user info global level state
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 

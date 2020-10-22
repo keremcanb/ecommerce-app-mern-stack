@@ -6,9 +6,11 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { saveShippingAddress } from '../actions/cartActions';
 
 const ShippingScreen = ({ history }) => {
+  // Cart global level state
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
+  // Shipping address form component level state
   const [address, setAddress] = useState(shippingAddress.address);
   const [city, setCity] = useState(shippingAddress.city);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);

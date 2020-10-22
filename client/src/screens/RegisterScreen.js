@@ -8,12 +8,14 @@ import FormContainer from '../components/FormContainer';
 import { register } from '../actions/userActions';
 
 const RegisterScreen = ({ history, location: { search } }) => {
+  // User register form component level state
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState(null);
 
+  // Register global level state
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
 

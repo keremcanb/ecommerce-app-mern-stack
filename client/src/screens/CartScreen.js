@@ -14,14 +14,16 @@ import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = ({ match, location: { search }, history }) => {
-  // Take added product id from url
-  const productId = match.params.id;
+  // List products in cart global level state
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
   // Get query (part in url after ?) with React Router location.search
   // If exists, split (qty) and (=), then take (=), and convert to number format by wrapping
   const qty = search ? Number(search.split('=')[1]) : 1;
 
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  // Take added product id from url
+  const productId = match.params.id;
 
   const dispatch = useDispatch();
 

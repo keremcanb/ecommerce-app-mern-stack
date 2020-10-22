@@ -16,8 +16,10 @@ import Loader from '../components/Loader';
 import { listProductDetails } from '../actions/productActions';
 
 const ProductScreen = ({ match, history }) => {
+  // Item quantity component level state
   const [qty, setQty] = useState(1);
 
+  // Viewed product details global level state
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
   const {

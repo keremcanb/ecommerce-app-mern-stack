@@ -17,11 +17,14 @@ import {
 } from '../constants/orderConstants';
 
 const OrderScreen = ({ match }) => {
+  // PayPal SDK component level state
   const [sdkReady, setSdkReady] = useState(false);
 
+  // Order details global level state
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
 
+  // Order payment global level state
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
 

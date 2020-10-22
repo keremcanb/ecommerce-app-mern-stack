@@ -49,7 +49,6 @@ const CartScreen = ({ match, location: { search }, history }) => {
 
         {cartItems.length !== 0 ? (
           <ListGroup variant="flush">
-            {/* Map products in cart */}
             {cartItems.map((item) => (
               <ListGroup.Item key={item.product}>
                 <Row>

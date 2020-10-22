@@ -16,6 +16,8 @@ const LoginScreen = ({ history, location: { search } }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
+  // Get query (part in url after ?) with React Router location.search
+  // If exists, split by (=)
   const redirect = search ? search.split('=')[1] : '/';
 
   useEffect(() => {

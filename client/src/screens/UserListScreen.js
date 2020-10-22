@@ -22,6 +22,7 @@ const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // If logged in user is admin dispatch list users action, else redirect to login page
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
     } else {

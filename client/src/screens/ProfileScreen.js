@@ -110,6 +110,7 @@ const ProfileScreen = ({ location, history }) => {
           </Button>
         </Form>
       </Col>
+
       <Col md={9}>
         <h2>My Orders</h2>
         {!loadingOrders ? (
@@ -125,6 +126,7 @@ const ProfileScreen = ({ location, history }) => {
                   <th />
                 </tr>
               </thead>
+
               <tbody>
                 {orders.map((order) => (
                   <tr key={order._id}>

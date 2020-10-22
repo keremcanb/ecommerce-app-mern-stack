@@ -76,22 +76,18 @@ const OrderScreen = ({ match }) => {
     !error ? (
       <>
         <h1>Order No: {order._id}</h1>
-
         <Row>
           <Col md={8}>
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <h2>Shipping</h2>
-
                 <p>
                   <strong>Name: </strong> {order.user.name}
                 </p>
-
                 <p>
                   <strong>Email: </strong>{' '}
                   <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
                 </p>
-
                 <p>
                   <strong>Address:</strong>
                   {order.shippingAddress.address}, {order.shippingAddress.city}{' '}
@@ -110,7 +106,6 @@ const OrderScreen = ({ match }) => {
 
               <ListGroup.Item>
                 <h2>Payment Method</h2>
-
                 <p>
                   <strong>Method: </strong>
                   {order.paymentMethod}
@@ -125,7 +120,6 @@ const OrderScreen = ({ match }) => {
 
               <ListGroup.Item>
                 <h2>Order Items</h2>
-
                 {order.orderItems.length !== 0 ? (
                   <ListGroup variant="flush">
                     {order.orderItems.map((item, index) => (
@@ -199,13 +193,13 @@ const OrderScreen = ({ match }) => {
                 {!order.isPaid && (
                   <ListGroup.Item>
                     {loadingPay && <Loader />}
-                    {sdkReady ? (
-                      <Loader />
-                    ) : (
+                    {!sdkReady ? (
                       <PayPalButton
                         amount={order.totalPrice}
                         onSuccess={successPaymentHandler}
                       />
+                    ) : (
+                      <Loader />
                     )}
                   </ListGroup.Item>
                 )}

@@ -78,6 +78,7 @@ const ProductListScreen = ({ history, match }) => {
         <Col>
           <h1>Products</h1>
         </Col>
+
         <Col className="text-right">
           <Button className="my-3" onClick={createProductHandler}>
             <i className="fas fa-plus" /> Create Product
@@ -103,6 +104,7 @@ const ProductListScreen = ({ history, match }) => {
                 <th />
               </tr>
             </thead>
+
             <tbody>
               {products.map((product) => (
                 <tr key={product._id}>
@@ -117,6 +119,7 @@ const ProductListScreen = ({ history, match }) => {
                         <i className="fas fa-edit" />
                       </Button>
                     </LinkContainer>
+
                     <Button
                       variant="danger"
                       className="btn-sm"

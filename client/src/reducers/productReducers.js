@@ -25,6 +25,7 @@ import {
   // PRODUCT_TOP_FAIL
 } from '../constants/productConstants';
 
+// Product list
 export const productListReducer = (state = { products: [] }, action) => {
   const { type, payload } = action;
 
@@ -40,6 +41,7 @@ export const productListReducer = (state = { products: [] }, action) => {
   }
 };
 
+// Product details
 export const productDetailsReducer = (
   state = { product: { reviews: [] } },
   action
@@ -58,6 +60,7 @@ export const productDetailsReducer = (
   }
 };
 
+// Product delete
 export const productDeleteReducer = (state = {}, action) => {
   const { type, payload } = action;
 
@@ -73,6 +76,7 @@ export const productDeleteReducer = (state = {}, action) => {
   }
 };
 
+// Product create
 export const productCreateReducer = (state = {}, action) => {
   const { type, payload } = action;
 
@@ -90,6 +94,7 @@ export const productCreateReducer = (state = {}, action) => {
   }
 };
 
+// Product update
 export const productUpdateReducer = (state = { product: {} }, action) => {
   const { type, payload } = action;
 

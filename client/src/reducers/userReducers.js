@@ -26,6 +26,7 @@ import {
   USER_UPDATE_RESET
 } from '../constants/userConstants';
 
+// Login
 export const userLoginReducer = (state = {}, action) => {
   const { type, payload } = action;
 
@@ -43,6 +44,7 @@ export const userLoginReducer = (state = {}, action) => {
   }
 };
 
+// Register
 export const userRegisterReducer = (state = {}, action) => {
   const { type, payload } = action;
 
@@ -58,6 +60,7 @@ export const userRegisterReducer = (state = {}, action) => {
   }
 };
 
+// User details
 export const userDetailsReducer = (state = { user: {} }, action) => {
   const { type, payload } = action;
 
@@ -75,6 +78,7 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
   }
 };
 
+// Update profile
 export const userUpdateProfileReducer = (state = {}, action) => {
   const { type, payload } = action;
 
@@ -90,6 +94,7 @@ export const userUpdateProfileReducer = (state = {}, action) => {
   }
 };
 
+// User list
 export const userListReducer = (state = { users: [] }, action) => {
   const { type, payload } = action;
 
@@ -107,6 +112,7 @@ export const userListReducer = (state = { users: [] }, action) => {
   }
 };
 
+// User delete
 export const userDeleteReducer = (state = {}, action) => {
   const { type, payload } = action;
 
@@ -122,6 +128,7 @@ export const userDeleteReducer = (state = {}, action) => {
   }
 };
 
+// User update
 export const userUpdateReducer = (state = { user: {} }, action) => {
   const { type, payload } = action;
 

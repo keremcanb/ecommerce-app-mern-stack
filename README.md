@@ -13,3 +13,5 @@ Part of the MERN eCommerce From Scratch course by Brad Traversy
 User: admin@example.com
 
 Password: 123456
+
+![alt text](https://raw.githubusercontent.com/keremcanb/ecommerce-app-mern-stack/master/uploads/ss.jpg)

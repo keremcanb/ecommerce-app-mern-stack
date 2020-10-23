@@ -7,3 +7,9 @@ Libraries used for the front end are React, React Router, Redux, Redux Thunk, Ax
 Libraries used for the back end are Express, Express Async Handler, Mongoose, Multer, Morgan, Bcryptjs, Jsonwebtoken
 
 Part of the MERN eCommerce From Scratch course by Brad Traversy
+
+[Heroku Demo](https://mernecommerceapp.herokuapp.com/)
+
+User: admin@example.com
+
+Password: 123456

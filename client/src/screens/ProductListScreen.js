@@ -13,7 +13,7 @@ import {
 } from '../actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
-const ProductListScreen = ({ history, match }) => {
+const ProductListScreen = ({ history }) => {
   // List products global level state
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -38,6 +38,8 @@ const ProductListScreen = ({ history, match }) => {
   // Logged in user info global level state
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  // const pageNumber = match.params.pageNumber || 1;
 
   const dispatch = useDispatch();
 

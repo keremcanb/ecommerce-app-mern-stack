@@ -10,7 +10,7 @@ Part of the MERN eCommerce From Scratch course by Brad Traversy
 
 [Heroku Demo](https://mernecommerceapp.herokuapp.com/)
 
-User: admin@example.com
+User: jane@example.com
 
 Password: 123456
 

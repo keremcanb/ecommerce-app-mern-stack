@@ -16,7 +16,6 @@
     "react/forbid-prop-types": "off",
     "react/require-default-props": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "no-unused-vars": "off",
     "react/prop-types": "off",
     "no-nested-ternary": "off",
     "import/prefer-default-export": "off",

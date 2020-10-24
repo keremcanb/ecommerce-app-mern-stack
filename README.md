@@ -8,10 +8,4 @@ Libraries used for the back end are Express, Express Async Handler, Mongoose, Mu
 
 Part of the MERN eCommerce From Scratch course by Brad Traversy
 
-[Heroku Demo](https://mernecommerceapp.herokuapp.com/)
-
-User: jane@example.com
-
-Password: 123456
-
 ![alt text](https://raw.githubusercontent.com/keremcanb/ecommerce-app-mern-stack/master/uploads/ss.jpg)

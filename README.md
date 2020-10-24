@@ -20,8 +20,6 @@ Part of the MERN eCommerce From Scratch course by Brad Traversy
 
 ---
 
----
-
 ![alt text](https://raw.githubusercontent.com/keremcanb/ecommerce-app-mern-stack/master/uploads/ss4.jpg)
 
 ---
@@ -31,5 +29,3 @@ Part of the MERN eCommerce From Scratch course by Brad Traversy
 ---
 
 ![alt text](https://raw.githubusercontent.com/keremcanb/ecommerce-app-mern-stack/master/uploads/ss6.jpg)
-
----

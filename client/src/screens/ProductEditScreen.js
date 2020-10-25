@@ -10,7 +10,7 @@ import { listProductDetails, updateProduct } from '../actions/productActions';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 const ProductEditScreen = ({ match, history }) => {
-  // Edit product form component level state
+  // Edit product form (component level state)
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState('');
@@ -20,11 +20,11 @@ const ProductEditScreen = ({ match, history }) => {
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
 
-  // Product details global level state
+  // Product details (global level state)
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
-  // Update product global level state
+  // Update product (global level state)
   const productUpdate = useSelector((state) => state.productUpdate);
   const {
     loading: loadingUpdate,

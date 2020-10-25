@@ -14,11 +14,11 @@ import {
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
 const ProductListScreen = ({ history }) => {
-  // List products global level state
+  // List products (global level state)
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
-  // Delete product global level state
+  // Delete product (global level state)
   const productDelete = useSelector((state) => state.productDelete);
   const {
     loading: loadingDelete,
@@ -26,7 +26,7 @@ const ProductListScreen = ({ history }) => {
     success: successDelete
   } = productDelete;
 
-  // Create product global level state
+  // Create product (global level state)
   const productCreate = useSelector((state) => state.productCreate);
   const {
     loading: loadingCreate,
@@ -35,7 +35,7 @@ const ProductListScreen = ({ history }) => {
     product: createdProduct
   } = productCreate;
 
-  // Logged in user info global level state
+  // Logged in user info (global level state)
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 

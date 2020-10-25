@@ -1,4 +1,4 @@
-# eCommerce MERN Stack App
+# eCommerce App MERN Stack
 
 An eCommerce app with shopping cart built with MERN stack
 

@@ -21,14 +21,14 @@ import {
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 
 const ProductScreen = ({ history, match }) => {
-  // Item quantity component level state
+  // Item quantity (component level state)
   const [qty, setQty] = useState(1);
-  // Rating component level state
+  // Rating (component level state)
   const [productRating, setProductRating] = useState(0);
-  // Comment component level state
+  // Comment (component level state)
   const [comment, setComment] = useState('');
 
-  // Product details global level state
+  // Product details (global level state)
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
   const {
@@ -42,11 +42,11 @@ const ProductScreen = ({ history, match }) => {
     countInStock
   } = product;
 
-  // Logged in user global level state
+  // Logged in user (global level state)
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  // Product review create global level state
+  // Product review create (global level state)
   const productReviewCreate = useSelector((state) => state.productReviewCreate);
   const {
     success: successProductReview,

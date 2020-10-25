@@ -6,10 +6,10 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { savePaymentMethod } from '../actions/cartActions';
 
 const PaymentScreen = ({ history }) => {
-  // Payment method component level state
+  // Payment method (component level state)
   const [paymentMethod, setPaymentMethod] = useState('PayPal');
 
-  // Cart global level state
+  // Cart (global level state)
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 

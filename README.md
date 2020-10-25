@@ -8,7 +8,7 @@ Libraries used for the back end are Express, Express Async Handler, Mongoose, Mu
 
 Part of the MERN eCommerce From Scratch course by Brad Traversy
 
-![alt text](https://raw.githubusercontent.com/keremcanb/ecommerce-app-mern-stack/master/uploads/ss.jpg)
+![alt text](https://raw.githubusercontent.com/keremcanb/ecommerce-app-mern-stack/master/uploads/ss1.jpg)
 
 ---
 

@@ -1,3 +1,5 @@
+/* eslint-disable no-else-return */
+/* eslint-disable no-unreachable */
 import asyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
 

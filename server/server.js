@@ -1,3 +1,6 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable function-paren-newline */
+/* eslint-disable no-unused-vars */
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
@@ -17,16 +20,16 @@ connectDB();
 
 const app = express();
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-}
-
 app.use(express.json());
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)

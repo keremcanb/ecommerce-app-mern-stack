@@ -24,7 +24,7 @@ import {
 } from '../constants/productConstants';
 import { logout } from './userActions';
 
-// List products (Also keyword & pagenumber)
+// List products (Also handle keyword & pagenumber)
 export const listProducts = (keyword = '', pageNumber = '') => async (
   dispatch
 ) => {

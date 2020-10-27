@@ -9,14 +9,10 @@ import { listMyOrders } from '../../actions/orderActions';
 
 const ProfileScreen = ({ history }) => {
   // Edit profile form (component level state)
-  const [info, setInfo] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-  const { name, email, password, confirmPassword } = info;
-
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState(null);
 
   // Users info (global level state)
@@ -44,7 +40,8 @@ const ProfileScreen = ({ history }) => {
       dispatch(getUserDetails('profile'));
       dispatch(listMyOrders());
     } else {
-      setInfo(user);
+      setName(user.name);
+      setEmail(user.email);
     }
   }, [dispatch, history, userInfo, user]);
 
@@ -53,12 +50,9 @@ const ProfileScreen = ({ history }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match');
     } else {
-      dispatch(updateUserProfile(info));
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
-
-  const changeHandler = (e) =>
-    setInfo({ ...info, [e.target.name]: e.target.value });
 
   return (
     <Row>
@@ -74,10 +68,9 @@ const ProfileScreen = ({ history }) => {
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="name"
-              name="name"
               placeholder="Enter name"
               value={name}
-              onChange={changeHandler}
+              onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
 
@@ -85,10 +78,9 @@ const ProfileScreen = ({ history }) => {
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
-              name="email"
               placeholder="Enter email"
               value={email}
-              onChange={changeHandler}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
 
@@ -96,10 +88,9 @@ const ProfileScreen = ({ history }) => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              name="password"
               placeholder="Enter password"
               value={password}
-              onChange={changeHandler}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
 
@@ -107,10 +98,9 @@ const ProfileScreen = ({ history }) => {
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               type="password"
-              name="passwordConfirm"
               placeholder="Confirm password"
               value={confirmPassword}
-              onChange={changeHandler}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </Form.Group>
 
@@ -140,8 +130,11 @@ const ProfileScreen = ({ history }) => {
                 {orders.map((order) => (
                   <tr key={order._id}>
                     <td>{order._id}</td>
+
                     <td>{order.createdAt.substring(0, 10)}</td>
+
                     <td>{order.totalPrice}</td>
+
                     <td>
                       {order.isPaid ? (
                         order.paidAt.substring(0, 10)
@@ -149,6 +142,7 @@ const ProfileScreen = ({ history }) => {
                         <i className="fas fa-times" style={{ color: 'red' }} />
                       )}
                     </td>
+
                     <td>
                       {order.isDelivered ? (
                         order.deliveredAt.substring(0, 10)

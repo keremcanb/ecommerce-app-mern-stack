@@ -9,16 +9,13 @@ import { getUserDetails, updateUser } from '../../actions/userActions';
 import { USER_UPDATE_RESET } from '../../constants/userConstants';
 
 const UserEditScreen = ({ match, history }) => {
-  // Edit user info form (component level state)
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
 
-  // User details (global level state)
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
-  // User update (global level state)
   const userUpdate = useSelector((state) => state.userUpdate);
   const {
     loading: loadingUpdate,

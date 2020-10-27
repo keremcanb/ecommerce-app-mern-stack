@@ -12,7 +12,6 @@ import { listProducts } from '../actions/productActions';
 
 const HomeScreen = ({ match }) => {
   //  Extract data from Redux store state using a selector function (used instead of mapstatetoprops)
-  // Products list (global level state)
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 

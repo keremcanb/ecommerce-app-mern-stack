@@ -7,11 +7,9 @@ import Loader from '../../components/Loader';
 import { listOrders } from '../../actions/orderActions';
 
 const OrderListScreen = ({ history }) => {
-  // Orders list global state
   const orderList = useSelector((state) => state.orderList);
   const { loading, error, orders } = orderList;
 
-  // Logged in user info global state
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 

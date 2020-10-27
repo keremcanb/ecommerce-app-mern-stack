@@ -14,7 +14,6 @@ import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = ({ match, location: { search }, history }) => {
-  // List products in cart (global level state)
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 

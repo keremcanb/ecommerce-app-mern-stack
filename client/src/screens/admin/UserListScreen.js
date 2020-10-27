@@ -7,22 +7,18 @@ import Loader from '../../components/Loader';
 import { listUsers, deleteUser } from '../../actions/userActions';
 
 const UserListScreen = ({ history }) => {
-  // Users list (global level state)
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
-  // Logged in user info (global level state)
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  // Delete user (global level state)
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // If logged in user is admin dispatch list users action, else redirect to login page
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
     } else {

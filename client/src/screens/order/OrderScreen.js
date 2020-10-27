@@ -18,22 +18,17 @@ import {
 } from '../../constants/orderConstants';
 
 const OrderScreen = ({ match, history }) => {
-  // PayPal SDK (component level state)
   const [sdkReady, setSdkReady] = useState(false);
 
-  // Order details (global level state)
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
 
-  // Order payment (global level state)
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
 
-  // Order delivery status (global level state)
   const orderDeliver = useSelector((state) => state.orderDeliver);
   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
-  // Logged in user (global level state)
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 

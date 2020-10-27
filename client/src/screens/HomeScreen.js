@@ -16,7 +16,7 @@ const HomeScreen = ({ match }) => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
-  // Get keyword from search url
+  // Get keyword/pageNumber from url
   const { keyword } = match.params;
   const { pageNumber } = match.params || 1;
 
@@ -40,6 +40,7 @@ const HomeScreen = ({ match }) => {
       )}
 
       <h1>Latest Products</h1>
+
       {!loading ? (
         !error ? (
           <>
@@ -50,6 +51,7 @@ const HomeScreen = ({ match }) => {
                 </Col>
               ))}
             </Row>
+
             <Paginate pages={pages} page={page} keyword={keyword || ''} />
           </>
         ) : (

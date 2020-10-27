@@ -8,7 +8,7 @@ import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
-import { listProducts } from '../actions/productActions';
+import { listProducts } from '../store/actions/productActions';
 
 const HomeScreen = ({ match }) => {
   //  Extract data from Redux store state using a selector function (used instead of mapstatetoprops)

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import FormContainer from '../../components/FormContainer';
-import { login } from '../../actions/userActions';
+import { login } from '../../store/actions/userActions';
 
 const LoginScreen = ({ history, location: { search } }) => {
   const [info, setInfo] = useState({

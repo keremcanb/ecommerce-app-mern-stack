@@ -4,8 +4,11 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import { getUserDetails, updateUserProfile } from '../../actions/userActions';
-import { listMyOrders } from '../../actions/orderActions';
+import {
+  getUserDetails,
+  updateUserProfile
+} from '../../store/actions/userActions';
+import { listMyOrders } from '../../store/actions/orderActions';
 
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('');

@@ -11,7 +11,7 @@ import {
   Card
 } from 'react-bootstrap';
 import Message from '../components/Message';
-import { addToCart, removeFromCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../store/actions/cartActions';
 
 const CartScreen = ({ match, location: { search }, history }) => {
   const cart = useSelector((state) => state.cart);

@@ -9,7 +9,7 @@ import FormContainer from '../../components/FormContainer';
 import {
   listProductDetails,
   updateProduct
-} from '../../actions/productActions';
+} from '../../store/actions/productActions';
 import { PRODUCT_UPDATE_RESET } from '../../constants/productConstants';
 
 const ProductEditScreen = ({ match, history }) => {

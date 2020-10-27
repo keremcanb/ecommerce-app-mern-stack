@@ -11,7 +11,7 @@ import {
   getOrderDetails,
   payOrder,
   deliverOrder
-} from '../../actions/orderActions';
+} from '../../store/actions/orderActions';
 import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET

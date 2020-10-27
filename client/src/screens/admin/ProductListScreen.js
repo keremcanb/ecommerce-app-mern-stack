@@ -10,7 +10,7 @@ import {
   listProducts,
   deleteProduct,
   createProduct
-} from '../../actions/productActions';
+} from '../../store/actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
 
 const ProductListScreen = ({ history, match }) => {

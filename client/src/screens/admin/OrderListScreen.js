@@ -4,7 +4,7 @@ import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import { listOrders } from '../../actions/orderActions';
+import { listOrders } from '../../store/actions/orderActions';
 
 const OrderListScreen = ({ history }) => {
   const orderList = useSelector((state) => state.orderList);

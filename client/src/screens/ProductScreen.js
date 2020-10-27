@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,17 +31,20 @@ const ProductScreen = ({ history, match }) => {
 
   // Product details (global level state)
   const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
   const {
-    name,
-    image,
-    rating,
-    numReviews,
-    reviews,
-    price,
-    description,
-    countInStock
-  } = product;
+    loading,
+    error,
+    product: {
+      name,
+      image,
+      rating,
+      numReviews,
+      reviews,
+      price,
+      description,
+      countInStock
+    }
+  } = productDetails;
 
   // Logged in user (global level state)
   const userLogin = useSelector((state) => state.userLogin);
@@ -57,7 +61,6 @@ const ProductScreen = ({ history, match }) => {
 
   useEffect(() => {
     if (successProductReview) {
-      // eslint-disable-next-line no-alert
       alert('Review Submitted!');
       setProductRating(0);
       setComment('');

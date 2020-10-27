@@ -107,7 +107,6 @@ const OrderScreen = ({ match, history }) => {
                   <strong>Email: </strong>{' '}
                   <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
                 </p>
-
                 <p>
                   <strong>Address:</strong>
                   {order.shippingAddress.address}, {order.shippingAddress.city}{' '}
@@ -140,7 +139,6 @@ const OrderScreen = ({ match, history }) => {
 
               <ListGroup.Item>
                 <h2>Order Items</h2>
-
                 {order.orderItems.length !== 0 ? (
                   <ListGroup variant="flush">
                     {order.orderItems.map((item, index) => (

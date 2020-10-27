@@ -9,8 +9,11 @@ import { login } from '../../actions/userActions';
 
 const LoginScreen = ({ history, location: { search } }) => {
   // Login form (component level state)
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [info, setInfo] = useState({
+    email: '',
+    password: ''
+  });
+  const { email, password } = info;
 
   // Logged in user info (global level state)
   const userLogin = useSelector((state) => state.userLogin);
@@ -33,6 +36,9 @@ const LoginScreen = ({ history, location: { search } }) => {
     dispatch(login(email, password));
   };
 
+  const changeHandler = (e) =>
+    setInfo({ ...info, [e.target.name]: e.target.value });
+
   return (
     <FormContainer>
       <h1>Sign In</h1>
@@ -44,9 +50,10 @@ const LoginScreen = ({ history, location: { search } }) => {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
+            name="email"
             placeholder="Enter Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={changeHandler}
           />
         </Form.Group>
 
@@ -54,9 +61,10 @@ const LoginScreen = ({ history, location: { search } }) => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
+            name="password"
             placeholder="Enter Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={changeHandler}
           />
         </Form.Group>
 

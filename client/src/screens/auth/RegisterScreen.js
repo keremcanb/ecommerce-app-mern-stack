@@ -9,10 +9,14 @@ import { register } from '../../actions/userActions';
 
 const RegisterScreen = ({ history, location: { search } }) => {
   // User register form (component level state)
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [info, setInfo] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+  const { name, email, password, confirmPassword } = info;
+
   const [message, setMessage] = useState(null);
 
   // Register (global level state)
@@ -38,6 +42,9 @@ const RegisterScreen = ({ history, location: { search } }) => {
     }
   };
 
+  const changeHandler = (e) =>
+    setInfo({ ...info, [e.target.name]: e.target.value });
+
   return (
     <FormContainer>
       <h1>Sign Up</h1>
@@ -50,9 +57,10 @@ const RegisterScreen = ({ history, location: { search } }) => {
           <Form.Label>Name</Form.Label>
           <Form.Control
             type="name"
+            name="name"
             placeholder="Enter Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={changeHandler}
           />
         </Form.Group>
 
@@ -60,9 +68,10 @@ const RegisterScreen = ({ history, location: { search } }) => {
           <Form.Label>Email Address</Form.Label>
           <Form.Control
             type="email"
+            name="email"
             placeholder="Enter Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={changeHandler}
           />
         </Form.Group>
 
@@ -70,9 +79,10 @@ const RegisterScreen = ({ history, location: { search } }) => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
+            name="password"
             placeholder="Enter Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={changeHandler}
           />
         </Form.Group>
 
@@ -80,9 +90,10 @@ const RegisterScreen = ({ history, location: { search } }) => {
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
+            name="confirmPassword"
             placeholder="Confirm Password"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={changeHandler}
           />
         </Form.Group>
 

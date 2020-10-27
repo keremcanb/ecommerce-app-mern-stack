@@ -11,18 +11,24 @@ const ShippingScreen = ({ history }) => {
   const { shippingAddress } = cart;
 
   // Shipping address form (component level state)
-  const [address, setAddress] = useState(shippingAddress.address);
-  const [city, setCity] = useState(shippingAddress.city);
-  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
-  const [country, setCountry] = useState(shippingAddress.country);
+  const [info, setInfo] = useState({
+    address: shippingAddress.address,
+    city: shippingAddress.city,
+    postalCode: shippingAddress.postalCode,
+    country: shippingAddress.country
+  });
+  const { address, city, postalCode, country } = info;
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAddress({ address, city, postalCode, country }));
+    dispatch(saveShippingAddress(info));
     history.push('/payment');
   };
+
+  const changeHandler = (e) =>
+    setInfo({ ...info, [e.target.name]: e.target.value });
 
   return (
     <FormContainer>
@@ -34,10 +40,11 @@ const ShippingScreen = ({ history }) => {
           <Form.Label>Address</Form.Label>
           <Form.Control
             type="text"
+            name="address"
             placeholder="Enter Address"
             value={address}
             required
-            onChange={(e) => setAddress(e.target.value)}
+            onChange={changeHandler}
           />
         </Form.Group>
 
@@ -45,10 +52,11 @@ const ShippingScreen = ({ history }) => {
           <Form.Label>City</Form.Label>
           <Form.Control
             type="text"
+            name="city"
             placeholder="Enter City"
             value={city}
             required
-            onChange={(e) => setCity(e.target.value)}
+            onChange={changeHandler}
           />
         </Form.Group>
 
@@ -56,10 +64,11 @@ const ShippingScreen = ({ history }) => {
           <Form.Label>Postal Code</Form.Label>
           <Form.Control
             type="text"
+            name="postalCode"
             placeholder="Enter Postal Code"
             value={postalCode}
             required
-            onChange={(e) => setPostalCode(e.target.value)}
+            onChange={changeHandler}
           />
         </Form.Group>
 
@@ -67,10 +76,11 @@ const ShippingScreen = ({ history }) => {
           <Form.Label>Country</Form.Label>
           <Form.Control
             type="text"
+            name="country"
             placeholder="Enter Country"
             value={country}
             required
-            onChange={(e) => setCountry(e.target.value)}
+            onChange={changeHandler}
           />
         </Form.Group>
 

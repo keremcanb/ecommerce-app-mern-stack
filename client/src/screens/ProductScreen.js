@@ -23,24 +23,11 @@ import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
-  const [productRating, setProductRating] = useState(0);
+  const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
   const productDetails = useSelector((state) => state.productDetails);
-  const {
-    loading,
-    error,
-    product: {
-      name,
-      image,
-      rating,
-      numReviews,
-      reviews,
-      price,
-      description,
-      countInStock
-    }
-  } = productDetails;
+  const { loading, error, product } = productDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -56,7 +43,7 @@ const ProductScreen = ({ history, match }) => {
   useEffect(() => {
     if (successProductReview) {
       alert('Review Submitted!');
-      setProductRating(0);
+      setRating(0);
       setComment('');
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
@@ -64,7 +51,6 @@ const ProductScreen = ({ history, match }) => {
   }, [dispatch, match, successProductReview]);
 
   const addToCartHandler = () => {
-    // Goes to shopping cartscreen with product id & selected qty number
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
 
@@ -87,24 +73,32 @@ const ProductScreen = ({ history, match }) => {
       {!loading ? (
         !error ? (
           <>
-            <Meta title={name} />
+            <Meta title={product.name} />
 
             <Row>
               {/* Product info section */}
               <Col md={6}>
-                <Image src={image} alt={name} fluid />
+                <Image src={product.image} alt={product.name} fluid />
               </Col>
 
               <Col md={3}>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
-                    <h3>{name}</h3>
+                    <h3>{product.name}</h3>
                   </ListGroup.Item>
+
                   <ListGroup.Item>
-                    <Rating value={rating} text={`${numReviews} reviews`} />
+                    <Rating
+                      value={product.rating}
+                      text={`${product.numReviews} reviews`}
+                    />
                   </ListGroup.Item>
-                  <ListGroup.Item>Price: ${price}</ListGroup.Item>
-                  <ListGroup.Item>Description: {description}</ListGroup.Item>
+
+                  <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+
+                  <ListGroup.Item>
+                    Description: {product.description}
+                  </ListGroup.Item>
                 </ListGroup>
               </Col>
 
@@ -116,7 +110,7 @@ const ProductScreen = ({ history, match }) => {
                       <Row>
                         <Col>Price:</Col>
                         <Col>
-                          <strong>${price}</strong>
+                          <strong>${product.price}</strong>
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -125,12 +119,14 @@ const ProductScreen = ({ history, match }) => {
                       <Row>
                         <Col>Status:</Col>
                         <Col>
-                          {countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                          {product.countInStock > 0
+                            ? 'In Stock'
+                            : 'Out Of Stock'}
                         </Col>
                       </Row>
                     </ListGroup.Item>
 
-                    {countInStock > 0 && (
+                    {product.countInStock > 0 && (
                       <ListGroup.Item>
                         <Row>
                           <Col>Qty</Col>
@@ -141,13 +137,14 @@ const ProductScreen = ({ history, match }) => {
                               onChange={(e) => setQty(e.target.value)}
                             >
                               {/* Form an array like [0, 1, 2, 3, 4] and iterate it */}
-                              {[...Array(countInStock).keys()].map((x) => (
-                                // Show qty 1 to 5, not 0 to 4
-                                <option key={x + 1} value={x + 1}>
-                                  {/* Visible Qty number */}
-                                  {x + 1}
-                                </option>
-                              ))}
+                              {[...Array(product.countInStock).keys()].map(
+                                (x) => (
+                                  // Show qty 1 to 5, not 0 to 4
+                                  <option key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </option>
+                                )
+                              )}
                             </Form.Control>
                           </Col>
                         </Row>
@@ -159,9 +156,9 @@ const ProductScreen = ({ history, match }) => {
                         onClick={addToCartHandler}
                         className="btn-block"
                         type="button"
-                        disabled={countInStock === 0}
+                        disabled={product.countInStock === 0}
                       >
-                        Add to Cart
+                        Add To Cart
                       </Button>
                     </ListGroup.Item>
                   </ListGroup>
@@ -172,10 +169,10 @@ const ProductScreen = ({ history, match }) => {
             <Row>
               <Col md={6}>
                 <h2>Reviews</h2>
-                {reviews.length === 0 && <Message>No Reviews</Message>}
+                {product.reviews.length === 0 && <Message>No Reviews</Message>}
 
                 <ListGroup variant="flush">
-                  {reviews.map((review) => (
+                  {product.reviews.map((review) => (
                     <ListGroup.Item key={review._id}>
                       <strong>{review.name}</strong>
                       <Rating value={review.rating} />
@@ -196,8 +193,8 @@ const ProductScreen = ({ history, match }) => {
                           <Form.Label>Rating</Form.Label>
                           <Form.Control
                             as="select"
-                            value={productRating}
-                            onChange={(e) => setProductRating(e.target.value)}
+                            value={rating}
+                            onChange={(e) => setRating(e.target.value)}
                           >
                             <option value="">Select...</option>
                             <option value="1">1 - Poor</option>

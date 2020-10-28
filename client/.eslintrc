@@ -1,25 +1,25 @@
 {
   "extends": [
-    "react-app",
-    "airbnb",
-    "airbnb/hooks",
-    "plugin:jsx-a11y/recommended",
-    "prettier",
-    "prettier/react"
+    "react-app"
+    // "airbnb",
+    // "airbnb/hooks",
+    // "plugin:jsx-a11y/recommended",
+    // "prettier",
+    // "prettier/react"
   ],
   "plugins": ["jsx-a11y", "prettier"],
   "rules": {
-    "no-underscore-dangle": "off",
-    "no-console": "off",
-    "no-shadow": "off",
-    "import/extensions": "off",
-    "react/forbid-prop-types": "off",
-    "react/require-default-props": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prop-types": "off",
-    "no-nested-ternary": "off",
-    "import/prefer-default-export": "off",
-    "import/no-extraneous-dependencies": "off"
+    // "no-underscore-dangle": "off",
+    // "no-console": "off",
+    // "no-shadow": "off",
+    // "import/extensions": "off",
+    // "react/forbid-prop-types": "off",
+    // "react/require-default-props": "off",
+    // "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    // "react/prop-types": "off",
+    // "no-nested-ternary": "off",
+    // "import/prefer-default-export": "off",
+    // "import/no-extraneous-dependencies": "off"
     // "no-use-before-define": "off",
     // "react/state-in-constructor": "off",
     // "react/static-property-placement": "off",

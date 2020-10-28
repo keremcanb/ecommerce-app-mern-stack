@@ -13,13 +13,17 @@ import {
 import { PRODUCT_UPDATE_RESET } from '../../constants/productConstants';
 
 const ProductEditScreen = ({ match, history }) => {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState(0);
+  const [info, setInfo] = useState({
+    name: '',
+    price: 0,
+    brand: '',
+    category: '',
+    countInStock: 0,
+    description: ''
+  });
+  const { name, price, brand, category, countInStock, description } = info;
+
   const [image, setImage] = useState('');
-  const [brand, setBrand] = useState('');
-  const [category, setCategory] = useState('');
-  const [countInStock, setCountInStock] = useState(0);
-  const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -43,13 +47,8 @@ const ProductEditScreen = ({ match, history }) => {
     } else if (!product.name || product._id !== productId) {
       dispatch(listProductDetails(productId));
     } else {
-      setName(product.name);
-      setPrice(product.price);
+      setInfo(product);
       setImage(product.image);
-      setBrand(product.brand);
-      setCategory(product.category);
-      setCountInStock(product.countInStock);
-      setDescription(product.description);
     }
   }, [dispatch, history, productId, product, successUpdate]);
 
@@ -90,6 +89,9 @@ const ProductEditScreen = ({ match, history }) => {
     );
   };
 
+  const changeHandler = (e) =>
+    setInfo({ ...info, [e.target.name]: e.target.value });
+
   return (
     <>
       <Link to="/admin/productlist" className="btn btn-light my-3">
@@ -108,9 +110,10 @@ const ProductEditScreen = ({ match, history }) => {
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="name"
+                  name="name"
                   placeholder="Enter name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={changeHandler}
                 />
               </Form.Group>
 
@@ -118,9 +121,10 @@ const ProductEditScreen = ({ match, history }) => {
                 <Form.Label>Price</Form.Label>
                 <Form.Control
                   type="number"
+                  name="price"
                   placeholder="Enter price"
                   value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={changeHandler}
                 />
               </Form.Group>
 
@@ -128,6 +132,7 @@ const ProductEditScreen = ({ match, history }) => {
                 <Form.Label>Image</Form.Label>
                 <Form.Control
                   type="text"
+                  name="text"
                   placeholder="Enter image url"
                   value={image}
                   onChange={(e) => setImage(e.target.value)}
@@ -145,9 +150,10 @@ const ProductEditScreen = ({ match, history }) => {
                 <Form.Label>Brand</Form.Label>
                 <Form.Control
                   type="text"
+                  name="brand"
                   placeholder="Enter brand"
                   value={brand}
-                  onChange={(e) => setBrand(e.target.value)}
+                  onChange={changeHandler}
                 />
               </Form.Group>
 
@@ -155,9 +161,10 @@ const ProductEditScreen = ({ match, history }) => {
                 <Form.Label>Count In Stock</Form.Label>
                 <Form.Control
                   type="number"
+                  name="countInStock"
                   placeholder="Enter countInStock"
                   value={countInStock}
-                  onChange={(e) => setCountInStock(e.target.value)}
+                  onChange={changeHandler}
                 />
               </Form.Group>
 
@@ -165,9 +172,10 @@ const ProductEditScreen = ({ match, history }) => {
                 <Form.Label>Category</Form.Label>
                 <Form.Control
                   type="text"
+                  name="category"
                   placeholder="Enter category"
                   value={category}
-                  onChange={(e) => setCategory(e.target.value)}
+                  onChange={changeHandler}
                 />
               </Form.Group>
 
@@ -175,9 +183,10 @@ const ProductEditScreen = ({ match, history }) => {
                 <Form.Label>Description</Form.Label>
                 <Form.Control
                   type="text"
+                  name="description"
                   placeholder="Enter description"
                   value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={changeHandler}
                 />
               </Form.Group>
 

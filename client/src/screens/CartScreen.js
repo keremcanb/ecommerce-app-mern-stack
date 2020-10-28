@@ -74,8 +74,11 @@ const CartScreen = ({ match, location: { search }, history }) => {
                         )
                       }
                     >
+                      {/* Form an array like [0, 1, 2, 3, 4] and iterate it */}
                       {[...Array(item.countInStock).keys()].map((x) => (
+                        // Show qty 1 to 5, not 0 to 4
                         <option key={x + 1} value={x + 1}>
+                          {/* Visible Qty number */}
                           {x + 1}
                         </option>
                       ))}

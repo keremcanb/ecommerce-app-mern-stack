@@ -9,8 +9,11 @@ import { getUserDetails, updateUser } from '../../store/actions/userActions';
 import { USER_UPDATE_RESET } from '../../constants/userConstants';
 
 const UserEditScreen = ({ match, history }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [info, setInfo] = useState({
+    name: '',
+    email: ''
+  });
+  const { name, email } = info;
   const [isAdmin, setIsAdmin] = useState(false);
 
   const userDetails = useSelector((state) => state.userDetails);
@@ -34,8 +37,7 @@ const UserEditScreen = ({ match, history }) => {
     } else if (!user.name || user._id !== userId) {
       dispatch(getUserDetails(userId));
     } else {
-      setName(user.name);
-      setEmail(user.email);
+      setInfo(user);
       setIsAdmin(user.isAdmin);
     }
   }, [dispatch, history, successUpdate, user, userId]);
@@ -44,6 +46,9 @@ const UserEditScreen = ({ match, history }) => {
     e.preventDefault();
     dispatch(updateUser({ _id: userId, name, email, isAdmin }));
   };
+
+  const changeHandler = (e) =>
+    setInfo({ ...info, [e.target.name]: e.target.value });
 
   return (
     <>
@@ -63,9 +68,10 @@ const UserEditScreen = ({ match, history }) => {
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="name"
+                  name="name"
                   placeholder="Enter Name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={changeHandler}
                 />
               </Form.Group>
 
@@ -73,9 +79,10 @@ const UserEditScreen = ({ match, history }) => {
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
+                  name="email"
                   placeholder="Enter Email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={changeHandler}
                 />
               </Form.Group>
 

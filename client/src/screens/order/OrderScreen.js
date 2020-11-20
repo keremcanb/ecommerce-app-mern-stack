@@ -136,31 +136,25 @@ const OrderScreen = ({ match, history }) => {
                 <h2>Order Items</h2>
                 {order.orderItems.length !== 0 ? (
                   <ListGroup variant="flush">
-                    {order.orderItems.map((item, index) => (
-                      <ListGroup.Item key={index}>
-                        <Row>
-                          <Col md={1}>
-                            <Image
-                              src={item.image}
-                              alt={item.name}
-                              fluid
-                              rounded
-                            />
-                          </Col>
+                    {order.orderItems.map(
+                      ({ image, name, product, qty, price }, index) => (
+                        <ListGroup.Item key={index}>
+                          <Row>
+                            <Col md={1}>
+                              <Image src={image} alt={name} fluid rounded />
+                            </Col>
 
-                          <Col>
-                            <Link to={`/product/${item.product}`}>
-                              {item.name}
-                            </Link>
-                          </Col>
+                            <Col>
+                              <Link to={`/product/${product}`}>{name}</Link>
+                            </Col>
 
-                          <Col md={4}>
-                            {item.qty} x ${item.price} = $
-                            {item.qty * item.price}
-                          </Col>
-                        </Row>
-                      </ListGroup.Item>
-                    ))}
+                            <Col md={4}>
+                              {qty} x ${price} = ${qty * price}
+                            </Col>
+                          </Row>
+                        </ListGroup.Item>
+                      )
+                    )}
                   </ListGroup>
                 ) : (
                   <Message>Order is empty</Message>

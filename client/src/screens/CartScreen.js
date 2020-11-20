@@ -50,53 +50,53 @@ const CartScreen = ({ match, location: { search }, history }) => {
 
         {cartItems.length !== 0 ? (
           <ListGroup variant="flush">
-            {cartItems.map((item) => (
-              <ListGroup.Item key={item.product}>
-                <Row>
-                  <Col md={2}>
-                    <Image src={item.image} alt={item.name} fluid rounded />
-                  </Col>
+            {cartItems.map(
+              ({ product, name, image, price, qty, countInStock }) => (
+                <ListGroup.Item key={product}>
+                  <Row>
+                    <Col md={2}>
+                      <Image src={image} alt={name} fluid rounded />
+                    </Col>
 
-                  <Col md={3}>
-                    <Link to={`/product/${item.product}`}>{item.name}</Link>
-                  </Col>
+                    <Col md={3}>
+                      <Link to={`/product/${product}`}>{name}</Link>
+                    </Col>
 
-                  <Col md={2}>${item.price}</Col>
+                    <Col md={2}>${price}</Col>
 
-                  <Col md={2}>
-                    <Form.Control
-                      as="select"
-                      value={item.qty}
-                      // Call addToCart again to set changed qty
-                      onChange={(e) =>
-                        dispatch(
-                          addToCart(item.product, Number(e.target.value))
-                        )
-                      }
-                    >
-                      {/* Form an array like [0, 1, 2, 3, 4] and iterate it */}
-                      {[...Array(item.countInStock).keys()].map((x) => (
-                        // Show qty 1 to 5, not 0 to 4
-                        <option key={x + 1} value={x + 1}>
-                          {/* Visible Qty number */}
-                          {x + 1}
-                        </option>
-                      ))}
-                    </Form.Control>
-                  </Col>
+                    <Col md={2}>
+                      <Form.Control
+                        as="select"
+                        value={qty}
+                        // Call addToCart again to set changed qty
+                        onChange={(e) =>
+                          dispatch(addToCart(product, Number(e.target.value)))
+                        }
+                      >
+                        {/* Form an array like [0, 1, 2, 3, 4] and iterate it */}
+                        {[...Array(countInStock).keys()].map((x) => (
+                          // Show qty 1 to 5, not 0 to 4
+                          <option key={x + 1} value={x + 1}>
+                            {/* Visible Qty number */}
+                            {x + 1}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Col>
 
-                  <Col md={2}>
-                    <Button
-                      type="button"
-                      variant="light"
-                      onClick={() => removeFromCartHandler(item.product)}
-                    >
-                      <i className="fas fa-trash" />
-                    </Button>
-                  </Col>
-                </Row>
-              </ListGroup.Item>
-            ))}
+                    <Col md={2}>
+                      <Button
+                        type="button"
+                        variant="light"
+                        onClick={() => removeFromCartHandler(product)}
+                      >
+                        <i className="fas fa-trash" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              )
+            )}
           </ListGroup>
         ) : (
           <Message>

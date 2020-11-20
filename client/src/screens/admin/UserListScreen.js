@@ -47,15 +47,15 @@ const UserListScreen = ({ history }) => {
             </thead>
 
             <tbody>
-              {users.map((user) => (
-                <tr key={user._id}>
-                  <td>{user._id}</td>
-                  <td>{user.name}</td>
+              {users.map(({ _id, name, email, isAdmin }) => (
+                <tr key={_id}>
+                  <td>{_id}</td>
+                  <td>{name}</td>
                   <td>
-                    <a href={`mailto:${user.email}`}>{user.email}</a>
+                    <a href={`mailto:${email}`}>{email}</a>
                   </td>
                   <td>
-                    {user.isAdmin ? (
+                    {isAdmin ? (
                       <i className="fas fa-check" style={{ color: 'green' }} />
                     ) : (
                       <i className="fas fa-times" style={{ color: 'red' }} />
@@ -63,7 +63,7 @@ const UserListScreen = ({ history }) => {
                   </td>
 
                   <td>
-                    <LinkContainer to={`/admin/user/${user._id}/edit`}>
+                    <LinkContainer to={`/admin/user/${_id}/edit`}>
                       <Button variant="light" className="btn-sm">
                         <i className="fas fa-edit" />
                       </Button>
@@ -72,7 +72,7 @@ const UserListScreen = ({ history }) => {
                     <Button
                       variant="danger"
                       className="btn-sm"
-                      onClick={() => deleteHandler(user._id)}
+                      onClick={() => deleteHandler(_id)}
                     >
                       <i className="fas fa-trash" />
                     </Button>

@@ -2,6 +2,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+import { cartReducer } from './store/reducers/cartReducers';
+
 import {
   productListReducer,
   productDetailsReducer,
@@ -11,8 +13,6 @@ import {
   productReviewCreateReducer,
   productTopRatedReducer
 } from './store/reducers/productReducers';
-
-import { cartReducer } from './store/reducers/cartReducers';
 
 import {
   userLoginReducer,

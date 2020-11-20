@@ -20,13 +20,13 @@ const ProductCarousel = () => {
   return !loading ? (
     !error ? (
       <Carousel pause="hover" className="bg-dark">
-        {products.map((product) => (
-          <Carousel.Item key={product._id}>
-            <Link to={`/product/${product._id}`}>
-              <Image src={product.image} alt={product.name} fluid />
+        {products.map(({ _id, name, image, price }) => (
+          <Carousel.Item key={_id}>
+            <Link to={`/product/${_id}`}>
+              <Image src={image} alt={name} fluid />
               <Carousel.Caption className="carousel-caption">
                 <h2>
-                  {product.name} (${product.price})
+                  {name} (${price})
                 </h2>
               </Carousel.Caption>
             </Link>

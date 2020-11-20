@@ -106,16 +106,16 @@ const ProductListScreen = ({ history, match }) => {
               </thead>
 
               <tbody>
-                {products.map((product) => (
-                  <tr key={product._id}>
-                    <td>{product._id}</td>
-                    <td>{product.name}</td>
-                    <td>${product.price}</td>
-                    <td>{product.category}</td>
-                    <td>{product.brand}</td>
+                {products.map(({ _id, name, price, category, brand }) => (
+                  <tr key={_id}>
+                    <td>{_id}</td>
+                    <td>{name}</td>
+                    <td>${price}</td>
+                    <td>{category}</td>
+                    <td>{brand}</td>
 
                     <td>
-                      <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                      <LinkContainer to={`/admin/product/${_id}/edit`}>
                         <Button variant="light" className="btn-sm">
                           <i className="fas fa-edit" />
                         </Button>
@@ -124,7 +124,7 @@ const ProductListScreen = ({ history, match }) => {
                       <Button
                         variant="danger"
                         className="btn-sm"
-                        onClick={() => deleteHandler(product._id)}
+                        onClick={() => deleteHandler(_id)}
                       >
                         <i className="fas fa-trash" />
                       </Button>

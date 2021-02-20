@@ -1,42 +1,24 @@
 /* eslint-disable no-alert */
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import Paginate from '../../components/Paginate';
-import {
-  listProducts,
-  deleteProduct,
-  createProduct
-} from '../../store/actions/productActions';
+import { listProducts, deleteProduct, createProduct } from '../../store/actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
 
 const ProductListScreen = ({ history, match }) => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
-
   const productDelete = useSelector((state) => state.productDelete);
-  const {
-    loading: loadingDelete,
-    error: errorDelete,
-    success: successDelete
-  } = productDelete;
-
+  const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
   const productCreate = useSelector((state) => state.productCreate);
-  const {
-    loading: loadingCreate,
-    error: errorCreate,
-    success: successCreate,
-    product: createdProduct
-  } = productCreate;
-
+  const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productCreate;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
   const pageNumber = match.params.pageNumber || 1;
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,15 +33,7 @@ const ProductListScreen = ({ history, match }) => {
     } else {
       dispatch(listProducts('', pageNumber));
     }
-  }, [
-    dispatch,
-    history,
-    userInfo,
-    successDelete,
-    successCreate,
-    createdProduct,
-    pageNumber
-  ]);
+  }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct, pageNumber]);
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
@@ -121,11 +95,7 @@ const ProductListScreen = ({ history, match }) => {
                         </Button>
                       </LinkContainer>
 
-                      <Button
-                        variant="danger"
-                        className="btn-sm"
-                        onClick={() => deleteHandler(_id)}
-                      >
+                      <Button variant="danger" className="btn-sm" onClick={() => deleteHandler(_id)}>
                         <i className="fas fa-trash" />
                       </Button>
                     </td>

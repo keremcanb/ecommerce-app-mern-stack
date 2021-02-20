@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
@@ -14,11 +14,9 @@ const HomeScreen = ({ match }) => {
   //  Extract data from Redux store state using a selector function (used instead of mapstatetoprops)
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
-
   // Get keyword/pageNumber from url
   const { keyword } = match.params;
   const { pageNumber } = match.params || 1;
-
   // To call an action
   const dispatch = useDispatch();
 

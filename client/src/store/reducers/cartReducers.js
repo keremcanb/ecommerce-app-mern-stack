@@ -7,10 +7,7 @@ import {
   CART_SAVE_PAYMENT_METHOD
 } from '../../constants/cartConstants';
 
-export const cartReducer = (
-  state = { cartItems: [], shippingAddress: {} },
-  action
-) => {
+export const cartReducer = (state = { cartItems: [], shippingAddress: {} }, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -25,9 +22,7 @@ export const cartReducer = (
           ...state,
           // Map through current cart items
           // If current item id is equal to exist item id, then return item
-          cartItems: state.cartItems.map((x) =>
-            x.product === existItem.product ? item : x
-          )
+          cartItems: state.cartItems.map((x) => (x.product === existItem.product ? item : x))
         };
         // If it doesn't exist we will push it to array
       } else

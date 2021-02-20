@@ -1,15 +1,12 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import FormContainer from '../../components/FormContainer';
-import {
-  listProductDetails,
-  updateProduct
-} from '../../store/actions/productActions';
+import { listProductDetails, updateProduct } from '../../store/actions/productActions';
 import { PRODUCT_UPDATE_RESET } from '../../constants/productConstants';
 
 const ProductEditScreen = ({ match, history }) => {
@@ -22,22 +19,13 @@ const ProductEditScreen = ({ match, history }) => {
     description: ''
   });
   const { name, price, brand, category, countInStock, description } = info;
-
   const [image, setImage] = useState('');
   const [uploading, setUploading] = useState(false);
-
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-
   const productUpdate = useSelector((state) => state.productUpdate);
-  const {
-    loading: loadingUpdate,
-    error: errorUpdate,
-    success: successUpdate
-  } = productUpdate;
-
+  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate;
   const productId = match.params.id;
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -87,8 +75,7 @@ const ProductEditScreen = ({ match, history }) => {
     );
   };
 
-  const changeHandler = (e) =>
-    setInfo({ ...info, [e.target.name]: e.target.value });
+  const changeHandler = (e) => setInfo({ ...info, [e.target.name]: e.target.value });
 
   return (
     <>
@@ -106,13 +93,7 @@ const ProductEditScreen = ({ match, history }) => {
             <Form onSubmit={submitHandler}>
               <Form.Group controlId="name">
                 <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="name"
-                  name="name"
-                  placeholder="Enter name"
-                  value={name}
-                  onChange={changeHandler}
-                />
+                <Form.Control type="name" name="name" placeholder="Enter name" value={name} onChange={changeHandler} />
               </Form.Group>
 
               <Form.Group controlId="price">
@@ -135,12 +116,7 @@ const ProductEditScreen = ({ match, history }) => {
                   value={image}
                   onChange={(e) => setImage(e.target.value)}
                 />
-                <Form.File
-                  id="image-file"
-                  label="Choose File"
-                  custom
-                  onChange={uploadFileHandler}
-                />
+                <Form.File id="image-file" label="Choose File" custom onChange={uploadFileHandler} />
                 {uploading && <Loader />}
               </Form.Group>
 

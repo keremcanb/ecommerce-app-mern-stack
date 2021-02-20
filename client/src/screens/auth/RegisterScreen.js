@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,10 +16,8 @@ const RegisterScreen = ({ history, location: { search } }) => {
   });
   const { name, email, password, confirmPassword } = info;
   const [message, setMessage] = useState(null);
-
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
-
   const redirect = search ? search.split('=')[1] : '/';
 
   useEffect(() => {
@@ -39,8 +37,7 @@ const RegisterScreen = ({ history, location: { search } }) => {
     }
   };
 
-  const changeHandler = (e) =>
-    setInfo({ ...info, [e.target.name]: e.target.value });
+  const changeHandler = (e) => setInfo({ ...info, [e.target.name]: e.target.value });
 
   return (
     <FormContainer>
@@ -52,24 +49,12 @@ const RegisterScreen = ({ history, location: { search } }) => {
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="name"
-            name="name"
-            placeholder="Enter Name"
-            value={name}
-            onChange={changeHandler}
-          />
+          <Form.Control type="name" name="name" placeholder="Enter Name" value={name} onChange={changeHandler} />
         </Form.Group>
 
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={changeHandler}
-          />
+          <Form.Control type="email" name="email" placeholder="Enter Email" value={email} onChange={changeHandler} />
         </Form.Group>
 
         <Form.Group controlId="password">
@@ -101,10 +86,7 @@ const RegisterScreen = ({ history, location: { search } }) => {
 
       <Row className="py-3">
         <Col>
-          Have an Account?{' '}
-          <Link to={redirect ? `/login?redirect=${redirect} ` : '/login'}>
-            Login
-          </Link>
+          Have an Account? <Link to={redirect ? `/login?redirect=${redirect} ` : '/login'}>Login</Link>
         </Col>
       </Row>
     </FormContainer>

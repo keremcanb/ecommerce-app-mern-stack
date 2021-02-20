@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,10 +13,8 @@ const LoginScreen = ({ history, location: { search } }) => {
     password: ''
   });
   const { email, password } = info;
-
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
-
   // Get query (part in url after ?) with React Router location.search
   // If exists, split by (=)
   const redirect = search ? search.split('=')[1] : '/';
@@ -34,8 +32,7 @@ const LoginScreen = ({ history, location: { search } }) => {
     dispatch(login(email, password));
   };
 
-  const changeHandler = (e) =>
-    setInfo({ ...info, [e.target.name]: e.target.value });
+  const changeHandler = (e) => setInfo({ ...info, [e.target.name]: e.target.value });
 
   return (
     <FormContainer>
@@ -46,13 +43,7 @@ const LoginScreen = ({ history, location: { search } }) => {
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={changeHandler}
-          />
+          <Form.Control type="email" name="email" placeholder="Enter Email" value={email} onChange={changeHandler} />
         </Form.Group>
 
         <Form.Group controlId="password">
@@ -73,10 +64,7 @@ const LoginScreen = ({ history, location: { search } }) => {
 
       <Row className="py-3">
         <Col>
-          New Customer?{' '}
-          <Link to={redirect ? `/register?redirect=${redirect} ` : '/register'}>
-            Register
-          </Link>
+          New Customer? <Link to={redirect ? `/register?redirect=${redirect} ` : '/register'}>Register</Link>
         </Col>
       </Row>
     </FormContainer>

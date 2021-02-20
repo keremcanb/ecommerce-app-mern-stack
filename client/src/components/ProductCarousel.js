@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,6 @@ const ProductCarousel = () => {
   // Top rated products (global level state)
   const productTopRated = useSelector((state) => state.productTopRated);
   const { loading, error, products } = productTopRated;
-
   const dispatch = useDispatch();
 
   useEffect(() => {

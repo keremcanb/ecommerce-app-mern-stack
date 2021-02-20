@@ -10,13 +10,21 @@
     "ecmaVersion": 11
   },
   "rules": {
-    "prettier/prettier": ["error", { "singleQuote": true }],
     "no-console": "off",
     "comma-dangle": "off",
     "consistent-return": "off",
     "object-curly-newline": "off",
     "import/extensions": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
     // "array-callback-return": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "none",
+        "singleQuote": true,
+        "printWidth": 120,
+        "tabWidth": 2
+      }
+    ]
   }
 }

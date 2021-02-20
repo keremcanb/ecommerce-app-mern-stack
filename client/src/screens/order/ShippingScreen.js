@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../../components/FormContainer';
@@ -8,7 +8,6 @@ import { saveShippingAddress } from '../../store/actions/cartActions';
 const ShippingScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
-
   const [info, setInfo] = useState({
     address: shippingAddress.address,
     city: shippingAddress.city,
@@ -16,7 +15,6 @@ const ShippingScreen = ({ history }) => {
     country: shippingAddress.country
   });
   const { address, city, postalCode, country } = info;
-
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
@@ -25,8 +23,7 @@ const ShippingScreen = ({ history }) => {
     history.push('/payment');
   };
 
-  const changeHandler = (e) =>
-    setInfo({ ...info, [e.target.name]: e.target.value });
+  const changeHandler = (e) => setInfo({ ...info, [e.target.name]: e.target.value });
 
   return (
     <FormContainer>

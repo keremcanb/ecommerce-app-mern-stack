@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Table, Form, Button, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import {
-  getUserDetails,
-  updateUserProfile
-} from '../../store/actions/userActions';
+import { getUserDetails, updateUserProfile } from '../../store/actions/userActions';
 import { listMyOrders } from '../../store/actions/orderActions';
 
 const ProfileScreen = ({ history }) => {
@@ -18,21 +15,15 @@ const ProfileScreen = ({ history }) => {
     confirmPassword: ''
   });
   const { name, email, password, confirmPassword } = info;
-
   const [message, setMessage] = useState(null);
-
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
-
   const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,8 +46,7 @@ const ProfileScreen = ({ history }) => {
     }
   };
 
-  const changeHandler = (e) =>
-    setInfo({ ...info, [e.target.name]: e.target.value });
+  const changeHandler = (e) => setInfo({ ...info, [e.target.name]: e.target.value });
 
   return (
     <Row>
@@ -70,24 +60,12 @@ const ProfileScreen = ({ history }) => {
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="name"
-              name="name"
-              placeholder="Enter name"
-              value={name}
-              onChange={changeHandler}
-            />
+            <Form.Control type="name" name="name" placeholder="Enter name" value={name} onChange={changeHandler} />
           </Form.Group>
 
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={changeHandler}
-            />
+            <Form.Control type="email" name="email" placeholder="Enter email" value={email} onChange={changeHandler} />
           </Form.Group>
 
           <Form.Group controlId="password">
@@ -135,55 +113,35 @@ const ProfileScreen = ({ history }) => {
               </thead>
 
               <tbody>
-                {orders.map(
-                  ({
-                    _id,
-                    createdAt,
-                    totalPrice,
-                    isPaid,
-                    paidAt,
-                    isDelivered,
-                    deliveredAt
-                  }) => (
-                    <tr key={_id}>
-                      <td>{_id}</td>
+                {orders.map(({ _id, createdAt, totalPrice, isPaid, paidAt, isDelivered, deliveredAt }) => (
+                  <tr key={_id}>
+                    <td>{_id}</td>
 
-                      <td>{createdAt.substring(0, 10)}</td>
+                    <td>{createdAt.substring(0, 10)}</td>
 
-                      <td>{totalPrice}</td>
+                    <td>{totalPrice}</td>
 
-                      <td>
-                        {isPaid ? (
-                          paidAt.substring(0, 10)
-                        ) : (
-                          <i
-                            className="fas fa-times"
-                            style={{ color: 'red' }}
-                          />
-                        )}
-                      </td>
+                    <td>
+                      {isPaid ? paidAt.substring(0, 10) : <i className="fas fa-times" style={{ color: 'red' }} />}
+                    </td>
 
-                      <td>
-                        {isDelivered ? (
-                          deliveredAt.substring(0, 10)
-                        ) : (
-                          <i
-                            className="fas fa-times"
-                            style={{ color: 'red' }}
-                          />
-                        )}
-                      </td>
+                    <td>
+                      {isDelivered ? (
+                        deliveredAt.substring(0, 10)
+                      ) : (
+                        <i className="fas fa-times" style={{ color: 'red' }} />
+                      )}
+                    </td>
 
-                      <td>
-                        <LinkContainer to={`/order/${_id}`}>
-                          <Button className="btn-sm" variant="light">
-                            Details
-                          </Button>
-                        </LinkContainer>
-                      </td>
-                    </tr>
-                  )
-                )}
+                    <td>
+                      <LinkContainer to={`/order/${_id}`}>
+                        <Button className="btn-sm" variant="light">
+                          Details
+                        </Button>
+                      </LinkContainer>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           ) : (

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,25 +10,16 @@ import { createOrder } from '../../store/actions/orderActions';
 const PlaceOrderScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
   const { address, city, postalCode, country } = cart.shippingAddress;
-
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
 
   // Calculate prices
-  const addDecimals = (num) => {
-    return (Math.round(num * 100) / 100).toFixed(2);
-  };
+  const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2);
 
-  cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-  );
+  cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0));
   cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 50);
   cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)));
-  cart.totalPrice = (
-    Number(cart.itemsPrice) +
-    Number(cart.shippingPrice) +
-    Number(cart.taxPrice)
-  ).toFixed(2);
+  cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2);
 
   useEffect(() => {
     if (success) {
@@ -77,25 +68,23 @@ const PlaceOrderScreen = ({ history }) => {
               <h2>Order Items</h2>
               {cart.cartItems.length !== 0 ? (
                 <ListGroup variant="flush">
-                  {cart.cartItems.map(
-                    ({ image, name, product, price, qty }, index) => (
-                      <ListGroup.Item key={index}>
-                        <Row>
-                          <Col md={1}>
-                            <Image src={image} alt={name} fluid rounded />
-                          </Col>
+                  {cart.cartItems.map(({ image, name, product, price, qty }, index) => (
+                    <ListGroup.Item key={index}>
+                      <Row>
+                        <Col md={1}>
+                          <Image src={image} alt={name} fluid rounded />
+                        </Col>
 
-                          <Col>
-                            <Link to={`/product/${product}`}>{name}</Link>
-                          </Col>
+                        <Col>
+                          <Link to={`/product/${product}`}>{name}</Link>
+                        </Col>
 
-                          <Col md={4}>
-                            {qty} x ${price} = ${qty * price}
-                          </Col>
-                        </Row>
-                      </ListGroup.Item>
-                    )
-                  )}
+                        <Col md={4}>
+                          {qty} x ${price} = ${qty * price}
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  ))}
                 </ListGroup>
               ) : (
                 <Message>Your cart is empty</Message>
@@ -139,17 +128,10 @@ const PlaceOrderScreen = ({ history }) => {
                 </Row>
               </ListGroup.Item>
 
-              <ListGroup.Item>
-                {error && <Message variant="danger">{error}</Message>}
-              </ListGroup.Item>
+              <ListGroup.Item>{error && <Message variant="danger">{error}</Message>}</ListGroup.Item>
 
               <ListGroup.Item>
-                <Button
-                  type="button"
-                  className="btn-block"
-                  disabled={cart.cartItems === 0}
-                  onClick={placeOrderHandler}
-                >
+                <Button type="button" className="btn-block" disabled={cart.cartItems === 0} onClick={placeOrderHandler}>
                   Place Order
                 </Button>
               </ListGroup.Item>

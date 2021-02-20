@@ -25,15 +25,11 @@ import {
 import { logout } from './userActions';
 
 // List products (Also handle keyword & pagenumber)
-export const listProducts = (keyword = '', pageNumber = '') => async (
-  dispatch
-) => {
+export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
-    const { data } = await axios.get(
-      `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
-    );
+    const { data } = await axios.get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`);
 
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -42,10 +38,7 @@ export const listProducts = (keyword = '', pageNumber = '') => async (
   } catch (err) {
     dispatch({
       type: PRODUCT_LIST_FAIL,
-      payload:
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : err.message
+      payload: err.response && err.response.data.message ? err.response.data.message : err.message
     });
   }
 };
@@ -64,10 +57,7 @@ export const listProductDetails = (id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
-      payload:
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : err.message
+      payload: err.response && err.response.data.message ? err.response.data.message : err.message
     });
   }
 };
@@ -93,10 +83,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
       type: PRODUCT_DELETE_SUCCESS
     });
   } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
+    const message = error.response && error.response.data.message ? error.response.data.message : error.message;
     if (message === 'Not authorized, token failed') {
       dispatch(logout());
     }
@@ -133,10 +120,7 @@ export const createProduct = () => async (dispatch, getState) => {
       payload: data
     });
   } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
+    const message = error.response && error.response.data.message ? error.response.data.message : error.message;
     if (message === 'Not authorized, token failed') {
       dispatch(logout());
     }
@@ -170,10 +154,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
       payload: data
     });
   } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
+    const message = error.response && error.response.data.message ? error.response.data.message : error.message;
     if (message === 'Not authorized, token failed') {
       dispatch(logout());
     }
@@ -185,10 +166,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 };
 
 // Product reviews
-export const createProductReview = (productId, review) => async (
-  dispatch,
-  getState
-) => {
+export const createProductReview = (productId, review) => async (dispatch, getState) => {
   try {
     dispatch({
       type: PRODUCT_CREATE_REVIEW_REQUEST
@@ -209,10 +187,7 @@ export const createProductReview = (productId, review) => async (
       type: PRODUCT_CREATE_REVIEW_SUCCESS
     });
   } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
+    const message = error.response && error.response.data.message ? error.response.data.message : error.message;
     if (message === 'Not authorized, token failed') {
       dispatch(logout());
     }
@@ -237,10 +212,7 @@ export const listTopProducts = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_TOP_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
+      payload: error.response && error.response.data.message ? error.response.data.message : error.message
     });
   }
 };

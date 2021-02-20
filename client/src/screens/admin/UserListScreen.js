@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,13 +9,10 @@ import { listUsers, deleteUser } from '../../store/actions/userActions';
 const UserListScreen = ({ history }) => {
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -69,11 +66,7 @@ const UserListScreen = ({ history }) => {
                       </Button>
                     </LinkContainer>
 
-                    <Button
-                      variant="danger"
-                      className="btn-sm"
-                      onClick={() => deleteHandler(_id)}
-                    >
+                    <Button variant="danger" className="btn-sm" onClick={() => deleteHandler(_id)}>
                       <i className="fas fa-trash" />
                     </Button>
                   </td>

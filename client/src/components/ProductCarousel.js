@@ -8,7 +8,6 @@ import { listTopProducts } from '../store/actions/productActions';
 
 const ProductCarousel = () => {
   const dispatch = useDispatch();
-  // Top rated products (global level state)
   const productTopRated = useSelector((state) => state.productTopRated);
   const { loading, error, products } = productTopRated;
 

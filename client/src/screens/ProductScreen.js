@@ -1,4 +1,4 @@
-/* eslint-disable no-alert */
+/* eslint-disable no-shadow */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,10 +11,10 @@ import { listProductDetails, createProductReview } from '../store/actions/produc
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 
 const ProductScreen = ({ history, match }) => {
-  const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
   const userLogin = useSelector((state) => state.userLogin);
@@ -31,10 +31,6 @@ const ProductScreen = ({ history, match }) => {
     }
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match, successProductReview]);
-
-  const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`);
-  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -120,7 +116,7 @@ const ProductScreen = ({ history, match }) => {
 
                     <ListGroup.Item>
                       <Button
-                        onClick={addToCartHandler}
+                        onClick={() => history.push(`/cart/${match.params.id}?qty=${qty}`)}
                         className="btn-block"
                         type="button"
                         disabled={product.countInStock === 0}

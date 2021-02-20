@@ -1,17 +1,10 @@
 {
   "extends": ["wesbos"],
   "rules": {
-    "no-underscore-dangle": 0,
-    "no-console": 0,
-    "no-shadow": 0,
-    "import/extensions": 0,
-    "react/forbid-prop-types": 0,
-    "react/require-default-props": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": 0,
     "no-nested-ternary": 0,
     "jsx-a11y/control-has-associated-label": 0,
-    "import/prefer-default-export": 0,
+    "no-case-declarations": 0,
     "prettier/prettier": [
       "error",
       {

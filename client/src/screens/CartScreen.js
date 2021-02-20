@@ -27,10 +27,6 @@ const CartScreen = ({ match, location: { search }, history }) => {
     dispatch(removeFromCart(id));
   };
 
-  const checkoutHandler = () => {
-    history.push('/login?redirect=shipping');
-  };
-
   return (
     <Row>
       {/* Added products section */}
@@ -39,7 +35,7 @@ const CartScreen = ({ match, location: { search }, history }) => {
 
         {cartItems.length !== 0 ? (
           <ListGroup variant="flush">
-            {cartItems.map(({ product, name, image, price, qty, countInStock }) => (
+            {cartItems.map(({ product, name, image, price, quantity, countInStock }) => (
               <ListGroup.Item key={product}>
                 <Row>
                   <Col md={2}>
@@ -55,7 +51,7 @@ const CartScreen = ({ match, location: { search }, history }) => {
                   <Col md={2}>
                     <Form.Control
                       as="select"
-                      value={qty}
+                      value={quantity}
                       // Call addToCart again to set changed qty
                       onChange={(e) => dispatch(addToCart(product, Number(e.target.value)))}
                     >
@@ -99,7 +95,12 @@ const CartScreen = ({ match, location: { search }, history }) => {
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <Button type="button" className="btn-block" disabled={cartItems.length === 0} onClick={checkoutHandler}>
+              <Button
+                type="button"
+                className="btn-block"
+                disabled={cartItems.length === 0}
+                onClick={() => history.push('/login?redirect=shipping')}
+              >
                 Proceed to Checkout
               </Button>
             </ListGroup.Item>

@@ -1,5 +1,3 @@
-/* eslint-disable no-else-return */
-/* eslint-disable no-case-declarations */
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
@@ -25,13 +23,13 @@ export const cartReducer = (state = { cartItems: [], shippingAddress: {} }, acti
           cartItems: state.cartItems.map((x) => (x.product === existItem.product ? item : x))
         };
         // If it doesn't exist we will push it to array
-      } else
-        return {
-          // Take all items in the state
-          ...state,
-          // Set to an array of current items and add new item
-          cartItems: [...state.cartItems, item]
-        };
+      }
+      return {
+        // Take all items in the state
+        ...state,
+        // Set to an array of current items and add new item
+        cartItems: [...state.cartItems, item]
+      };
     case CART_REMOVE_ITEM:
       return {
         ...state,

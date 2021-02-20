@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';

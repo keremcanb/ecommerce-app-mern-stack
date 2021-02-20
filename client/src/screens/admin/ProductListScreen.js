@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col } from 'react-bootstrap';
@@ -23,11 +22,9 @@ const ProductListScreen = ({ history, match }) => {
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
-
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login');
     }
-
     if (successCreate) {
       history.push(`/admin/product/${createdProduct._id}/edit`);
     } else {
@@ -41,10 +38,6 @@ const ProductListScreen = ({ history, match }) => {
     }
   };
 
-  const createProductHandler = () => {
-    dispatch(createProduct());
-  };
-
   return (
     <>
       <Row className="align-items-center">
@@ -53,7 +46,7 @@ const ProductListScreen = ({ history, match }) => {
         </Col>
 
         <Col className="text-right">
-          <Button className="my-3" onClick={createProductHandler}>
+          <Button className="my-3" onClick={() => dispatch(createProduct())}>
             <i className="fas fa-plus" /> Create Product
           </Button>
         </Col>

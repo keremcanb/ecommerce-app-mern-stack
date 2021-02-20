@@ -6,9 +6,7 @@ import Footer from './components/Footer';
 const App = () => (
   <Router>
     <Header />
-    <main className="py-3">
-      <Routes />
-    </main>
+    <Routes />
     <Footer />
   </Router>
 );

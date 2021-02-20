@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PayPalButton } from 'react-paypal-button-v2';
@@ -26,7 +25,6 @@ const OrderScreen = ({ match, history }) => {
   if (!loading) {
     //   Calculate prices
     const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2);
-
     order.itemsPrice = addDecimals(order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0));
   }
 

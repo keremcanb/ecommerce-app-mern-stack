@@ -9,6 +9,7 @@ import { getUserDetails, updateUser } from '../../store/actions/userActions';
 import { USER_UPDATE_RESET } from '../../constants/userConstants';
 
 const UserEditScreen = ({ match, history }) => {
+  const dispatch = useDispatch();
   const [info, setInfo] = useState({
     name: '',
     email: ''
@@ -20,7 +21,6 @@ const UserEditScreen = ({ match, history }) => {
   const userUpdate = useSelector((state) => state.userUpdate);
   const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = userUpdate;
   const userId = match.params.id;
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (successUpdate) {

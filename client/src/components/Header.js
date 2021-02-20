@@ -6,9 +6,9 @@ import SearchBox from './SearchBox';
 import { logout } from '../store/actions/userActions';
 
 const Header = () => {
+  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const dispatch = useDispatch();
 
   return (
     <header>
@@ -19,7 +19,6 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            {/* Not clear */}
             <Route render={({ history }) => <SearchBox history={history} />} />
 
             <Nav className="ml-auto">

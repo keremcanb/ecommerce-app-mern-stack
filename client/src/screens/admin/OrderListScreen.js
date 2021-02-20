@@ -7,11 +7,11 @@ import Loader from '../../components/Loader';
 import { listOrders } from '../../store/actions/orderActions';
 
 const OrderListScreen = ({ history }) => {
+  const dispatch = useDispatch();
   const orderList = useSelector((state) => state.orderList);
   const { loading, error, orders } = orderList;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {

@@ -8,6 +8,7 @@ import FormContainer from '../../components/FormContainer';
 import { login } from '../../store/actions/userActions';
 
 const LoginScreen = ({ history, location: { search } }) => {
+  const dispatch = useDispatch();
   const [info, setInfo] = useState({
     email: '',
     password: ''
@@ -24,8 +25,6 @@ const LoginScreen = ({ history, location: { search } }) => {
       history.push(redirect);
     }
   }, [history, redirect, userInfo]);
-
-  const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -8,6 +8,7 @@ import CheckoutSteps from '../../components/CheckoutSteps';
 import { createOrder } from '../../store/actions/orderActions';
 
 const PlaceOrderScreen = ({ history }) => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { address, city, postalCode, country } = cart.shippingAddress;
   const orderCreate = useSelector((state) => state.orderCreate);
@@ -15,7 +16,6 @@ const PlaceOrderScreen = ({ history }) => {
 
   // Calculate prices
   const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2);
-
   cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0));
   cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 50);
   cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)));
@@ -26,8 +26,6 @@ const PlaceOrderScreen = ({ history }) => {
       history.push(`/order/${order._id}`);
     }
   }, [history, success, order]);
-
-  const dispatch = useDispatch();
 
   const placeOrderHandler = () => {
     dispatch(

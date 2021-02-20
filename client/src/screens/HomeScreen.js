@@ -11,14 +11,14 @@ import Meta from '../components/Meta';
 import { listProducts } from '../store/actions/productActions';
 
 const HomeScreen = ({ match }) => {
+  // To call an action
+  const dispatch = useDispatch();
   //  Extract data from Redux store state using a selector function (used instead of mapstatetoprops)
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
   // Get keyword/pageNumber from url
   const { keyword } = match.params;
   const { pageNumber } = match.params || 1;
-  // To call an action
-  const dispatch = useDispatch();
 
   useEffect(() => {
     // Call listProducts action

@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../store/actions/cartActions';
 
 const CartScreen = ({ match, location: { search }, history }) => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   // Take added product id from url
@@ -15,7 +16,6 @@ const CartScreen = ({ match, location: { search }, history }) => {
   // eg: /cart/5f91f9d203f0d424541b76ed?qty=1
   // coming from /cart/${match.params.id}?qty=${qty}
   const qty = search ? Number(search.split('=')[1]) : 1;
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (productId) {

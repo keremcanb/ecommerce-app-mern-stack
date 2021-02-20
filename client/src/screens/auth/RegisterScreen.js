@@ -8,6 +8,7 @@ import FormContainer from '../../components/FormContainer';
 import { register } from '../../store/actions/userActions';
 
 const RegisterScreen = ({ history, location: { search } }) => {
+  const dispatch = useDispatch();
   const [info, setInfo] = useState({
     name: '',
     email: '',
@@ -25,8 +26,6 @@ const RegisterScreen = ({ history, location: { search } }) => {
       history.push(redirect);
     }
   }, [history, redirect, userInfo]);
-
-  const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();

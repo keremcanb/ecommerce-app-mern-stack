@@ -11,6 +11,7 @@ import { getOrderDetails, payOrder, deliverOrder } from '../../store/actions/ord
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../../constants/orderConstants';
 
 const OrderScreen = ({ match, history }) => {
+  const dispatch = useDispatch();
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
@@ -21,7 +22,6 @@ const OrderScreen = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const orderId = match.params.id;
-  const dispatch = useDispatch();
 
   if (!loading) {
     //   Calculate prices

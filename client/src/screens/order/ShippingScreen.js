@@ -6,6 +6,7 @@ import CheckoutSteps from '../../components/CheckoutSteps';
 import { saveShippingAddress } from '../../store/actions/cartActions';
 
 const ShippingScreen = ({ history }) => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
   const [info, setInfo] = useState({
@@ -15,7 +16,6 @@ const ShippingScreen = ({ history }) => {
     country: shippingAddress.country
   });
   const { address, city, postalCode, country } = info;
-  const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();

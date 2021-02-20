@@ -7,13 +7,13 @@ import Loader from '../../components/Loader';
 import { listUsers, deleteUser } from '../../store/actions/userActions';
 
 const UserListScreen = ({ history }) => {
+  const dispatch = useDispatch();
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {

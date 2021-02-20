@@ -10,6 +10,7 @@ import { listProducts, deleteProduct, createProduct } from '../../store/actions/
 import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
 
 const ProductListScreen = ({ history, match }) => {
+  const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
   const productDelete = useSelector((state) => state.productDelete);
@@ -19,7 +20,6 @@ const ProductListScreen = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const pageNumber = match.params.pageNumber || 1;
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });

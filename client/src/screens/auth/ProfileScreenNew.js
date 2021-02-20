@@ -8,6 +8,7 @@ import { getUserDetails, updateUserProfile } from '../../store/actions/userActio
 import { listMyOrders } from '../../store/actions/orderActions';
 
 const ProfileScreen = ({ history }) => {
+  const dispatch = useDispatch();
   const [info, setInfo] = useState({
     name: '',
     email: '',
@@ -24,7 +25,6 @@ const ProfileScreen = ({ history }) => {
   const { success } = userUpdateProfile;
   const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!userInfo) {

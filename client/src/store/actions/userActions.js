@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { post, get, put } from 'axios';
 import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
@@ -37,7 +37,7 @@ const headers = {
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
-    const { data } = await axios.post('/api/users/login', { email, password }, headers);
+    const { data } = await post('/api/users/login', { email, password }, headers);
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data
@@ -58,7 +58,7 @@ export const register = (name, email, password) => async (dispatch) => {
     dispatch({
       type: USER_REGISTER_REQUEST
     });
-    const { data } = await axios.post('/api/users', { name, email, password }, headers);
+    const { data } = await post('/api/users', { name, email, password }, headers);
     dispatch({
       type: USER_REGISTER_SUCCESS,
       payload: data
@@ -86,7 +86,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo }
     } = getState();
-    const { data } = await axios.get(`/api/users/${id}`, {
+    const { data } = await get(`/api/users/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`
@@ -113,7 +113,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo }
     } = getState();
-    const { data } = await axios.put(`/api/users/profile`, user, {
+    const { data } = await put(`/api/users/profile`, user, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`
@@ -140,7 +140,7 @@ export const listUsers = () => async (dispatch, getState) => {
     const {
       userLogin: { userInfo }
     } = getState();
-    const { data } = await axios.get(`/api/users`, {
+    const { data } = await get(`/api/users`, {
       headers: {
         Authorization: `Bearer ${userInfo.token}`
       }
@@ -191,7 +191,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo }
     } = getState();
-    const { data } = await axios.put(`/api/users/${user._id}`, user, {
+    const { data } = await put(`/api/users/${user._id}`, user, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`

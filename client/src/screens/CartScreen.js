@@ -5,7 +5,7 @@ import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../store/actions/cartActions';
 
-const CartScreen = ({ match, location: { search }, history }) => {
+const CartScreen = ({ location: { search }, match, history }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;

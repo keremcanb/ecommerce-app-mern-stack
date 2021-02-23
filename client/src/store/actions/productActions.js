@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { get, put, post } from 'axios';
 import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
@@ -28,7 +28,7 @@ import { logout } from './userActions';
 export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await axios.get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`);
+    const { data } = await get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`);
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data
@@ -45,7 +45,7 @@ export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) 
 export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
-    const { data } = await axios.get(`/api/products/${id}`);
+    const { data } = await get(`/api/products/${id}`);
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data
@@ -67,8 +67,8 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo }
     } = getState();
-
-    await axios.delete(`/api/products/${id}`, {
+    await delete (`/api/products/${id}`,
+    {
       headers: {
         Authorization: `Bearer ${userInfo.token}`
       }
@@ -97,7 +97,7 @@ export const createProduct = () => async (dispatch, getState) => {
     const {
       userLogin: { userInfo }
     } = getState();
-    const { data } = await axios.post(
+    const { data } = await post(
       `/api/products`,
       {},
       {
@@ -131,7 +131,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo }
     } = getState();
-    const { data } = await axios.put(`/api/products/${product._id}`, product, {
+    const { data } = await put(`/api/products/${product._id}`, product, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`
@@ -162,7 +162,7 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
     const {
       userLogin: { userInfo }
     } = getState();
-    await axios.post(`/api/products/${productId}/reviews`, review, {
+    await post(`/api/products/${productId}/reviews`, review, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`
@@ -187,7 +187,7 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
 export const listTopProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_TOP_REQUEST });
-    const { data } = await axios.get(`/api/products/top`);
+    const { data } = await get(`/api/products/top`);
     dispatch({
       type: PRODUCT_TOP_SUCCESS,
       payload: data

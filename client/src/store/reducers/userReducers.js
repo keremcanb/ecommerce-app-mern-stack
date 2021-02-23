@@ -24,7 +24,7 @@ import {
   USER_UPDATE_SUCCESS,
   USER_UPDATE_REQUEST,
   USER_UPDATE_RESET
-} from '../../constants/userConstants';
+} from '../constants/userConstants';
 
 // Login
 export const userLoginReducer = (state = {}, action) => {

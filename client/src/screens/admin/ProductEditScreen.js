@@ -7,7 +7,7 @@ import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import FormContainer from '../../components/FormContainer';
 import { listProductDetails, updateProduct } from '../../store/actions/productActions';
-import { PRODUCT_UPDATE_RESET } from '../../constants/productConstants';
+import { PRODUCT_UPDATE_RESET } from '../../store/constants/productConstants';
 
 const ProductEditScreen = ({ match, history }) => {
   const dispatch = useDispatch();

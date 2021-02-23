@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+/* eslint-disable no-return-await */
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 

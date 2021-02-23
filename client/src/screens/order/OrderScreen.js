@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import { getOrderDetails, payOrder, deliverOrder } from '../../store/actions/orderActions';
-import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../../constants/orderConstants';
+import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../../store/constants/orderConstants';
 
 const OrderScreen = ({ match, history }) => {
   const dispatch = useDispatch();

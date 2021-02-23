@@ -18,7 +18,7 @@ import {
   ORDER_DELIVER_FAIL,
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_REQUEST
-} from '../../constants/orderConstants';
+} from '../constants/orderConstants';
 // import { logout } from './userActions';
 
 // Create order

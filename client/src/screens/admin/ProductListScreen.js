@@ -6,7 +6,7 @@ import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import Paginate from '../../components/Paginate';
 import { listProducts, deleteProduct, createProduct } from '../../store/actions/productActions';
-import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
+import { PRODUCT_CREATE_RESET } from '../../store/constants/productConstants';
 
 const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch();

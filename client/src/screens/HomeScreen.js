@@ -11,9 +11,7 @@ import Meta from '../components/Meta';
 import { listProducts } from '../store/actions/productActions';
 
 const HomeScreen = ({ match }) => {
-  // To call an action
   const dispatch = useDispatch();
-  //  Extract data from Redux store state using a selector function (used instead of mapstatetoprops)
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
   // Get keyword/pageNumber from url
@@ -21,7 +19,6 @@ const HomeScreen = ({ match }) => {
   const { pageNumber } = match.params || 1;
 
   useEffect(() => {
-    // Call listProducts action
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
@@ -35,7 +32,6 @@ const HomeScreen = ({ match }) => {
           Go Back
         </Link>
       )}
-
       <h1>Latest Products</h1>
       {!loading ? (
         !error ? (
@@ -47,7 +43,6 @@ const HomeScreen = ({ match }) => {
                 </Col>
               ))}
             </Row>
-
             <Paginate pages={pages} page={page} keyword={keyword || ''} />
           </>
         ) : (

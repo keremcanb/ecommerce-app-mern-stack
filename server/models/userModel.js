@@ -27,10 +27,11 @@ const userSchema = mongoose.Schema(
   }
 );
 
-// eslint-disable-next-line no-return-await
-userSchema.methods.matchPassword = async (enteredPassword) => await bcrypt.compare(enteredPassword, this.password);
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
-userSchema.pre('save', async (next) => {
+userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     next();
   }

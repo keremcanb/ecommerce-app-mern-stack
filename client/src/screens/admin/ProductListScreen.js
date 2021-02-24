@@ -16,8 +16,7 @@ const ProductListScreen = ({ history, match }) => {
   const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
   const productCreate = useSelector((state) => state.productCreate);
   const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productCreate;
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
   const pageNumber = match.params.pageNumber || 1;
 
   useEffect(() => {

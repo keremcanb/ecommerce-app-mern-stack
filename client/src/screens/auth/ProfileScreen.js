@@ -16,10 +16,8 @@ const ProfileScreen = ({ history }) => {
   const [message, setMessage] = useState(null);
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const { success } = userUpdateProfile;
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const success = useSelector((state) => state.userUpdateProfile.success);
   const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 

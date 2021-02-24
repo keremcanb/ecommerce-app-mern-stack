@@ -10,10 +10,8 @@ const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  const userDelete = useSelector((state) => state.userDelete);
-  const { success: successDelete } = userDelete;
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const successDelete = useSelector((state) => state.userDelete.success);
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {

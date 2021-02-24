@@ -7,8 +7,7 @@ import { logout } from '../store/actions/userActions';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
 
   return (
     <header>

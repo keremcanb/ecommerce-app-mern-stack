@@ -7,8 +7,7 @@ import { addToCart, removeFromCart } from '../store/actions/cartActions';
 
 const CartScreen = ({ location: { search }, match, history }) => {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  const cartItems = useSelector((state) => state.cart.cartItems);
   // Take added product id from url
   const productId = match.params.id;
   // While adding new product to cart, query (part in url after ?) with React Router location.search

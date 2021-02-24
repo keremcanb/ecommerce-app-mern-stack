@@ -10,13 +10,14 @@ import { PRODUCT_CREATE_RESET } from '../../store/constants/productConstants';
 
 const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
-  const productDelete = useSelector((state) => state.productDelete);
-  const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
-  const productCreate = useSelector((state) => state.productCreate);
-  const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productCreate;
-  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const { loading, error, products, page, pages } = useSelector((state) => state.productList);
+  const { loading: loadingDelete, error: errorDelete, success: successDelete } = useSelector(
+    (state) => state.productDelete
+  );
+  const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = useSelector(
+    (state) => state.productCreate
+  );
+  const { userInfo } = useSelector((state) => state.userLogin);
   const pageNumber = match.params.pageNumber || 1;
 
   useEffect(() => {

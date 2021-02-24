@@ -10,8 +10,7 @@ const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { address, city, postalCode, country } = cart.shippingAddress;
-  const orderCreate = useSelector((state) => state.orderCreate);
-  const { order, success, error } = orderCreate;
+  const { order, success, error } = useSelector((state) => state.orderCreate);
 
   // Calculate prices
   const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2);

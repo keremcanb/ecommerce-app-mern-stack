@@ -6,9 +6,9 @@ import CheckoutSteps from '../../components/CheckoutSteps';
 import { savePaymentMethod } from '../../store/actions/cartActions';
 
 const PaymentScreen = ({ history }) => {
-  const dispatch = useDispatch();
   const [paymentMethod, setPaymentMethod] = useState('PayPal');
-  const shippingAddress = useSelector((state) => state.cart.shippingAddress);
+  const dispatch = useDispatch();
+  const { shippingAddress } = useSelector((state) => state.cart);
 
   if (!shippingAddress) {
     history.push('/shipping');

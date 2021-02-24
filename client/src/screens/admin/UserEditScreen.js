@@ -16,10 +16,10 @@ const UserEditScreen = ({ match, history }) => {
   });
   const { name, email } = info;
   const [isAdmin, setIsAdmin] = useState(false);
-  const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, user } = userDetails;
-  const userUpdate = useSelector((state) => state.userUpdate);
-  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = userUpdate;
+  const { loading, error, user } = useSelector((state) => state.userDetails);
+  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = useSelector(
+    (state) => state.userUpdate
+  );
   const userId = match.params.id;
 
   useEffect(() => {

@@ -10,15 +10,12 @@ import { getOrderDetails, payOrder, deliverOrder } from '../../store/actions/ord
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../../store/constants/orderConstants';
 
 const OrderScreen = ({ match, history }) => {
-  const dispatch = useDispatch();
   const [sdkReady, setSdkReady] = useState(false);
-  const orderDetails = useSelector((state) => state.orderDetails);
-  const { order, loading, error } = orderDetails;
-  const orderPay = useSelector((state) => state.orderPay);
-  const { loading: loadingPay, success: successPay } = orderPay;
-  const orderDeliver = useSelector((state) => state.orderDeliver);
-  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
-  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const { order, loading, error } = useSelector((state) => state.orderDetails);
+  const dispatch = useDispatch();
+  const { loading: loadingPay, success: successPay } = useSelector((state) => state.orderPay);
+  const { loading: loadingDeliver, success: successDeliver } = useSelector((state) => state.orderDeliver);
+  const { userInfo } = useSelector((state) => state.userLogin);
   const orderId = match.params.id;
 
   if (!loading) {

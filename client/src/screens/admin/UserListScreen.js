@@ -8,10 +8,9 @@ import { listUsers, deleteUser } from '../../store/actions/userActions';
 
 const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
-  const userList = useSelector((state) => state.userList);
-  const { loading, error, users } = userList;
-  const userInfo = useSelector((state) => state.userLogin.userInfo);
-  const successDelete = useSelector((state) => state.userDelete.success);
+  const { loading, error, users } = useSelector((state) => state.userList);
+  const { userInfo } = useSelector((state) => state.userLogin);
+  const { successDelete } = useSelector((state) => state.userDelete);
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {

@@ -8,14 +8,13 @@ import FormContainer from '../../components/FormContainer';
 import { login } from '../../store/actions/userActions';
 
 const LoginScreen = ({ history, location: { search } }) => {
-  const dispatch = useDispatch();
   const [info, setInfo] = useState({
     email: '',
     password: ''
   });
   const { email, password } = info;
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const dispatch = useDispatch();
+  const { loading, error, userInfo } = useSelector((state) => state.userLogin);
   // Get query (part in url after ?) with React Router location.search
   // If exists, split by (=)
   const redirect = search ? search.split('=')[1] : '/';

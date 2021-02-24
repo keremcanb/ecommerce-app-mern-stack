@@ -8,9 +8,8 @@ import { listOrders } from '../../store/actions/orderActions';
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch();
-  const orderList = useSelector((state) => state.orderList);
-  const { loading, error, orders } = orderList;
-  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const { loading, error, orders } = useSelector((state) => state.orderList);
+  const { userInfo } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {

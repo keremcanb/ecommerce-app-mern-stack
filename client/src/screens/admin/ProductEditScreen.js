@@ -10,7 +10,6 @@ import { listProductDetails, updateProduct } from '../../store/actions/productAc
 import { PRODUCT_UPDATE_RESET } from '../../store/constants/productConstants';
 
 const ProductEditScreen = ({ match, history }) => {
-  const dispatch = useDispatch();
   const [info, setInfo] = useState({
     name: '',
     price: 0,
@@ -22,10 +21,11 @@ const ProductEditScreen = ({ match, history }) => {
   const { name, price, brand, category, countInStock, description } = info;
   const [image, setImage] = useState('');
   const [uploading, setUploading] = useState(false);
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
-  const productUpdate = useSelector((state) => state.productUpdate);
-  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate;
+  const dispatch = useDispatch();
+  const { loading, error, product } = useSelector((state) => state.productDetails);
+  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = useSelector(
+    (state) => state.productUpdate
+  );
   const productId = match.params.id;
 
   useEffect(() => {

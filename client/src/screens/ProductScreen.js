@@ -15,11 +15,11 @@ const ProductScreen = ({ history, match }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const dispatch = useDispatch();
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
-  const userInfo = useSelector((state) => state.userLogin.userInfo);
-  const productReviewCreate = useSelector((state) => state.productReviewCreate);
-  const { success: successProductReview, error: errorProductReview } = productReviewCreate;
+  const { loading, error, product } = useSelector((state) => state.productDetails);
+  const { userInfo } = useSelector((state) => state.userLogin);
+  const { success: successProductReview, error: errorProductReview } = useSelector(
+    (state) => state.productReviewCreate
+  );
 
   useEffect(() => {
     if (successProductReview) {

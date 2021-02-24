@@ -8,7 +8,6 @@ import FormContainer from '../../components/FormContainer';
 import { register } from '../../store/actions/userActions';
 
 const RegisterScreen = ({ history, location: { search } }) => {
-  const dispatch = useDispatch();
   const [info, setInfo] = useState({
     name: '',
     email: '',
@@ -17,8 +16,8 @@ const RegisterScreen = ({ history, location: { search } }) => {
   });
   const { name, email, password, confirmPassword } = info;
   const [message, setMessage] = useState(null);
-  const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error, userInfo } = userRegister;
+  const dispatch = useDispatch();
+  const { loading, error, userInfo } = useSelector((state) => state.userRegister);
   const redirect = search ? search.split('=')[1] : '/';
 
   useEffect(() => {
@@ -26,6 +25,8 @@ const RegisterScreen = ({ history, location: { search } }) => {
       history.push(redirect);
     }
   }, [history, redirect, userInfo]);
+
+  const changeHandler = (e) => setInfo({ ...info, [e.target.name]: e.target.value });
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -35,8 +36,6 @@ const RegisterScreen = ({ history, location: { search } }) => {
       dispatch(register(name, email, password));
     }
   };
-
-  const changeHandler = (e) => setInfo({ ...info, [e.target.name]: e.target.value });
 
   return (
     <FormContainer>

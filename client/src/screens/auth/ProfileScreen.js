@@ -8,18 +8,19 @@ import { getUserDetails, updateUserProfile } from '../../store/actions/userActio
 import { listMyOrders } from '../../store/actions/orderActions';
 
 const ProfileScreen = ({ history }) => {
-  const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [info, setInfo] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+  const { name, email, password, confirmPassword } = info;
   const [message, setMessage] = useState(null);
-  const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, user } = userDetails;
-  const userInfo = useSelector((state) => state.userLogin.userInfo);
-  const success = useSelector((state) => state.userUpdateProfile.success);
-  const orderListMy = useSelector((state) => state.orderListMy);
-  const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
+  const dispatch = useDispatch();
+  const { loading, error, user } = useSelector((state) => state.userDetails);
+  const { loading: loadingOrders, error: errorOrders, orders } = useSelector((state) => state.orderListMy);
+  const { userInfo } = useSelector((state) => state.userLogin);
+  const { success } = useSelector((state) => state.userUpdateProfile);
 
   useEffect(() => {
     if (!userInfo) {
@@ -28,10 +29,11 @@ const ProfileScreen = ({ history }) => {
       dispatch(getUserDetails('profile'));
       dispatch(listMyOrders());
     } else {
-      setName(user.name);
-      setEmail(user.email);
+      setInfo({ name: user.name, email: user.email });
     }
   }, [dispatch, history, userInfo, user]);
+
+  const changeHandler = (e) => setInfo({ ...info, [e.target.name]: e.target.value });
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -54,26 +56,22 @@ const ProfileScreen = ({ history }) => {
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="name" placeholder="Enter name" value={name} onChange={(e) => setName(e.target.value)} />
+            <Form.Control type="name" name="name" placeholder="Enter name" value={name} onChange={changeHandler} />
           </Form.Group>
 
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <Form.Control type="email" name="email" placeholder="Enter email" value={email} onChange={changeHandler} />
           </Form.Group>
 
           <Form.Group controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
+              name="password"
               placeholder="Enter password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={changeHandler}
             />
           </Form.Group>
 
@@ -81,9 +79,10 @@ const ProfileScreen = ({ history }) => {
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               type="password"
+              name="passwordConfirm"
               placeholder="Confirm password"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={changeHandler}
             />
           </Form.Group>
 

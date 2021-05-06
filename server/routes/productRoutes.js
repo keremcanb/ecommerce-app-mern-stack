@@ -1,12 +1,6 @@
 import express from 'express';
 import {
-  getProducts,
-  getProductById,
-  deleteProduct,
-  createProduct,
-  updateProduct,
-  createProductReview,
-  getTopProducts
+  getProducts, getProductById, deleteProduct, createProduct, updateProduct, createProductReview, getTopProducts
 } from '../controllers/productController.js';
 import { protect, admin } from '../middleware/authMiddleware.js';
 

@@ -37,11 +37,7 @@ const ProductEditScreen = ({ match, history }) => {
     formData.append('image', file);
     setUploading(true);
     try {
-      const { data } = await post('/api/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      const { data } = await post('/api/upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
       setImage(data);
       setUploading(false);
     } catch (err) {

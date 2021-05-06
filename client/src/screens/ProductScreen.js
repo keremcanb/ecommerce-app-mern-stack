@@ -12,10 +12,10 @@ const ProductScreen = ({ history, match }) => {
   const [comment, setComment] = useState('');
   const { loading, error: err, product } = useSelector((state) => state.productDetails);
   const { userInfo } = useSelector((state) => state.userLogin);
-  const dispatch = useDispatch();
   const { success: successProductReview, error: errorProductReview } = useSelector(
     (state) => state.productReviewCreate
   );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (successProductReview) {

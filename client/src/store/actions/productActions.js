@@ -1,4 +1,4 @@
-import { get, put, post } from 'axios';
+import axios, { get, put, post } from 'axios';
 import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
@@ -54,7 +54,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_DELETE_REQUEST });
     const { userLogin } = getState();
-    await delete (`/api/products/${id}`, { headers: { Authorization: `Bearer ${userLogin.userInfo.token}` } });
+    await axios.delete(`/api/products/${id}`, { headers: { Authorization: `Bearer ${userLogin.userInfo.token}` } });
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
   } catch (err) {
     const message = err.response && err.response.data.message ? err.response.data.message : err.message;

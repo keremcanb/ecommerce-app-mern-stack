@@ -59,7 +59,7 @@ const ProductEditScreen = ({ match, history }) => {
         Go Back
       </Link>
       <FormContainer>
-        <h1>Edit Product</h1>
+        <h1>Add / Edit Product</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading && <Loader />}
@@ -120,7 +120,7 @@ const ProductEditScreen = ({ match, history }) => {
             />
           </Form.Group>
           <Button type="submit" variant="primary">
-            Update
+            Add / Update Product
           </Button>
         </Form>
       </FormContainer>

@@ -26,10 +26,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     dispatch({ type: ORDER_CREATE_REQUEST });
     const { userLogin } = getState();
     const { data } = await post(`/api/orders`, order, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userLogin.userInfo.token}`
-      }
+      headers: { Authorization: `Bearer ${userLogin.userInfo.token}` }
     });
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
   } catch (err) {
@@ -61,10 +58,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
     dispatch({ type: ORDER_PAY_REQUEST });
     const { userLogin } = getState();
     const { data } = await put(`/api/orders/${orderId}/pay`, paymentResult, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userLogin.userInfo.token}`
-      }
+      headers: { Authorization: `Bearer ${userLogin.userInfo.token}` }
     });
     dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
   } catch (err) {

@@ -89,10 +89,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_UPDATE_REQUEST });
     const { userLogin } = getState();
     const { data } = await put(`/api/products/${product._id}`, product, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userLogin.userInfo.token}`
-      }
+      headers: { Authorization: `Bearer ${userLogin.userInfo.token}` }
     });
     dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
   } catch (err) {
@@ -103,16 +100,13 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_UPDATE_FAIL, payload: message });
   }
 };
-// Product reviews
+// Add product reviews
 export const createProductReview = (productId, review) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_CREATE_REVIEW_REQUEST });
     const { userLogin } = getState();
     await post(`/api/products/${productId}/reviews`, review, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userLogin.userInfo.token}`
-      }
+      headers: { Authorization: `Bearer ${userLogin.userInfo.token}` }
     });
     dispatch({ type: PRODUCT_CREATE_REVIEW_SUCCESS });
   } catch (err) {

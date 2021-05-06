@@ -7,7 +7,7 @@ import { PRODUCT_CREATE_RESET } from '../../store/constants/productConstants';
 import { Message, Loader, Paginate } from '../../components';
 
 const ProductListScreen = ({ history, match }) => {
-  const { loading, error, products, page, pages } = useSelector((state) => state.productList);
+  const { loading, error: err, products, page, pages } = useSelector((state) => state.productList);
   const { loading: loadingDelete, error: errorDelete, success: successDelete } = useSelector(
     (state) => state.productDelete
   );
@@ -39,8 +39,8 @@ const ProductListScreen = ({ history, match }) => {
   if (loading) {
     return <Loader />;
   }
-  if (error) {
-    return <Message variant="danger">{error}</Message>;
+  if (err) {
+    return <Message variant="danger">{err}</Message>;
   }
   return (
     <>

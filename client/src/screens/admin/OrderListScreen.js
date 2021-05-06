@@ -6,7 +6,7 @@ import { listOrders } from '../../store/actions/orderActions';
 import { Message, Loader } from '../../components';
 
 const OrderListScreen = ({ history }) => {
-  const { loading, error, orders } = useSelector((state) => state.orderList);
+  const { loading, error: err, orders } = useSelector((state) => state.orderList);
   const { userInfo } = useSelector((state) => state.userLogin);
   const dispatch = useDispatch();
 
@@ -21,8 +21,8 @@ const OrderListScreen = ({ history }) => {
   if (loading) {
     return <Loader />;
   }
-  if (error) {
-    return <Message variant="danger">{error}</Message>;
+  if (err) {
+    return <Message variant="danger">{err}</Message>;
   }
   return (
     <>

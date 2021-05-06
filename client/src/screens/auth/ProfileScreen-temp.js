@@ -11,7 +11,7 @@ const ProfileScreen = ({ history }) => {
   const { name, email, password, confirmPassword } = info;
   const [message, setMessage] = useState(null);
   const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, user } = userDetails;
+  const { loading, error: err, user } = userDetails;
   const userInfo = useSelector((state) => state.userLogin.userInfo);
   const success = useSelector((state) => state.userUpdateProfile.success);
   const orderListMy = useSelector((state) => state.orderListMy);
@@ -46,7 +46,7 @@ const ProfileScreen = ({ history }) => {
         <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
         {success && <Message variant="success">Profile Updated</Message>}
-        {error && <Message variant="danger">{error}</Message>}
+        {err && <Message variant="danger">{err}</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">

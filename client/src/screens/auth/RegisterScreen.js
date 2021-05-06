@@ -9,7 +9,7 @@ const RegisterScreen = ({ history, location: { search } }) => {
   const [info, setInfo] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const { name, email, password, confirmPassword } = info;
   const [message, setMessage] = useState(null);
-  const { loading, error, userInfo } = useSelector((state) => state.userRegister);
+  const { loading, error: err, userInfo } = useSelector((state) => state.userRegister);
   const dispatch = useDispatch();
   const redirect = search ? search.split('=')[1] : '/';
 
@@ -34,7 +34,7 @@ const RegisterScreen = ({ history, location: { search } }) => {
     <FormContainer>
       <h1>Sign Up</h1>
       {message && <Message variant="danger">{message}</Message>}
-      {error && <Message variant="danger">{error}</Message>}
+      {err && <Message variant="danger">{err}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">

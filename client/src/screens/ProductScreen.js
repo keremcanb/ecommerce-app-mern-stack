@@ -10,7 +10,7 @@ const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
-  const { loading, error, product } = useSelector((state) => state.productDetails);
+  const { loading, error: err, product } = useSelector((state) => state.productDetails);
   const { userInfo } = useSelector((state) => state.userLogin);
   const dispatch = useDispatch();
   const { success: successProductReview, error: errorProductReview } = useSelector(
@@ -38,7 +38,7 @@ const ProductScreen = ({ history, match }) => {
         Go Back
       </Link>
       {loading && <Loader />}
-      {error && <Message variant="danger">{error}</Message>}
+      {err && <Message variant="danger">{err}</Message>}
       <>
         <Meta title={product.name} />
         <Row>

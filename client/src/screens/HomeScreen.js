@@ -6,7 +6,7 @@ import { listProducts } from '../store/actions/productActions';
 import { Message, Loader, Paginate, Product, ProductCarousel, Meta } from '../components';
 
 const HomeScreen = ({ match }) => {
-  const { loading, error, products, page, pages } = useSelector((state) => state.productList);
+  const { loading, error: err, products, page, pages } = useSelector((state) => state.productList);
   const dispatch = useDispatch();
   const { keyword } = match.params;
   const { pageNumber } = match.params || 1;
@@ -27,7 +27,7 @@ const HomeScreen = ({ match }) => {
       )}
       <h1>Latest Products</h1>
       {loading && <Loader />}
-      {error && <Message variant="danger">{error}</Message>}
+      {err && <Message variant="danger">{err}</Message>}
       <>
         <Row>
           {products.map((product) => (

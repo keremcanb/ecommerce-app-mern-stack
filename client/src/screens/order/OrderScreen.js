@@ -10,7 +10,7 @@ import { Message, Loader } from '../../components';
 
 const OrderScreen = ({ match, history }) => {
   const [sdkReady, setSdkReady] = useState(false);
-  const { order, loading, error } = useSelector((state) => state.orderDetails);
+  const { order, loading, error: err } = useSelector((state) => state.orderDetails);
   const { loading: loadingPay, success: successPay } = useSelector((state) => state.orderPay);
   const { loading: loadingDeliver, success: successDeliver } = useSelector((state) => state.orderDeliver);
   const { userInfo } = useSelector((state) => state.userLogin);
@@ -56,8 +56,8 @@ const OrderScreen = ({ match, history }) => {
   if (loading) {
     return <Loader />;
   }
-  if (error) {
-    return <Message variant="danger">{error}</Message>;
+  if (err) {
+    return <Message variant="danger">{err}</Message>;
   }
   return (
     <>

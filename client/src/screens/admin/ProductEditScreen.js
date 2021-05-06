@@ -12,7 +12,7 @@ const ProductEditScreen = ({ match, history }) => {
   const { name, price, brand, category, countInStock, description } = info;
   const [image, setImage] = useState('');
   const [uploading, setUploading] = useState(false);
-  const { loading, error, product } = useSelector((state) => state.productDetails);
+  const { loading, error: err, product } = useSelector((state) => state.productDetails);
   const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = useSelector(
     (state) => state.productUpdate
   );
@@ -67,7 +67,7 @@ const ProductEditScreen = ({ match, history }) => {
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading && <Loader />}
-        {error && <Message variant="danger">{error}</Message>}
+        {err && <Message variant="danger">{err}</Message>}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>

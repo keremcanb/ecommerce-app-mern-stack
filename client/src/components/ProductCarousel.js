@@ -7,7 +7,7 @@ import { Loader, Message } from '.';
 
 const ProductCarousel = () => {
   const productTopRated = useSelector((state) => state.productTopRated);
-  const { loading, error, products } = productTopRated;
+  const { loading, error: err, products } = productTopRated;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,8 +17,8 @@ const ProductCarousel = () => {
   if (loading) {
     return <Loader />;
   }
-  if (error) {
-    return <Message variant="danger">{error}</Message>;
+  if (err) {
+    return <Message variant="danger">{err}</Message>;
   }
   return (
     <Carousel pause="hover" className="bg-dark">

@@ -8,7 +8,7 @@ import { Message, CheckoutSteps } from '../../components';
 const PlaceOrderScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
   const { address, city, postalCode, country } = cart.shippingAddress;
-  const { order, success, error } = useSelector((state) => state.orderCreate);
+  const { order, success, error: err } = useSelector((state) => state.orderCreate);
   const dispatch = useDispatch();
   // Calculate prices
   const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2);
@@ -111,7 +111,7 @@ const PlaceOrderScreen = ({ history }) => {
                   <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>{error && <Message variant="danger">{error}</Message>}</ListGroup.Item>
+              <ListGroup.Item>{err && <Message variant="danger">{err}</Message>}</ListGroup.Item>
               <ListGroup.Item>
                 <Button type="button" className="btn-block" disabled={cart.cartItems === 0} onClick={placeOrderHandler}>
                   Place Order

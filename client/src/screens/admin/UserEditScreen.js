@@ -10,7 +10,7 @@ const UserEditScreen = ({ match, history }) => {
   const [info, setInfo] = useState({ name: '', email: '' });
   const { name, email } = info;
   const [isAdmin, setIsAdmin] = useState(false);
-  const { loading, error, user } = useSelector((state) => state.userDetails);
+  const { loading, error: err, user } = useSelector((state) => state.userDetails);
   const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = useSelector(
     (state) => state.userUpdate
   );
@@ -46,7 +46,7 @@ const UserEditScreen = ({ match, history }) => {
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading && <Loader />}
-        {error && <Message variant="danger">{error}</Message>}
+        {err && <Message variant="danger">{err}</Message>}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>

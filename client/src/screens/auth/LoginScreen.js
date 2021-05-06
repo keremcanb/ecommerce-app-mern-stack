@@ -8,7 +8,7 @@ import { Message, Loader, FormContainer } from '../../components';
 const LoginScreen = ({ history, location: { search } }) => {
   const [info, setInfo] = useState({ email: '', password: '' });
   const { email, password } = info;
-  const { loading, error, userInfo } = useSelector((state) => state.userLogin);
+  const { loading, error: err, userInfo } = useSelector((state) => state.userLogin);
   const dispatch = useDispatch();
   // Get query (part in url after ?) with React Router location.search
   // If exists, split by (=)
@@ -30,7 +30,7 @@ const LoginScreen = ({ history, location: { search } }) => {
   return (
     <FormContainer>
       <h1>Sign In</h1>
-      {error && <Message variant="danger">{error}</Message>}
+      {err && <Message variant="danger">{err}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">

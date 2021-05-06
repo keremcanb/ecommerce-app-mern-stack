@@ -63,11 +63,12 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_DETAILS_REQUEST });
     // Get logged in user info (token) with Redux getState method
-    const {
-      userLogin: { userInfo }
-    } = getState();
+    const { userLogin } = getState();
     const { data } = await get(`/api/users/${id}`, {
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${userInfo.token}` }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userLogin.userInfo.token}`
+      }
     });
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (err) {
@@ -81,11 +82,9 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_UPDATE_PROFILE_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
+    const { userLogin } = getState();
     const { data } = await put(`/api/users/profile`, user, {
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${userInfo.token}` }
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${userLogin.userInfo.token}` }
     });
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
   } catch (err) {
@@ -99,10 +98,8 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 export const listUsers = () => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_LIST_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
-    const { data } = await get(`/api/users`, { headers: { Authorization: `Bearer ${userInfo.token}` } });
+    const { userLogin } = getState();
+    const { data } = await get(`/api/users`, { headers: { Authorization: `Bearer ${userLogin.userInfo.token}` } });
     dispatch({ type: USER_LIST_SUCCESS, payload: data });
   } catch (err) {
     dispatch({
@@ -115,10 +112,8 @@ export const listUsers = () => async (dispatch, getState) => {
 export const deleteUser = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_DELETE_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
-    await axios.delete(`/api/users/${id}`, { headers: { Authorization: `Bearer ${userInfo.token}` } });
+    const { userLogin } = getState();
+    await axios.delete(`/api/users/${id}`, { headers: { Authorization: `Bearer ${userLogin.userInfo.token}` } });
     dispatch({ type: USER_DELETE_SUCCESS });
   } catch (err) {
     dispatch({
@@ -131,11 +126,9 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 export const updateUser = (user) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_UPDATE_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
+    const { userLogin } = getState();
     const { data } = await put(`/api/users/${user._id}`, user, {
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${userInfo.token}` }
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${userLogin.userInfo.token}` }
     });
     dispatch({ type: USER_UPDATE_SUCCESS });
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });

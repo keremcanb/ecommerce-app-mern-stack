@@ -53,10 +53,8 @@ export const listProductDetails = (id) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_DELETE_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
-    await delete (`/api/products/${id}`, { headers: { Authorization: `Bearer ${userInfo.token}` } });
+    const { userLogin } = getState();
+    await delete (`/api/products/${id}`, { headers: { Authorization: `Bearer ${userLogin.userInfo.token}` } });
     dispatch({ type: PRODUCT_DELETE_SUCCESS });
   } catch (err) {
     const message = err.response && err.response.data.message ? err.response.data.message : err.message;
@@ -70,10 +68,12 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 export const createProduct = () => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_CREATE_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
-    const { data } = await post(`/api/products`, {}, { headers: { Authorization: `Bearer ${userInfo.token}` } });
+    const { userLogin } = getState();
+    const { data } = await post(
+      `/api/products`,
+      {},
+      { headers: { Authorization: `Bearer ${userLogin.userInfo.token}` } }
+    );
     dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
   } catch (err) {
     const message = err.response && err.response.data.message ? err.response.data.message : err.message;
@@ -87,11 +87,12 @@ export const createProduct = () => async (dispatch, getState) => {
 export const updateProduct = (product) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_UPDATE_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
+    const { userLogin } = getState();
     const { data } = await put(`/api/products/${product._id}`, product, {
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${userInfo.token}` }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userLogin.userInfo.token}`
+      }
     });
     dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
   } catch (err) {
@@ -106,11 +107,12 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 export const createProductReview = (productId, review) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_CREATE_REVIEW_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
+    const { userLogin } = getState();
     await post(`/api/products/${productId}/reviews`, review, {
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${userInfo.token}` }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userLogin.userInfo.token}`
+      }
     });
     dispatch({ type: PRODUCT_CREATE_REVIEW_SUCCESS });
   } catch (err) {

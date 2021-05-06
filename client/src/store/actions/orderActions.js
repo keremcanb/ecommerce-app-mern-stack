@@ -24,11 +24,12 @@ import {
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_CREATE_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
+    const { userLogin } = getState();
     const { data } = await post(`/api/orders`, order, {
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${userInfo.token}` }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userLogin.userInfo.token}`
+      }
     });
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
   } catch (err) {
@@ -42,10 +43,10 @@ export const createOrder = (order) => async (dispatch, getState) => {
 export const getOrderDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
-    const { data } = await get(`/api/orders/${id}`, { headers: { Authorization: `Bearer ${userInfo.token}` } });
+    const { userLogin } = getState();
+    const { data } = await get(`/api/orders/${id}`, {
+      headers: { Authorization: `Bearer ${userLogin.userInfo.token}` }
+    });
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (err) {
     dispatch({
@@ -58,11 +59,12 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 export const payOrder = (orderId, paymentResult) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_PAY_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
+    const { userLogin } = getState();
     const { data } = await put(`/api/orders/${orderId}/pay`, paymentResult, {
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${userInfo.token}` }
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userLogin.userInfo.token}`
+      }
     });
     dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
   } catch (err) {
@@ -76,10 +78,10 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
 export const listMyOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_LIST_MY_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
-    const { data } = await get(`/api/orders/myorders`, { headers: { Authorization: `Bearer ${userInfo.token}` } });
+    const { userLogin } = getState();
+    const { data } = await get(`/api/orders/myorders`, {
+      headers: { Authorization: `Bearer ${userLogin.userInfo.token}` }
+    });
     dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: data });
   } catch (err) {
     dispatch({
@@ -92,10 +94,10 @@ export const listMyOrders = () => async (dispatch, getState) => {
 export const listOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_LIST_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
-    const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
+    const { userLogin } = getState();
+    const config = {
+      headers: { Authorization: `Bearer ${userLogin.userInfo.token}` }
+    };
     const { data } = await get(`/api/orders`, config);
     dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
   } catch (err) {
@@ -109,13 +111,11 @@ export const listOrders = () => async (dispatch, getState) => {
 export const deliverOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DELIVER_REQUEST });
-    const {
-      userLogin: { userInfo }
-    } = getState();
+    const { userLogin } = getState();
     const { data } = await put(
       `/api/orders/${order._id}/deliver`,
       {},
-      { headers: { Authorization: `Bearer ${userInfo.token}` } }
+      { headers: { Authorization: `Bearer ${userLogin.userInfo.token}` } }
     );
     dispatch({ type: ORDER_DELIVER_SUCCESS, payload: data });
   } catch (err) {

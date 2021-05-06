@@ -108,6 +108,7 @@ const ProductScreen = ({ history, match }) => {
             </Card>
           </Col>
         </Row>
+        {/* Reviews section */}
         <Row>
           <Col md={6}>
             <h2>Reviews</h2>

@@ -63,6 +63,7 @@ const OrderScreen = ({ match, history }) => {
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
+            {/* Shipping info section */}
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
@@ -82,6 +83,7 @@ const OrderScreen = ({ match, history }) => {
                 <Message variant="danger">Not Delivered</Message>
               )}
             </ListGroup.Item>
+            {/* Payment method section */}
             <ListGroup.Item>
               <h2>Payment Method</h2>
               <p>
@@ -94,6 +96,7 @@ const OrderScreen = ({ match, history }) => {
                 <Message variant="danger">Not Paid</Message>
               )}
             </ListGroup.Item>
+            {/* Order items section */}
             <ListGroup.Item>
               <h2>Order Items</h2>
               {order.orderItems.length !== 0 ? (
@@ -120,6 +123,7 @@ const OrderScreen = ({ match, history }) => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
+        {/* Order summary section */}
         <Col md={4}>
           <Card>
             <ListGroup variant="flush">

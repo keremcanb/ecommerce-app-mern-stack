@@ -18,13 +18,16 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            {/* Search box */}
             <Route render={({ history }) => <SearchBox history={history} />} />
+            {/* Shopping cart */}
             <Nav className="ml-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>
                   <i className="fas fa-shopping-cart" /> Cart
                 </Nav.Link>
               </LinkContainer>
+              {/* User info dropdown */}
               {userInfo ? (
                 <NavDropdown
                   title={
@@ -46,6 +49,7 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
+              {/* Admin menu dropdown */}
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown
                   title={

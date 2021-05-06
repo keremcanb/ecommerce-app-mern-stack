@@ -46,6 +46,7 @@ const ProfileScreen = ({ history }) => {
         {err && <Message variant="danger">{err}</Message>}
         {success && <Message variant="success">Profile Updated</Message>}
         {loading && <Loader />}
+        {/* User details section */}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
@@ -80,6 +81,7 @@ const ProfileScreen = ({ history }) => {
           </Button>
         </Form>
       </Col>
+      {/* User orders section */}
       <Col md={9}>
         <h2>My Orders</h2>
         {!loadingOrders ? (

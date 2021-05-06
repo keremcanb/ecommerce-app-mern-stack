@@ -43,6 +43,7 @@ const PlaceOrderScreen = ({ history }) => {
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
+            {/* Shipping section */}
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
@@ -50,11 +51,13 @@ const PlaceOrderScreen = ({ history }) => {
                 {address}, {city} {postalCode}, {country}
               </p>
             </ListGroup.Item>
+            {/* Payment method section */}
             <ListGroup.Item>
               <h2>Payment Method</h2>
               <strong>Method: </strong>
               {cart.paymentMethod}
             </ListGroup.Item>
+            {/* Order items section */}
             <ListGroup.Item>
               <h2>Order Items</h2>
               {cart.cartItems.length !== 0 ? (
@@ -81,6 +84,7 @@ const PlaceOrderScreen = ({ history }) => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
+        {/* Order summary section */}
         <Col md={4}>
           <Card>
             <ListGroup variant="flush">

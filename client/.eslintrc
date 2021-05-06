@@ -2,9 +2,7 @@
   "extends": ["wesbos"],
   "rules": {
     "no-shadow": 0,
-    "import/no-cycle": 0,
     "react/prop-types": 0,
-    "no-nested-ternary": 0,
     "jsx-a11y/control-has-associated-label": 0,
     "no-case-declarations": 0,
     "react-hooks/exhaustive-deps": 0,

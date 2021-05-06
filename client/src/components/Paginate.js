@@ -9,6 +9,7 @@ const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) =>
         <LinkContainer
           key={x + 1}
           to={
+            // eslint-disable-next-line no-nested-ternary
             !isAdmin ? (keyword ? `/search/${keyword}/page/${x + 1}` : `/page/${x + 1}`) : `/admin/productlist/${x + 1}`
           }
         >

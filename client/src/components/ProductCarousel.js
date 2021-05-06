@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Carousel, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { listTopProducts } from '../store/actions/productActions';
-import { Loader, Message } from '.';
+import Loader from './Loader';
+import Message from './Message';
 
 const ProductCarousel = () => {
   const productTopRated = useSelector((state) => state.productTopRated);

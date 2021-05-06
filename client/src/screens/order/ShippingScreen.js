@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import FormContainer from '../../components/FormContainer';
-import CheckoutSteps from '../../components/CheckoutSteps';
+import { FormContainer, CheckoutSteps } from '../../components';
 import { saveShippingAddress } from '../../store/actions/cartActions';
 
 const ShippingScreen = ({ history }) => {
-  const dispatch = useDispatch();
   const { shippingAddress } = useSelector((state) => state.cart);
   const [info, setInfo] = useState({
     address: shippingAddress.address,
@@ -15,6 +13,7 @@ const ShippingScreen = ({ history }) => {
     country: shippingAddress.country
   });
   const { address, city, postalCode, country } = info;
+  const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -28,7 +27,6 @@ const ShippingScreen = ({ history }) => {
     <FormContainer>
       <h1>Shipping</h1>
       <CheckoutSteps step1 step2 />
-
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">
           <Form.Label>Address</Form.Label>
@@ -41,7 +39,6 @@ const ShippingScreen = ({ history }) => {
             onChange={changeHandler}
           />
         </Form.Group>
-
         <Form.Group controlId="city">
           <Form.Label>City</Form.Label>
           <Form.Control
@@ -53,7 +50,6 @@ const ShippingScreen = ({ history }) => {
             onChange={changeHandler}
           />
         </Form.Group>
-
         <Form.Group controlId="postalCode">
           <Form.Label>Postal Code</Form.Label>
           <Form.Control
@@ -65,7 +61,6 @@ const ShippingScreen = ({ history }) => {
             onChange={changeHandler}
           />
         </Form.Group>
-
         <Form.Group controlId="country">
           <Form.Label>Country</Form.Label>
           <Form.Control
@@ -77,7 +72,6 @@ const ShippingScreen = ({ history }) => {
             onChange={changeHandler}
           />
         </Form.Group>
-
         <Button type="submit" variant="primary">
           Continue
         </Button>

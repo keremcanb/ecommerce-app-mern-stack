@@ -8,7 +8,6 @@ import {
 export const cartReducer = (state = { cartItems: [], shippingAddress: {} }, action) => {
   const { type, payload } = action;
   const { cartItems } = state;
-
   switch (type) {
     case CART_ADD_ITEM:
       const item = payload;
@@ -24,27 +23,14 @@ export const cartReducer = (state = { cartItems: [], shippingAddress: {} }, acti
         };
         // If it doesn't exist we will push it to array
       }
-      return {
-        // Take all items in the state
-        ...state,
-        // Set to an array of current items and add new item
-        cartItems: [...cartItems, item]
-      };
+      // Set to an array of current items and add new item
+      return { ...state, cartItems: [...cartItems, item] };
     case CART_REMOVE_ITEM:
-      return {
-        ...state,
-        cartItems: cartItems.filter((x) => x.product !== payload)
-      };
+      return { ...state, cartItems: cartItems.filter((x) => x.product !== payload) };
     case CART_SAVE_SHIPPING_ADDRESS:
-      return {
-        ...state,
-        shippingAddress: payload
-      };
+      return { ...state, shippingAddress: payload };
     case CART_SAVE_PAYMENT_METHOD:
-      return {
-        ...state,
-        paymentMethod: payload
-      };
+      return { ...state, paymentMethod: payload };
     default:
       return state;
   }

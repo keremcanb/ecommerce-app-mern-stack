@@ -1,7 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import Header from './components/Header';
-import Routes from './components/Routes';
-import Footer from './components/Footer';
+import { Header, Footer } from './components';
+import Routes from './Routes';
 
 const App = () => (
   <Router>

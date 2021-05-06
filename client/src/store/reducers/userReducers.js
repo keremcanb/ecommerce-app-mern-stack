@@ -25,11 +25,9 @@ import {
   USER_UPDATE_REQUEST,
   USER_UPDATE_RESET
 } from '../constants/userConstants';
-
 // Login
 export const userLoginReducer = (state = {}, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case USER_LOGIN_REQUEST:
       return { loading: true };
@@ -43,11 +41,9 @@ export const userLoginReducer = (state = {}, action) => {
       return state;
   }
 };
-
 // Register
 export const userRegisterReducer = (state = {}, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case USER_REGISTER_REQUEST:
       return { loading: true };
@@ -59,11 +55,9 @@ export const userRegisterReducer = (state = {}, action) => {
       return state;
   }
 };
-
 // User details
 export const userDetailsReducer = (state = { user: {} }, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case USER_DETAILS_REQUEST:
       return { ...state, loading: true };
@@ -77,11 +71,9 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return state;
   }
 };
-
 // Update profile
 export const userUpdateProfileReducer = (state = {}, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case USER_UPDATE_PROFILE_REQUEST:
       return { loading: true };
@@ -93,11 +85,9 @@ export const userUpdateProfileReducer = (state = {}, action) => {
       return state;
   }
 };
-
 // User list
 export const userListReducer = (state = { users: [] }, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case USER_LIST_REQUEST:
       return { loading: true };
@@ -111,11 +101,9 @@ export const userListReducer = (state = { users: [] }, action) => {
       return state;
   }
 };
-
 // User delete
 export const userDeleteReducer = (state = {}, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case USER_DELETE_REQUEST:
       return { loading: true };
@@ -127,11 +115,9 @@ export const userDeleteReducer = (state = {}, action) => {
       return state;
   }
 };
-
 // User update
 export const userUpdateReducer = (state = { user: {} }, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case USER_UPDATE_REQUEST:
       return { loading: true };

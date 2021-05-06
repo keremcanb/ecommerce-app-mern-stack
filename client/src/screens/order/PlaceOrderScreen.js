@@ -2,16 +2,14 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import CheckoutSteps from '../../components/CheckoutSteps';
+import { Message, CheckoutSteps } from '../../components';
 import { createOrder } from '../../store/actions/orderActions';
 
 const PlaceOrderScreen = ({ history }) => {
-  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { address, city, postalCode, country } = cart.shippingAddress;
   const { order, success, error } = useSelector((state) => state.orderCreate);
-
+  const dispatch = useDispatch();
   // Calculate prices
   const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2);
   cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0));
@@ -42,7 +40,6 @@ const PlaceOrderScreen = ({ history }) => {
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
-
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
@@ -53,13 +50,11 @@ const PlaceOrderScreen = ({ history }) => {
                 {address}, {city} {postalCode}, {country}
               </p>
             </ListGroup.Item>
-
             <ListGroup.Item>
               <h2>Payment Method</h2>
               <strong>Method: </strong>
               {cart.paymentMethod}
             </ListGroup.Item>
-
             <ListGroup.Item>
               <h2>Order Items</h2>
               {cart.cartItems.length !== 0 ? (
@@ -70,11 +65,9 @@ const PlaceOrderScreen = ({ history }) => {
                         <Col md={1}>
                           <Image src={image} alt={name} fluid rounded />
                         </Col>
-
                         <Col>
                           <Link to={`/product/${product}`}>{name}</Link>
                         </Col>
-
                         <Col md={4}>
                           {qty} x ${price} = ${qty * price}
                         </Col>
@@ -88,44 +81,37 @@ const PlaceOrderScreen = ({ history }) => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-
         <Col md={4}>
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
-
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
                   <Col>${cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
-
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
                   <Col>${cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
-
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
                   <Col>${cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
-
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
                   <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-
               <ListGroup.Item>{error && <Message variant="danger">{error}</Message>}</ListGroup.Item>
-
               <ListGroup.Item>
                 <Button type="button" className="btn-block" disabled={cart.cartItems === 0} onClick={placeOrderHandler}>
                   Place Order

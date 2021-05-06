@@ -2,13 +2,11 @@ import { useState, useEffect } from 'react';
 import { Table, Form, Button, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
+import { Message, Loader } from '../../components';
 import { getUserDetails, updateUserProfile } from '../../store/actions/userActions';
 import { listMyOrders } from '../../store/actions/orderActions';
 
 const ProfileScreen = ({ history }) => {
-  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,6 +17,7 @@ const ProfileScreen = ({ history }) => {
   const userInfo = useSelector((state) => state.userLogin.userInfo);
   const success = useSelector((state) => state.userUpdateProfile.success);
   const orderListMy = useSelector((state) => state.orderListMy);
+  const dispatch = useDispatch();
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
   useEffect(() => {
@@ -47,16 +46,14 @@ const ProfileScreen = ({ history }) => {
       <Col md={3}>
         <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
-        {error && <Message variant="danger">{error}</Message>}
         {success && <Message variant="success">Profile Updated</Message>}
+        {error && <Message variant="danger">{error}</Message>}
         {loading && <Loader />}
-
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control type="name" placeholder="Enter name" value={name} onChange={(e) => setName(e.target.value)} />
           </Form.Group>
-
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -66,7 +63,6 @@ const ProfileScreen = ({ history }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
-
           <Form.Group controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
@@ -76,7 +72,6 @@ const ProfileScreen = ({ history }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-
           <Form.Group controlId="confirmPassword">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
@@ -86,13 +81,11 @@ const ProfileScreen = ({ history }) => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </Form.Group>
-
           <Button type="submit" variant="primary">
             Update
           </Button>
         </Form>
       </Col>
-
       <Col md={9}>
         <h2>My Orders</h2>
         {!loadingOrders ? (
@@ -108,20 +101,15 @@ const ProfileScreen = ({ history }) => {
                   <th />
                 </tr>
               </thead>
-
               <tbody>
                 {orders.map(({ _id, createdAt, totalPrice, isPaid, paidAt, isDelivered, deliveredAt }) => (
                   <tr key={_id}>
                     <td>{_id}</td>
-
                     <td>{createdAt.substring(0, 10)}</td>
-
                     <td>{totalPrice}</td>
-
                     <td>
                       {isPaid ? paidAt.substring(0, 10) : <i className="fas fa-times" style={{ color: 'red' }} />}
                     </td>
-
                     <td>
                       {isDelivered ? (
                         deliveredAt.substring(0, 10)
@@ -129,7 +117,6 @@ const ProfileScreen = ({ history }) => {
                         <i className="fas fa-times" style={{ color: 'red' }} />
                       )}
                     </td>
-
                     <td>
                       <LinkContainer to={`/order/${_id}`}>
                         <Button className="btn-sm" variant="light">

@@ -2,22 +2,15 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import FormContainer from '../../components/FormContainer';
+import { Message, Loader, FormContainer } from '../../components';
 import { register } from '../../store/actions/userActions';
 
 const RegisterScreen = ({ history, location: { search } }) => {
-  const [info, setInfo] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
+  const [info, setInfo] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const { name, email, password, confirmPassword } = info;
   const [message, setMessage] = useState(null);
-  const dispatch = useDispatch();
   const { loading, error, userInfo } = useSelector((state) => state.userRegister);
+  const dispatch = useDispatch();
   const redirect = search ? search.split('=')[1] : '/';
 
   useEffect(() => {
@@ -43,18 +36,15 @@ const RegisterScreen = ({ history, location: { search } }) => {
       {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
-
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
           <Form.Control type="name" name="name" placeholder="Enter Name" value={name} onChange={changeHandler} />
         </Form.Group>
-
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>
           <Form.Control type="email" name="email" placeholder="Enter Email" value={email} onChange={changeHandler} />
         </Form.Group>
-
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -65,7 +55,6 @@ const RegisterScreen = ({ history, location: { search } }) => {
             onChange={changeHandler}
           />
         </Form.Group>
-
         <Form.Group controlId="password">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
@@ -76,12 +65,10 @@ const RegisterScreen = ({ history, location: { search } }) => {
             onChange={changeHandler}
           />
         </Form.Group>
-
         <Button type="submit" variant="primary">
           Register
         </Button>
       </Form>
-
       <Row className="py-3">
         <Col>
           Have an Account? <Link to={redirect ? `/login?redirect=${redirect} ` : '/login'}>Login</Link>

@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
-import Message from '../components/Message';
+import { Message } from '../components';
 import { addToCart, removeFromCart } from '../store/actions/cartActions';
 
 const CartScreen = ({ location: { search }, match, history }) => {
-  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
   // Take added product id from url
   const productId = match.params.id;
   // While adding new product to cart, query (part in url after ?) with React Router location.search
@@ -31,7 +31,6 @@ const CartScreen = ({ location: { search }, match, history }) => {
       {/* Added products section */}
       <Col md={8}>
         <h1>Shopping Cart</h1>
-
         {cartItems.length !== 0 ? (
           <ListGroup variant="flush">
             {cartItems.map(({ product, name, image, price, quantity, countInStock }) => (
@@ -40,13 +39,10 @@ const CartScreen = ({ location: { search }, match, history }) => {
                   <Col md={2}>
                     <Image src={image} alt={name} fluid rounded />
                   </Col>
-
                   <Col md={3}>
                     <Link to={`/product/${product}`}>{name}</Link>
                   </Col>
-
                   <Col md={2}>${price}</Col>
-
                   <Col md={2}>
                     <Form.Control
                       as="select"
@@ -64,7 +60,6 @@ const CartScreen = ({ location: { search }, match, history }) => {
                       ))}
                     </Form.Control>
                   </Col>
-
                   <Col md={2}>
                     <Button type="button" variant="light" onClick={() => removeFromCartHandler(product)}>
                       <i className="fas fa-trash" />
@@ -80,7 +75,6 @@ const CartScreen = ({ location: { search }, match, history }) => {
           </Message>
         )}
       </Col>
-
       {/* Cart subtotal section */}
       <Col md={4}>
         <Card>
@@ -92,7 +86,6 @@ const CartScreen = ({ location: { search }, match, history }) => {
               </h2>
               ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
             </ListGroup.Item>
-
             <ListGroup.Item>
               <Button
                 type="button"

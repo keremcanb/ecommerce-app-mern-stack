@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
-import { Message } from '../components';
 import { addToCart, removeFromCart } from '../store/actions/cartActions';
+import { Message } from '../components';
 
 const CartScreen = ({ location: { search }, match, history }) => {
   const cartItems = useSelector((state) => state.cart.cartItems);

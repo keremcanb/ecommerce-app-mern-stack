@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { Table, Form, Button, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Message, Loader } from '../../components';
 import { getUserDetails, updateUserProfile } from '../../store/actions/userActions';
 import { listMyOrders } from '../../store/actions/orderActions';
+import { Message, Loader } from '../../components';
 
 const ProfileScreen = ({ history }) => {
   const [info, setInfo] = useState({ name: '', email: '', password: '', confirmPassword: '' });

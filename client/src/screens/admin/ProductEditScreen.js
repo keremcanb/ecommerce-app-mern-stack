@@ -1,12 +1,11 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { post } from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Message, Loader } from '../../components';
-import FormContainer from '../../components/FormContainer';
 import { listProductDetails, updateProduct } from '../../store/actions/productActions';
 import { PRODUCT_UPDATE_RESET } from '../../store/constants/productConstants';
+import { Message, Loader, FormContainer } from '../../components';
 
 const ProductEditScreen = ({ match, history }) => {
   const [info, setInfo] = useState({ name: '', price: 0, brand: '', category: '', countInStock: 0, description: '' });
@@ -38,7 +37,7 @@ const ProductEditScreen = ({ match, history }) => {
     formData.append('image', file);
     setUploading(true);
     try {
-      const { data } = await axios.post('/api/upload', formData, {
+      const { data } = await post('/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

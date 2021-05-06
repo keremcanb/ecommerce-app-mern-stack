@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Message, Loader, FormContainer } from '../../components';
 import { getUserDetails, updateUser } from '../../store/actions/userActions';
 import { USER_UPDATE_RESET } from '../../store/constants/userConstants';
+import { Message, Loader, FormContainer } from '../../components';
 
 const UserEditScreen = ({ match, history }) => {
   const [info, setInfo] = useState({ name: '', email: '' });

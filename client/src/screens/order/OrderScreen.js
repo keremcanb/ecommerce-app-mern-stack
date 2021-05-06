@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { get } from 'axios';
-import { PayPalButton } from 'react-paypal-button-v2';
 import { Link } from 'react-router-dom';
+import { PayPalButton } from 'react-paypal-button-v2';
+import { get } from 'axios';
 import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Message, Loader } from '../../components';
 import { getOrderDetails, payOrder, deliverOrder } from '../../store/actions/orderActions';
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../../store/constants/orderConstants';
+import { Message, Loader } from '../../components';
 
 const OrderScreen = ({ match, history }) => {
   const [sdkReady, setSdkReady] = useState(false);

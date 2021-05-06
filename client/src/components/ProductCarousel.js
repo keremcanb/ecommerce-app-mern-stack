@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Loader, Message } from '.';
 import { listTopProducts } from '../store/actions/productActions';
+import { Loader, Message } from '.';
 
 const ProductCarousel = () => {
-  const dispatch = useDispatch();
   const productTopRated = useSelector((state) => state.productTopRated);
   const { loading, error, products } = productTopRated;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(listTopProducts());

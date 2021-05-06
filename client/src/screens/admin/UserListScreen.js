@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Message, Loader } from '../../components';
 import { listUsers, deleteUser } from '../../store/actions/userActions';
+import { Message, Loader } from '../../components';
 
 const UserListScreen = ({ history }) => {
   const { loading, error, users } = useSelector((state) => state.userList);

@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Message, Loader } from '../../components';
 import { listOrders } from '../../store/actions/orderActions';
+import { Message, Loader } from '../../components';
 
 const OrderListScreen = ({ history }) => {
   const { loading, error, orders } = useSelector((state) => state.orderList);

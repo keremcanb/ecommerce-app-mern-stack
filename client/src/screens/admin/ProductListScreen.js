@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Message, Loader, Paginate } from '../../components';
 import { listProducts, deleteProduct, createProduct } from '../../store/actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../../store/constants/productConstants';
+import { Message, Loader, Paginate } from '../../components';
 
 const ProductListScreen = ({ history, match }) => {
   const { loading, error, products, page, pages } = useSelector((state) => state.productList);

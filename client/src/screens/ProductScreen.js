@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
-import { Message, Loader, Rating, Meta } from '../components';
+import { useDispatch, useSelector } from 'react-redux';
 import { listProductDetails, createProductReview } from '../store/actions/productActions';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../store/constants/productConstants';
+import { Message, Loader, Rating, Meta } from '../components';
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);

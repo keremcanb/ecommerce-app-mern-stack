@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
-import { Message, Loader, Paginate, Product, ProductCarousel, Meta } from '../components';
+import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../store/actions/productActions';
+import { Message, Loader, Paginate, Product, ProductCarousel, Meta } from '../components';
 
 const HomeScreen = ({ match }) => {
   const { loading, error, products, page, pages } = useSelector((state) => state.productList);

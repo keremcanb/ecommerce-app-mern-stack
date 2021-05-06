@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Message, Loader, FormContainer } from '../../components';
 import { login } from '../../store/actions/userActions';
+import { Message, Loader, FormContainer } from '../../components';
 
 const LoginScreen = ({ history, location: { search } }) => {
   const [info, setInfo] = useState({ email: '', password: '' });

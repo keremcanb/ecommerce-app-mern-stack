@@ -24,7 +24,7 @@ import {
   PRODUCT_TOP_SUCCESS,
   PRODUCT_TOP_FAIL
 } from '../constants/productConstants';
-// Product list
+
 export const productListReducer = (state = { products: [] }, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -38,7 +38,7 @@ export const productListReducer = (state = { products: [] }, action) => {
       return state;
   }
 };
-// Product details
+
 export const productDetailsReducer = (state = { product: { reviews: [] } }, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -52,7 +52,7 @@ export const productDetailsReducer = (state = { product: { reviews: [] } }, acti
       return state;
   }
 };
-// Product delete
+
 export const productDeleteReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -66,7 +66,7 @@ export const productDeleteReducer = (state = {}, action) => {
       return state;
   }
 };
-// Product create
+
 export const productCreateReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -82,7 +82,7 @@ export const productCreateReducer = (state = {}, action) => {
       return state;
   }
 };
-// Product update
+
 export const productUpdateReducer = (state = { product: {} }, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -98,7 +98,7 @@ export const productUpdateReducer = (state = { product: {} }, action) => {
       return state;
   }
 };
-// Product reviews
+
 export const productReviewCreateReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -114,7 +114,7 @@ export const productReviewCreateReducer = (state = {}, action) => {
       return state;
   }
 };
-// List top products
+
 export const productTopRatedReducer = (state = { products: [] }, action) => {
   const { type, payload } = action;
   switch (type) {

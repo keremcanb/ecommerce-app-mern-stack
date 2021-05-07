@@ -23,7 +23,7 @@ import {
   PRODUCT_TOP_FAIL
 } from '../constants/productConstants';
 import { logout } from './userActions';
-// List products (Also handle keyword & pagenumber)
+
 export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
@@ -36,7 +36,7 @@ export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) 
     });
   }
 };
-// List product details
+
 export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
@@ -49,7 +49,7 @@ export const listProductDetails = (id) => async (dispatch) => {
     });
   }
 };
-// Delete product
+
 export const deleteProduct = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_DELETE_REQUEST });
@@ -64,7 +64,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_DELETE_FAIL, payload: message });
   }
 };
-// Create product
+
 export const createProduct = () => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_CREATE_REQUEST });
@@ -83,7 +83,7 @@ export const createProduct = () => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_CREATE_FAIL, payload: message });
   }
 };
-// Update product
+
 export const updateProduct = (product) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_UPDATE_REQUEST });
@@ -100,7 +100,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_UPDATE_FAIL, payload: message });
   }
 };
-// Add product reviews
+
 export const createProductReview = (productId, review) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_CREATE_REVIEW_REQUEST });
@@ -117,7 +117,7 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
     dispatch({ type: PRODUCT_CREATE_REVIEW_FAIL, payload: message });
   }
 };
-// List top products
+
 export const listTopProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_TOP_REQUEST });

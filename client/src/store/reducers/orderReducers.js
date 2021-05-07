@@ -81,7 +81,7 @@ export const orderListMyReducer = (state = { orders: [] }, action) => {
       return state;
   }
 };
-// Admin order list
+
 export const orderListReducer = (state = { orders: [] }, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -95,7 +95,7 @@ export const orderListReducer = (state = { orders: [] }, action) => {
       return state;
   }
 };
-// Order deliver
+
 export const orderDeliverReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {

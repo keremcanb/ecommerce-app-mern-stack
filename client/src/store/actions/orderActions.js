@@ -19,8 +19,7 @@ import {
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_REQUEST
 } from '../constants/orderConstants';
-// import { logout } from './userActions';
-// Create order
+
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_CREATE_REQUEST });
@@ -36,7 +35,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     });
   }
 };
-// Get order details
+
 export const getOrderDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
@@ -52,7 +51,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     });
   }
 };
-// Order payment
+
 export const payOrder = (orderId, paymentResult) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_PAY_REQUEST });
@@ -68,7 +67,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
     });
   }
 };
-// List my orders
+
 export const listMyOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_LIST_MY_REQUEST });
@@ -84,7 +83,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
     });
   }
 };
-// Admin list orders
+
 export const listOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_LIST_REQUEST });
@@ -101,7 +100,7 @@ export const listOrders = () => async (dispatch, getState) => {
     });
   }
 };
-// Order deliver
+
 export const deliverOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DELIVER_REQUEST });

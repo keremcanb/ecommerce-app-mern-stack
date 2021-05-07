@@ -25,7 +25,7 @@ import {
   USER_UPDATE_REQUEST,
   USER_UPDATE_RESET
 } from '../constants/userConstants';
-// Login
+
 export const userLoginReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -41,7 +41,7 @@ export const userLoginReducer = (state = {}, action) => {
       return state;
   }
 };
-// Register
+
 export const userRegisterReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -55,7 +55,7 @@ export const userRegisterReducer = (state = {}, action) => {
       return state;
   }
 };
-// User details
+
 export const userDetailsReducer = (state = { user: {} }, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -71,7 +71,7 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return state;
   }
 };
-// Update profile
+
 export const userUpdateProfileReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -85,7 +85,7 @@ export const userUpdateProfileReducer = (state = {}, action) => {
       return state;
   }
 };
-// User list
+
 export const userListReducer = (state = { users: [] }, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -101,7 +101,7 @@ export const userListReducer = (state = { users: [] }, action) => {
       return state;
   }
 };
-// User delete
+
 export const userDeleteReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -115,7 +115,7 @@ export const userDeleteReducer = (state = {}, action) => {
       return state;
   }
 };
-// User update
+
 export const userUpdateReducer = (state = { user: {} }, action) => {
   const { type, payload } = action;
   switch (type) {

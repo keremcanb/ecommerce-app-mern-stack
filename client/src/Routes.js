@@ -21,21 +21,21 @@ const Routes = () => (
     <Container>
       <Route path="/" component={HomeScreen} exact />
       <Route path="/page/:pageNumber" component={HomeScreen} exact />
+      <Route path="/product/:id" component={ProductScreen} />
+      <Route path="/cart/:id?" component={CartScreen} />
+      {/* Search */}
       <Route path="/search/:keyword" component={HomeScreen} exact />
       <Route path="/search/:keyword/page/:pageNumber" component={HomeScreen} exact />
-
+      {/* Auth */}
       <Route path="/login" component={LoginScreen} />
       <Route path="/register" component={RegisterScreen} />
       <Route path="/profile" component={ProfileScreen} />
-
-      <Route path="/product/:id" component={ProductScreen} />
-      <Route path="/cart/:id?" component={CartScreen} />
-
+      {/* Order */}
       <Route path="/shipping" component={ShippingScreen} />
       <Route path="/payment" component={PaymentScreen} />
       <Route path="/placeorder" component={PlaceOrderScreen} />
       <Route path="/order/:id" component={OrderScreen} />
-
+      {/* Admin */}
       <Route path="/admin/orderlist" component={OrderListScreen} />
       <Route path="/admin/userlist" component={UserListScreen} />
       <Route path="/admin/user/:id/edit" component={UserEditScreen} />

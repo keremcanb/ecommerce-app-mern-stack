@@ -6,8 +6,8 @@ import { register } from '../../store/actions/userActions';
 import { Message, Loader, FormContainer } from '../../components';
 
 const RegisterScreen = ({ history, location: { search } }) => {
-  const [info, setInfo] = useState({ name: '', email: '', password: '', confirmPassword: '' });
-  const { name, email, password, confirmPassword } = info;
+  const [info, setInfo] = useState({ name: '', email: '', password: '', passwordConfirm: '' });
+  const { name, email, password, passwordConfirm } = info;
   const [message, setMessage] = useState(null);
   const { loading: ldg, error: err, userInfo } = useSelector((state) => state.userRegister);
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const RegisterScreen = ({ history, location: { search } }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (password !== passwordConfirm) {
       setMessage('Passwords do not match');
     } else {
       dispatch(register(name, email, password));
@@ -59,9 +59,9 @@ const RegisterScreen = ({ history, location: { search } }) => {
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
-            name="confirmPassword"
+            name="passwordConfirm"
             placeholder="Confirm Password"
-            value={confirmPassword}
+            value={passwordConfirm}
             onChange={changeHandler}
           />
         </Form.Group>

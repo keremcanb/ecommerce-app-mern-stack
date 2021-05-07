@@ -8,8 +8,8 @@ import { listMyOrders } from '../../store/actions/orderActions';
 import { Message, Loader } from '../../components';
 
 const ProfileScreen = ({ history }) => {
-  const [info, setInfo] = useState({ name: '', email: '', password: '', confirmPassword: '' });
-  const { name, email, password, confirmPassword } = info;
+  const [info, setInfo] = useState({ name: '', email: '', password: '', passwordConfirm: '' });
+  const { name, email, password, passwordConfirm } = info;
   const [message, setMessage] = useState(null);
   const { loading: ldgDetails, error: errDetails, user } = useSelector((state) => state.userDetails);
   const { loading: ldgOrders, error: errOrders, orders } = useSelector((state) => state.orderListMy);
@@ -32,7 +32,7 @@ const ProfileScreen = ({ history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (password !== passwordConfirm) {
       setMessage('Passwords do not match');
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
@@ -67,13 +67,13 @@ const ProfileScreen = ({ history }) => {
               onChange={changeHandler}
             />
           </Form.Group>
-          <Form.Group controlId="confirmPassword">
+          <Form.Group controlId="passwordConfirm">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               type="password"
               name="passwordConfirm"
               placeholder="Confirm password"
-              value={confirmPassword}
+              value={passwordConfirm}
               onChange={changeHandler}
             />
           </Form.Group>

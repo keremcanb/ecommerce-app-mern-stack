@@ -21,7 +21,7 @@ import {
   ORDER_DELIVER_REQUEST,
   ORDER_DELIVER_RESET
 } from '../constants/orderConstants';
-// Create order
+
 export const orderCreateReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -35,7 +35,7 @@ export const orderCreateReducer = (state = {}, action) => {
       return state;
   }
 };
-// Order details
+
 export const orderDetailsReducer = (state = { loading: true, orderItems: [], shippingAddress: {} }, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -49,7 +49,7 @@ export const orderDetailsReducer = (state = { loading: true, orderItems: [], shi
       return state;
   }
 };
-// Order payment
+
 export const orderPayReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -65,7 +65,7 @@ export const orderPayReducer = (state = {}, action) => {
       return state;
   }
 };
-// Order list
+
 export const orderListMyReducer = (state = { orders: [] }, action) => {
   const { type, payload } = action;
   switch (type) {

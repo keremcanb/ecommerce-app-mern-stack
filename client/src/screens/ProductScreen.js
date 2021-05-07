@@ -10,22 +10,20 @@ const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
-  const { loading, error: err, product } = useSelector((state) => state.productDetails);
   const { userInfo } = useSelector((state) => state.userLogin);
-  const { success: successProductReview, error: errorProductReview } = useSelector(
-    (state) => state.productReviewCreate
-  );
+  const { loading: ldg, error: errDetails, product } = useSelector((state) => state.productDetails);
+  const { success, error: errReview } = useSelector((state) => state.productReviewCreate);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (successProductReview) {
+    if (success) {
       alert('Review Submitted!');
       setRating(0);
       setComment('');
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
     dispatch(listProductDetails(match.params.id));
-  }, [dispatch, match, successProductReview]);
+  }, [dispatch, match, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -37,8 +35,8 @@ const ProductScreen = ({ history, match }) => {
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
-      {loading && <Loader />}
-      {err && <Message variant="danger">{err}</Message>}
+      {errDetails && <Message variant="danger">{errDetails}</Message>}
+      {ldg && <Loader />}
       <>
         <Meta title={product.name} />
         <Row>
@@ -124,7 +122,7 @@ const ProductScreen = ({ history, match }) => {
               ))}
               <ListGroup.Item>
                 <h2>Write a Customer Review</h2>
-                {errorProductReview && <Message variant="danger">{errorProductReview}</Message>}
+                {errReview && <Message variant="danger">{errReview}</Message>}
                 {userInfo ? (
                   <Form onSubmit={submitHandler}>
                     <Form.Group controlId="rating">

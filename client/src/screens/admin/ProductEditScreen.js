@@ -12,15 +12,13 @@ const ProductEditScreen = ({ match, history }) => {
   const { name, price, brand, category, countInStock, description } = info;
   const [image, setImage] = useState('');
   const [uploading, setUploading] = useState(false);
-  const { loading, error: err, product } = useSelector((state) => state.productDetails);
-  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = useSelector(
-    (state) => state.productUpdate
-  );
+  const { loading: ldgDetails, error: errDetails, product } = useSelector((state) => state.productDetails);
+  const { loading: ldgUpdate, error: errUpdate, success } = useSelector((state) => state.productUpdate);
   const dispatch = useDispatch();
   const productId = match.params.id;
 
   useEffect(() => {
-    if (successUpdate) {
+    if (success) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
       history.push('/admin/productlist');
     } else if (!product.name || product._id !== productId) {
@@ -29,7 +27,7 @@ const ProductEditScreen = ({ match, history }) => {
       setInfo(product);
       setImage(product.image);
     }
-  }, [dispatch, history, productId, product, successUpdate]);
+  }, [dispatch, history, productId, product, success]);
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
@@ -60,10 +58,9 @@ const ProductEditScreen = ({ match, history }) => {
       </Link>
       <FormContainer>
         <h1>Add / Edit Product</h1>
-        {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
-        {loading && <Loader />}
-        {err && <Message variant="danger">{err}</Message>}
+        {ldgUpdate && ldgDetails && <Loader />}
+        {errUpdate && <Message variant="danger">{errUpdate}</Message>}
+        {errDetails && <Message variant="danger">{errDetails}</Message>}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>

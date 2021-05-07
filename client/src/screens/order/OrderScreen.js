@@ -10,14 +10,14 @@ import { Message, Loader } from '../../components';
 
 const OrderScreen = ({ match, history }) => {
   const [sdkReady, setSdkReady] = useState(false);
-  const { order, loading, error: err } = useSelector((state) => state.orderDetails);
-  const { loading: loadingPay, success: successPay } = useSelector((state) => state.orderPay);
-  const { loading: loadingDeliver, success: successDeliver } = useSelector((state) => state.orderDeliver);
   const { userInfo } = useSelector((state) => state.userLogin);
+  const { loading: ldgDetails, error: errDetails, order } = useSelector((state) => state.orderDetails);
+  const { loading: ldgPay, success: sucPay } = useSelector((state) => state.orderPay);
+  const { loading: ldgDeliver, success: sucDeliver } = useSelector((state) => state.orderDeliver);
   const dispatch = useDispatch();
   const orderId = match.params.id;
 
-  if (!loading) {
+  if (!ldgDetails) {
     //   Calculate prices
     const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2);
     order.itemsPrice = addDecimals(order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0));
@@ -38,7 +38,7 @@ const OrderScreen = ({ match, history }) => {
       document.body.appendChild(script);
     };
 
-    if (!order || successPay || successDeliver || order._id !== orderId) {
+    if (!order || sucPay || sucDeliver || order._id !== orderId) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderDetails(orderId));
@@ -49,13 +49,13 @@ const OrderScreen = ({ match, history }) => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, orderId, successPay, successDeliver, order, history, userInfo]);
+  }, [dispatch, orderId, sucPay, sucDeliver, order, history, userInfo]);
 
-  if (loading) {
+  if (ldgDetails) {
     return <Loader />;
   }
-  if (err) {
-    return <Message variant="danger">{err}</Message>;
+  if (errDetails) {
+    return <Message variant="danger">{errDetails}</Message>;
   }
   return (
     <>
@@ -156,7 +156,7 @@ const OrderScreen = ({ match, history }) => {
               </ListGroup.Item>
               {!order.isPaid && (
                 <ListGroup.Item>
-                  {loadingPay && <Loader />}
+                  {ldgPay && <Loader />}
                   {!sdkReady ? (
                     <Loader />
                   ) : (
@@ -169,7 +169,7 @@ const OrderScreen = ({ match, history }) => {
                   )}
                 </ListGroup.Item>
               )}
-              {loadingDeliver && <Loader />}
+              {ldgDeliver && <Loader />}
               {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                 <ListGroup.Item>
                   <Button

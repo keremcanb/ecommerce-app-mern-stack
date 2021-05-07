@@ -11,8 +11,8 @@ const ProfileScreen = ({ history }) => {
   const [info, setInfo] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const { name, email, password, confirmPassword } = info;
   const [message, setMessage] = useState(null);
-  const { loading, error: err, user } = useSelector((state) => state.userDetails);
-  const { loading: loadingOrders, error: errorOrders, orders } = useSelector((state) => state.orderListMy);
+  const { loading: ldgDetails, error: errDetails, user } = useSelector((state) => state.userDetails);
+  const { loading: ldgOrders, error: errOrders, orders } = useSelector((state) => state.orderListMy);
   const { userInfo } = useSelector((state) => state.userLogin);
   const { success } = useSelector((state) => state.userUpdateProfile);
   const dispatch = useDispatch();
@@ -44,9 +44,9 @@ const ProfileScreen = ({ history }) => {
       <Col md={3}>
         <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
-        {err && <Message variant="danger">{err}</Message>}
+        {errDetails && <Message variant="danger">{errDetails}</Message>}
         {success && <Message variant="success">Profile Updated</Message>}
-        {loading && <Loader />}
+        {ldgDetails && <Loader />}
         {/* User details section */}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
@@ -85,8 +85,8 @@ const ProfileScreen = ({ history }) => {
       {/* User orders section */}
       <Col md={9}>
         <h2>My Orders</h2>
-        {!loadingOrders ? (
-          !errorOrders ? (
+        {!ldgOrders ? (
+          !errOrders ? (
             <Table striped bordered hover responsive className="table-sm">
               <thead>
                 <tr>
@@ -126,7 +126,7 @@ const ProfileScreen = ({ history }) => {
               </tbody>
             </Table>
           ) : (
-            <Message variant="danger">{errorOrders}</Message>
+            <Message variant="danger">{errOrders}</Message>
           )
         ) : (
           <Loader />

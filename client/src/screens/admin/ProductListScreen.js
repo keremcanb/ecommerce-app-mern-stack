@@ -7,11 +7,9 @@ import { PRODUCT_CREATE_RESET } from '../../store/constants/productConstants';
 import { Message, Loader, Paginate } from '../../components';
 
 const ProductListScreen = ({ history, match }) => {
-  const { loading, error: err, products, page, pages } = useSelector((state) => state.productList);
-  const { loading: loadingDelete, error: errorDelete, success: successDelete } = useSelector(
-    (state) => state.productDelete
-  );
-  const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = useSelector(
+  const { loading: ldgList, error: errList, products, page, pages } = useSelector((state) => state.productList);
+  const { loading: ldgDelete, error: errDelete, success: sucDelete } = useSelector((state) => state.productDelete);
+  const { loading: ldgCreate, error: errCreate, success: sucCreate, product } = useSelector(
     (state) => state.productCreate
   );
   const { userInfo } = useSelector((state) => state.userLogin);
@@ -23,12 +21,12 @@ const ProductListScreen = ({ history, match }) => {
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login');
     }
-    if (successCreate) {
-      history.push(`/admin/product/${createdProduct._id}/edit`);
+    if (sucCreate) {
+      history.push(`/admin/product/${product._id}/edit`);
     } else {
       dispatch(listProducts('', pageNumber));
     }
-  }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct, pageNumber]);
+  }, [dispatch, history, userInfo, sucDelete, sucCreate, product, pageNumber]);
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
@@ -36,11 +34,11 @@ const ProductListScreen = ({ history, match }) => {
     }
   };
 
-  if (loading) {
+  if (ldgList) {
     return <Loader />;
   }
-  if (err) {
-    return <Message variant="danger">{err}</Message>;
+  if (errList) {
+    return <Message variant="danger">{errList}</Message>;
   }
   return (
     <>
@@ -54,10 +52,9 @@ const ProductListScreen = ({ history, match }) => {
           </Button>
         </Col>
       </Row>
-      {loadingDelete && <Loader />}
-      {errorDelete && <Message variant="danger">{errorDelete}</Message>}
-      {loadingCreate && <Loader />}
-      {errorCreate && <Message variant="danger">{errorCreate}</Message>}
+      {ldgDelete && ldgCreate && <Loader />}
+      {errDelete && <Message variant="danger">{errDelete}</Message>}
+      {errCreate && <Message variant="danger">{errCreate}</Message>}
       <>
         <Table striped bordered hover responsive className="table-sm">
           <thead>

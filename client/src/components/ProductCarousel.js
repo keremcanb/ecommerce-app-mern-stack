@@ -8,14 +8,14 @@ import Message from './Message';
 
 const ProductCarousel = () => {
   const productTopRated = useSelector((state) => state.productTopRated);
-  const { loading, error: err, products } = productTopRated;
+  const { loading: ldg, error: err, products } = productTopRated;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(listTopProducts());
   }, [dispatch]);
 
-  if (loading) {
+  if (ldg) {
     return <Loader />;
   }
   if (err) {

@@ -10,15 +10,13 @@ const UserEditScreen = ({ match, history }) => {
   const [info, setInfo] = useState({ name: '', email: '' });
   const { name, email } = info;
   const [isAdmin, setIsAdmin] = useState(false);
-  const { loading, error: err, user } = useSelector((state) => state.userDetails);
-  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = useSelector(
-    (state) => state.userUpdate
-  );
+  const { loading: ldgDetails, error: errDetails, user } = useSelector((state) => state.userDetails);
+  const { loading: ldgUpdate, error: errUpdate, success } = useSelector((state) => state.userUpdate);
   const dispatch = useDispatch();
   const userId = match.params.id;
 
   useEffect(() => {
-    if (successUpdate) {
+    if (success) {
       dispatch({ type: USER_UPDATE_RESET });
       history.push('/admin/userlist');
     } else if (!user.name || user._id !== userId) {
@@ -27,7 +25,7 @@ const UserEditScreen = ({ match, history }) => {
       setInfo(user);
       setIsAdmin(user.isAdmin);
     }
-  }, [dispatch, history, successUpdate, user, userId]);
+  }, [dispatch, history, success, user, userId]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -43,10 +41,9 @@ const UserEditScreen = ({ match, history }) => {
       </Link>
       <FormContainer>
         <h1>Edit User</h1>
-        {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
-        {loading && <Loader />}
-        {err && <Message variant="danger">{err}</Message>}
+        {ldgUpdate && ldgDetails && <Loader />}
+        {errUpdate && <Message variant="danger">{errUpdate}</Message>}
+        {errDetails && <Message variant="danger">{errDetails}</Message>}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>

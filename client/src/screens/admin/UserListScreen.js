@@ -6,7 +6,7 @@ import { listUsers, deleteUser } from '../../store/actions/userActions';
 import { Message, Loader } from '../../components';
 
 const UserListScreen = ({ history }) => {
-  const { loading, error: err, users } = useSelector((state) => state.userList);
+  const { loading: ldg, error: err, users } = useSelector((state) => state.userList);
   const { userInfo } = useSelector((state) => state.userLogin);
   const { successDelete } = useSelector((state) => state.userDelete);
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const UserListScreen = ({ history }) => {
     }
   };
 
-  if (loading) {
+  if (ldg) {
     return <Loader />;
   }
   if (err) {

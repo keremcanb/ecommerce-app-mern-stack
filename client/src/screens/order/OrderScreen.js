@@ -51,7 +51,7 @@ const OrderScreen = ({ match, history }) => {
     }
   }, [dispatch, orderId, sucPay, sucDeliver, order, history, userInfo]);
 
-  if (ldgDetails || ldgDeliver) {
+  if (ldgDetails || ldgDeliver || ldgPay) {
     return <Loader />;
   }
   if (errDetails) {
@@ -101,17 +101,17 @@ const OrderScreen = ({ match, history }) => {
               <h2>Order Items</h2>
               {order.orderItems.length !== 0 ? (
                 <ListGroup variant="flush">
-                  {order.orderItems.map(({ image, name, product, qty, price }, index) => (
+                  {order.orderItems.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col md={1}>
-                          <Image src={image} alt={name} fluid rounded />
+                          <Image src={item.image} alt={item.name} fluid rounded />
                         </Col>
                         <Col>
-                          <Link to={`/product/${product}`}>{name}</Link>
+                          <Link to={`/product/${item.product}`}>{item.name}</Link>
                         </Col>
                         <Col md={4}>
-                          {qty} x ${price} = ${qty * price}
+                          {item.qty} x ${item.price} = ${item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -156,16 +156,15 @@ const OrderScreen = ({ match, history }) => {
               </ListGroup.Item>
               {!order.isPaid && (
                 <ListGroup.Item>
-                  {ldgPay && <Loader />}
-                  {!sdkReady ? (
-                    <Loader />
-                  ) : (
+                  {sdkReady ? (
                     <PayPalButton
                       amount={order.totalPrice}
                       onSuccess={(paymentResult) => {
                         dispatch(payOrder(orderId, paymentResult));
                       }}
                     />
+                  ) : (
+                    <Loader />
                   )}
                 </ListGroup.Item>
               )}

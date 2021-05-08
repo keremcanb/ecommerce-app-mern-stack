@@ -2,21 +2,21 @@ import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import Rating from './Rating';
 
-const Product = ({ product: { _id, name, image, rating, numReviews, price } }) => (
+const Product = ({ product }) => (
   <Card className="my-3 p-3 rounded">
-    <Link to={`/product/${_id}`}>
-      <Card.Img src={image} variant="top" />
+    <Link to={`/product/${product._id}`}>
+      <Card.Img src={product.image} variant="top" />
     </Link>
     <Card.Body>
-      <Link to={`/product/${_id}`}>
+      <Link to={`/product/${product._id}`}>
         <Card.Title as="div">
-          <strong>{name}</strong>
+          <strong>{product.name}</strong>
         </Card.Title>
       </Link>
       <Card.Text as="div">
-        <Rating value={rating} text={`${numReviews} reviews`} />
+        <Rating value={product.rating} text={`${product.numReviews} reviews`} />
       </Card.Text>
-      <Card.Text as="h3">${price}</Card.Text>
+      <Card.Text as="h3">${product.price}</Card.Text>
     </Card.Body>
   </Card>
 );

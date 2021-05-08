@@ -40,18 +40,24 @@ const OrderListScreen = ({ history }) => {
           </tr>
         </thead>
         <tbody>
-          {orders.map(({ _id, user, createdAt, totalPrice, isPaid, paidAt, isDelivered, deliveredAt }) => (
-            <tr key={_id}>
-              <td>{_id}</td>
-              <td>{user && user.name}</td>
-              <td>{createdAt.substring(0, 10)}</td>
-              <td>${totalPrice}</td>
-              <td>{isPaid ? paidAt.substring(0, 10) : <i className="fas fa-times" style={{ color: 'red' }} />}</td>
+          {orders.map((order) => (
+            <tr key={order._id}>
+              <td>{order._id}</td>
+              <td>{order.user && order.user.name}</td>
+              <td>{order.createdAt.substring(0, 10)}</td>
+              <td>${order.totalPrice}</td>
               <td>
-                {isDelivered ? deliveredAt.substring(0, 10) : <i className="fas fa-times" style={{ color: 'red' }} />}
+                {order.isPaid ? order.paidAt.substring(0, 10) : <i className="fas fa-times" style={{ color: 'red' }} />}
               </td>
               <td>
-                <LinkContainer to={`/order/${_id}`}>
+                {order.isDelivered ? (
+                  order.deliveredAt.substring(0, 10)
+                ) : (
+                  <i className="fas fa-times" style={{ color: 'red' }} />
+                )}
+              </td>
+              <td>
+                <LinkContainer to={`/order/${order._id}`}>
                   <Button variant="light" className="btn-sm">
                     Details
                   </Button>

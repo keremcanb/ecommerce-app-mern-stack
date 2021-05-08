@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
@@ -46,27 +45,27 @@ const UserListScreen = ({ history }) => {
           </tr>
         </thead>
         <tbody>
-          {users.map(({ _id, name, email, isAdmin }) => (
-            <tr key={_id}>
-              <td>{_id}</td>
-              <td>{name}</td>
+          {users.map((user) => (
+            <tr key={user._id}>
+              <td>{user._id}</td>
+              <td>{user.name}</td>
               <td>
-                <a href={`mailto:${email}`}>{email}</a>
+                <a href={`mailto:${user.email}`}>{user.email}</a>
               </td>
               <td>
-                {isAdmin ? (
+                {user.isAdmin ? (
                   <i className="fas fa-check" style={{ color: 'green' }} />
                 ) : (
                   <i className="fas fa-times" style={{ color: 'red' }} />
                 )}
               </td>
               <td>
-                <LinkContainer to={`/admin/user/${_id}/edit`}>
+                <LinkContainer to={`/admin/user/${user._id}/edit`}>
                   <Button variant="light" className="btn-sm">
                     <i className="fas fa-edit" />
                   </Button>
                 </LinkContainer>
-                <Button variant="danger" className="btn-sm" onClick={() => deleteHandler(_id)}>
+                <Button variant="danger" className="btn-sm" onClick={() => deleteHandler(user._id)}>
                   <i className="fas fa-trash" />
                 </Button>
               </td>

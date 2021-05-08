@@ -11,7 +11,7 @@ const ProductScreen = ({ history, match }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const { userInfo } = useSelector((state) => state.userLogin);
-  const { loading: ldg, error: errDetails, product } = useSelector((state) => state.productDetails);
+  const { loading, error: errDetails, product } = useSelector((state) => state.productDetails);
   const { success, error: errReview } = useSelector((state) => state.productReviewCreate);
   const dispatch = useDispatch();
 
@@ -30,11 +30,14 @@ const ProductScreen = ({ history, match }) => {
     dispatch(createProductReview(match.params.id, { rating, comment }));
   };
 
-  if (ldg) {
+  if (loading) {
     return <Loader />;
   }
   if (errDetails) {
     return <Message variant="danger">{errDetails}</Message>;
+  }
+  if (errReview) {
+    return <Message variant="danger">{errReview}</Message>;
   }
   return (
     <>
@@ -126,7 +129,6 @@ const ProductScreen = ({ history, match }) => {
               ))}
               <ListGroup.Item>
                 <h2>Write a Customer Review</h2>
-                {errReview && <Message variant="danger">{errReview}</Message>}
                 {userInfo ? (
                   <Form onSubmit={submitHandler}>
                     <Form.Group controlId="rating">

@@ -43,6 +43,9 @@ const ProductListScreen = ({ history, match }) => {
   if (errCreate) {
     return <Message variant="danger">{errCreate}</Message>;
   }
+  if (errList) {
+    return <Message variant="danger">{errList}</Message>;
+  }
   return (
     <>
       <Row className="align-items-center">
@@ -68,20 +71,20 @@ const ProductListScreen = ({ history, match }) => {
             </tr>
           </thead>
           <tbody>
-            {products.map(({ _id, name, price, category, brand }) => (
-              <tr key={_id}>
-                <td>{_id}</td>
-                <td>{name}</td>
-                <td>${price}</td>
-                <td>{category}</td>
-                <td>{brand}</td>
+            {products.map((product) => (
+              <tr key={product._id}>
+                <td>{product._id}</td>
+                <td>{product.name}</td>
+                <td>${product.price}</td>
+                <td>{product.category}</td>
+                <td>{product.brand}</td>
                 <td>
-                  <LinkContainer to={`/admin/product/${_id}/edit`}>
+                  <LinkContainer to={`/admin/product/${product._id}/edit`}>
                     <Button variant="light" className="btn-sm">
                       <i className="fas fa-edit" />
                     </Button>
                   </LinkContainer>
-                  <Button variant="danger" className="btn-sm" onClick={() => deleteHandler(_id)}>
+                  <Button variant="danger" className="btn-sm" onClick={() => deleteHandler(product._id)}>
                     <i className="fas fa-trash" />
                   </Button>
                 </td>

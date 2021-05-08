@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 const Rating = ({ value, text, color }) => (
   <div className="rating">
     <span>

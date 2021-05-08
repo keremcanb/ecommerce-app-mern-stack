@@ -62,17 +62,17 @@ const PlaceOrderScreen = ({ history }) => {
               <h2>Order Items</h2>
               {cart.cartItems.length !== 0 ? (
                 <ListGroup variant="flush">
-                  {cart.cartItems.map(({ image, name, product, price, qty }, index) => (
+                  {cart.cartItems.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col md={1}>
-                          <Image src={image} alt={name} fluid rounded />
+                          <Image src={item.image} alt={item.name} fluid rounded />
                         </Col>
                         <Col>
-                          <Link to={`/product/${product}`}>{name}</Link>
+                          <Link to={`/product/${item.product}`}>{item.name}</Link>
                         </Col>
                         <Col md={4}>
-                          {qty} x ${price} = ${qty * price}
+                          {item.qty} x ${item.price} = ${item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>

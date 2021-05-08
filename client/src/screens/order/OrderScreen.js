@@ -51,7 +51,7 @@ const OrderScreen = ({ match, history }) => {
     }
   }, [dispatch, orderId, sucPay, sucDeliver, order, history, userInfo]);
 
-  if (ldgDetails) {
+  if (ldgDetails || ldgDeliver) {
     return <Loader />;
   }
   if (errDetails) {
@@ -169,7 +169,6 @@ const OrderScreen = ({ match, history }) => {
                   )}
                 </ListGroup.Item>
               )}
-              {ldgDeliver && <Loader />}
               {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                 <ListGroup.Item>
                   <Button

@@ -30,13 +30,17 @@ const ProductScreen = ({ history, match }) => {
     dispatch(createProductReview(match.params.id, { rating, comment }));
   };
 
+  if (ldg) {
+    return <Loader />;
+  }
+  if (errDetails) {
+    return <Message variant="danger">{errDetails}</Message>;
+  }
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
-      {errDetails && <Message variant="danger">{errDetails}</Message>}
-      {ldg && <Loader />}
       <>
         <Meta title={product.name} />
         <Row>

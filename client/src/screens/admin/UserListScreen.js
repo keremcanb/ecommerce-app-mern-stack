@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
@@ -6,9 +7,9 @@ import { listUsers, deleteUser } from '../../store/actions/userActions';
 import { Message, Loader } from '../../components';
 
 const UserListScreen = ({ history }) => {
-  const { loading: ldg, error: err, users } = useSelector((state) => state.userList);
+  const { loading, error, users } = useSelector((state) => state.userList);
   const { userInfo } = useSelector((state) => state.userLogin);
-  const { successDelete } = useSelector((state) => state.userDelete);
+  const { success: successDelete } = useSelector((state) => state.userDelete);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const UserListScreen = ({ history }) => {
     } else {
       history.push('/login');
     }
-  }, [dispatch, userInfo, history, successDelete]);
+  }, [dispatch, history, successDelete, userInfo]);
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
@@ -25,11 +26,11 @@ const UserListScreen = ({ history }) => {
     }
   };
 
-  if (ldg) {
+  if (loading) {
     return <Loader />;
   }
-  if (err) {
-    return <Message variant="danger">{err}</Message>;
+  if (error) {
+    return <Message variant="danger">{error}</Message>;
   }
   return (
     <>

@@ -7,8 +7,7 @@ import Loader from './Loader';
 import Message from './Message';
 
 const ProductCarousel = () => {
-  const productTopRated = useSelector((state) => state.productTopRated);
-  const { loading, error, products } = productTopRated;
+  const { loading, error, products } = useSelector((state) => state.productTopRated);
   const dispatch = useDispatch();
 
   useEffect(() => {

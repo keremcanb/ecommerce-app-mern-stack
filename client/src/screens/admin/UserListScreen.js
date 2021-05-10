@@ -8,7 +8,7 @@ import { Message, Loader } from '../../components';
 const UserListScreen = ({ history }) => {
   const { loading, error, users } = useSelector((state) => state.userList);
   const { userInfo } = useSelector((state) => state.userLogin);
-  const { success: successDelete } = useSelector((state) => state.userDelete);
+  const { success } = useSelector((state) => state.userDelete);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const UserListScreen = ({ history }) => {
     } else {
       history.push('/login');
     }
-  }, [dispatch, history, successDelete, userInfo]);
+  }, [dispatch, history, success, userInfo]);
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {

@@ -7,12 +7,12 @@ import { PRODUCT_CREATE_RESET } from '../../store/constants/productConstants';
 import { Message, Loader, Paginate } from '../../components';
 
 const ProductListScreen = ({ history, match }) => {
+  const { userInfo } = useSelector((state) => state.userLogin);
   const { loading: ldgList, error: errList, products, page, pages } = useSelector((state) => state.productList);
   const { loading: ldgDelete, error: errDelete, success: sucDelete } = useSelector((state) => state.productDelete);
   const { loading: ldgCreate, error: errCreate, success: sucCreate, product } = useSelector(
     (state) => state.productCreate
   );
-  const { userInfo } = useSelector((state) => state.userLogin);
   const dispatch = useDispatch();
   const pageNumber = match.params.pageNumber || 1;
 

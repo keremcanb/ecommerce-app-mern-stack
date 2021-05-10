@@ -36,9 +36,6 @@ const ProductScreen = ({ history, match }) => {
   if (errDetails) {
     return <Message variant="danger">{errDetails}</Message>;
   }
-  if (errReview) {
-    return <Message variant="danger">{errReview}</Message>;
-  }
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
@@ -129,6 +126,8 @@ const ProductScreen = ({ history, match }) => {
               ))}
               <ListGroup.Item>
                 <h2>Write a Customer Review</h2>
+                {success && <Message variant="success">Review submitted successfully</Message>}
+                {errReview && <Message variant="danger">{errReview}</Message>}
                 {userInfo ? (
                   <Form onSubmit={submitHandler}>
                     <Form.Group controlId="rating">

@@ -41,23 +41,14 @@ const ProfileScreen = ({ history }) => {
   if (ldgDetails || ldgOrders) {
     return <Loader />;
   }
-  if (errDetails) {
-    return <Message variant="danger">{errDetails}</Message>;
-  }
-  if (errOrders) {
-    return <Message variant="danger">{errOrders}</Message>;
-  }
-  if (message) {
-    return <Message variant="danger">{message}</Message>;
-  }
-  if (success) {
-    return <Message variant="danger">Profile Updated</Message>;
-  }
   return (
     <Row>
       <Col md={3}>
-        <h2>User Profile</h2>
         {/* User details section */}
+        <h2>User Profile</h2>
+        {errDetails && <Message variant="danger">{errDetails}</Message>}
+        {errOrders && <Message variant="danger">{errOrders}</Message>}
+        {message && <Message variant="danger">{message}</Message>}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>

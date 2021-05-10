@@ -54,12 +54,6 @@ const ProductEditScreen = ({ match, history }) => {
   if (ldgUpdate || ldgDetails) {
     return <Loader />;
   }
-  if (errUpdate) {
-    return <Message variant="danger">{errUpdate}</Message>;
-  }
-  if (errDetails) {
-    return <Message variant="danger">{errDetails}</Message>;
-  }
   return (
     <>
       <Link to="/admin/productlist" className="btn btn-light my-3">
@@ -67,6 +61,8 @@ const ProductEditScreen = ({ match, history }) => {
       </Link>
       <FormContainer>
         <h1>Add / Edit Product</h1>
+        {errUpdate && <Message variant="danger">{errUpdate}</Message>}
+        {errDetails && <Message variant="danger">{errDetails}</Message>}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>

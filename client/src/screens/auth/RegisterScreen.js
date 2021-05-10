@@ -33,15 +33,11 @@ const RegisterScreen = ({ history, location: { search } }) => {
   if (loading) {
     return <Loader />;
   }
-  if (error) {
-    return <Message variant="danger">{error}</Message>;
-  }
-  if (message) {
-    return <Message variant="danger">{message}</Message>;
-  }
   return (
     <FormContainer>
       <h1>Sign Up</h1>
+      {error && <Message variant="danger">{error}</Message>}
+      {message && <Message variant="danger">{message}</Message>}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>

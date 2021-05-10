@@ -37,15 +37,6 @@ const ProductListScreen = ({ history, match }) => {
   if (ldgList || ldgDelete || ldgCreate) {
     return <Loader />;
   }
-  if (errDelete) {
-    return <Message variant="danger">{errDelete}</Message>;
-  }
-  if (errCreate) {
-    return <Message variant="danger">{errCreate}</Message>;
-  }
-  if (errList) {
-    return <Message variant="danger">{errList}</Message>;
-  }
   return (
     <>
       <Row className="align-items-center">
@@ -58,6 +49,9 @@ const ProductListScreen = ({ history, match }) => {
           </Button>
         </Col>
       </Row>
+      {errDelete && <Message variant="danger">{errDelete}</Message>}
+      {errCreate && <Message variant="danger">{errCreate}</Message>}
+      {errList && <Message variant="danger">{errList}</Message>}
       <>
         <Table striped bordered hover responsive className="table-sm">
           <thead>

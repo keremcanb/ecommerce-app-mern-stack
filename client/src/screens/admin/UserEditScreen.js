@@ -37,12 +37,6 @@ const UserEditScreen = ({ match, history }) => {
   if (ldgUpdate || ldgDetails) {
     return <Loader />;
   }
-  if (errUpdate) {
-    return <Message variant="danger">{errUpdate}</Message>;
-  }
-  if (errDetails) {
-    return <Message variant="danger">{errDetails}</Message>;
-  }
   return (
     <>
       <Link to="/admin/userlist" className="btn btn-light my-3">
@@ -50,6 +44,8 @@ const UserEditScreen = ({ match, history }) => {
       </Link>
       <FormContainer>
         <h1>Edit User</h1>
+        {errUpdate && <Message variant="danger">{errUpdate}</Message>}
+        {errDetails && <Message variant="danger">{errDetails}</Message>}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>

@@ -8,9 +8,8 @@ import {
 // Take id and qty from url
 // Save entire cart to localstorage, with getState take entire state tree
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const {
-    data: { _id, name, price, image, countInStock }
-  } = await get(`/api/products/${id}`);
+  const { data } = await get(`/api/products/${id}`);
+  const { _id, name, price, image, countInStock } = data;
   dispatch({ type: CART_ADD_ITEM, payload: { product: _id, name, image, price, countInStock, qty } });
   // After dispatch save in localstorage, get js object, stringify it
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));

@@ -21,12 +21,10 @@ const OrderListScreen = ({ history }) => {
   if (loading) {
     return <Loader />;
   }
-  if (error) {
-    return <Message variant="danger">{error}</Message>;
-  }
   return (
     <>
       <h1>Orders</h1>
+      {error && <Message variant="danger">{error}</Message>}
       <Table striped bordered hover responsive className="table-sm">
         <thead>
           <tr>

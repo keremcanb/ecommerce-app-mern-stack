@@ -18,9 +18,6 @@ const HomeScreen = ({ match }) => {
   if (loading) {
     return <Loader />;
   }
-  if (error) {
-    return <Message variant="danger">{error}</Message>;
-  }
   return (
     <>
       <Meta />
@@ -32,6 +29,7 @@ const HomeScreen = ({ match }) => {
         </Link>
       )}
       <h1>Latest Products</h1>
+      {error && <Message variant="danger">{error}</Message>}
       <>
         <Row>
           {products.map((product) => (

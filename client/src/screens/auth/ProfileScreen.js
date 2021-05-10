@@ -46,9 +46,9 @@ const ProfileScreen = ({ history }) => {
       <Col md={3}>
         {/* User details section */}
         <h2>User Profile</h2>
-        {errDetails && <Message variant="danger">{errDetails}</Message>}
-        {errOrders && <Message variant="danger">{errOrders}</Message>}
         {message && <Message variant="danger">{message}</Message>}
+        {errDetails && <Message variant="danger">{errDetails}</Message>}
+        {success && <Message variant="success">Profile Updated</Message>}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
@@ -86,6 +86,7 @@ const ProfileScreen = ({ history }) => {
       {/* User orders section */}
       <Col md={9}>
         <h2>My Orders</h2>
+        {errOrders && <Message variant="danger">{errOrders}</Message>}
         <Table striped bordered hover responsive className="table-sm">
           <thead>
             <tr>
